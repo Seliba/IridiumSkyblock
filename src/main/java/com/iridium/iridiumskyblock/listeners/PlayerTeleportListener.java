@@ -14,6 +14,7 @@ public class PlayerTeleportListener implements Listener {
     public void onPlayerTeleport(PlayerTeleportEvent event) {
         try {
             final Location toLocation = event.getTo();
+            final Location fromLocation = event.getFrom();
             final IslandManager islandManager = IridiumSkyblock.getIslandManager();
             final Island island = islandManager.getIslandViaLocation(toLocation);
             if (island == null) return;
@@ -22,6 +23,8 @@ public class PlayerTeleportListener implements Listener {
             final User user = User.getUser(player);
 
             if (user.islandID == island.getId()) return;
+
+            if (toLocation.getWorld() == fromLocation.getWorld() && toLocation.distance(fromLocation) < 1) return;
 
             if ((island.isVisit() && !island.isBanned(user)) || user.bypassing) {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.getInstance(), () -> island.sendBorder(player), 1);
