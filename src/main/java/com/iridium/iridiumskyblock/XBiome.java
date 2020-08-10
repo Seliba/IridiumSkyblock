@@ -29,6 +29,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 
@@ -305,15 +306,23 @@ public enum XBiome {
 
         Biome biome = this.parseBiome();
         if (biome == null) throw new IllegalArgumentException("Unsupported Biome: " + this.name());
+        boolean newerVersion = XMaterial.supports(16);
 
         for (int x = start.getBlockX(); x < end.getBlockX(); x++) {
-            // y loop for 1.16+ support (vertical biomes)
-            for (int y = 0; y < 256; y++) {
-                for (int z = start.getBlockZ(); z < end.getBlockZ(); z++) {
-                    Block block = new Location(start.getWorld(), x, y, z).getBlock();
-                    if (block.getBiome() != biome) block.setBiome(biome);
+            for (int z = start.getBlockZ(); z < end.getBlockZ(); z++) {
+                if (!newerVersion) {
+                    setBiome(start.getWorld(), x, 0, z, biome);
+                    continue;
+                }
+                for(int y = 0; y < 256; y++) {
+                    setBiome(start.getWorld(), x, y, z, biome);
                 }
             }
         }
+    }
+
+    private void setBiome(World world, int x, int y, int z, Biome biome) {
+        Block block = new Location(world, x, y, z).getBlock();
+        if (block.getBiome() != biome) block.setBiome(biome);
     }
 }
