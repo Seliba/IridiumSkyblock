@@ -307,8 +307,10 @@ public enum XBiome {
         if (biome == null) throw new IllegalArgumentException("Unsupported Biome: " + this.name());
 
         for (int x = start.getBlockX(); x < end.getBlockX(); x++) {
-            // y loop for 1.16+ support (vertical biomes)
-            for (int y = 0; y < (supports ? 256 : 1); y++) {
+            // y loop for 1.16+ support (vertical biomes).
+            // As of now increasing it by 4 seems to work.
+            // This should be the minimal size of the vertical biomes.
+            for (int y = 0; y < (supports ? 256 : 1); y += 4) {
                 for (int z = start.getBlockZ(); z < end.getBlockZ(); z++) {
                     Block block = new Location(start.getWorld(), x, y, z).getBlock();
                     if (block.getBiome() != biome) block.setBiome(biome);
