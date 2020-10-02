@@ -70,8 +70,6 @@ public class EntityExplodeListener implements Listener {
                     island.valuableBlocks.computeIfPresent(xmaterial.name(), (name, original) -> original - 1);
                 }
 
-                if (island.updating)
-                    island.tempValues.remove(block.getLocation());
             }
             island.calculateIslandValue();
         } catch (Exception ex) {

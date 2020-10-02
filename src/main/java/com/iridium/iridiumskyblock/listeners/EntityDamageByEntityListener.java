@@ -32,6 +32,8 @@ public class EntityDamageByEntityListener implements Listener {
         final Island island = islandManager.getIslandViaLocation(damageeLocation);
         if (island == null) return;
 
+        if (event.getCause() == EntityDamageEvent.DamageCause.VOID) return;
+
         //The user is visiting this island, so disable damage
         if (user.islandID != island.getId() && IridiumSkyblock.getConfiguration().disablePvPOnIslands) {
             event.setCancelled(true);

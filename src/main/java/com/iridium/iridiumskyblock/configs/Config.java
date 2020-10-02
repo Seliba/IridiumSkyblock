@@ -28,7 +28,6 @@ public class Config {
     public boolean voidTeleport = true;
     public boolean notifyAvailableUpdate = true;
     public boolean clearInventories = false;
-    public boolean debugSchematics = false;
     public boolean restartUpgradesOnRegen = true;
     public boolean allowWaterInNether = true;
     public boolean disableLeafDecay = true;
@@ -36,11 +35,11 @@ public class Config {
     public boolean allowExplosions = true;
     public boolean disablePvPBetweenIslandMembers = true;
     public boolean disablePvPOnIslands = true;
-    public int blocksPerTick = 25;
     public int deleteBackupsAfterDays = 7;
     public int regenCooldown = 3600;
     public int distance = 151;
     public int backupIntervalMinutes = 60;
+    public int valueUpdateInterval = 20 * 30;
     public double valuePerLevel = 100.00;
     public double dailyMoneyInterest = 0.5;
     public double dailyCrystalsInterest = 5;

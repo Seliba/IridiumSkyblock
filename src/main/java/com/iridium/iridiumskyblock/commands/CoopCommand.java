@@ -9,13 +9,13 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class CoopCommand extends Command {
 
     public CoopCommand() {
-        super(Collections.singletonList("coop"), "Coops you to an island", "", true);
+        super(Arrays.asList("coop", "trust"), "Coops you to an island", "", true);
     }
 
     @Override

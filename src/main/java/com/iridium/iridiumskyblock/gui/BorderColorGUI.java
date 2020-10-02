@@ -11,11 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class BorderColorGUI extends GUI implements Listener {
 
-    public ItemStack red;
-    public ItemStack green;
-    public ItemStack blue;
-    public ItemStack off;
-
     public BorderColorGUI(Island island) {
         super(island, IridiumSkyblock.getInventories().borderColorGUISize, IridiumSkyblock.getInventories().borderColorGUITitle);
         IridiumSkyblock.getInstance().registerListeners(this);
@@ -25,15 +20,11 @@ public class BorderColorGUI extends GUI implements Listener {
     public void addContent() {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
-        this.red = Utils.makeItem(IridiumSkyblock.getInventories().red);
-        this.green = Utils.makeItem(IridiumSkyblock.getInventories().green);
-        this.blue = Utils.makeItem(IridiumSkyblock.getInventories().blue);
-        this.off = Utils.makeItem(IridiumSkyblock.getInventories().off);
-
-        if (IridiumSkyblock.border.RedEnabled) setItem(10, this.red);
-        if (IridiumSkyblock.border.BlueEnabled) setItem(12, this.blue);
-        if (IridiumSkyblock.border.GreenEnabled) setItem(14, this.green);
-        if (IridiumSkyblock.border.OffEnabled) setItem(16, this.off);
+        if (IridiumSkyblock.border.RedEnabled) setItem(IridiumSkyblock.getInventories().red.slot,Utils.makeItem(IridiumSkyblock.getInventories().red));
+        if (IridiumSkyblock.border.BlueEnabled) setItem(IridiumSkyblock.getInventories().blue.slot,Utils.makeItem(IridiumSkyblock.getInventories().blue));
+        if (IridiumSkyblock.border.GreenEnabled) setItem(IridiumSkyblock.getInventories().green.slot,Utils.makeItem(IridiumSkyblock.getInventories().green));
+        if (IridiumSkyblock.border.OffEnabled) setItem(IridiumSkyblock.getInventories().off.slot,Utils.makeItem(IridiumSkyblock.getInventories().off));
+        setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
     }
 
     @EventHandler
@@ -42,13 +33,16 @@ public class BorderColorGUI extends GUI implements Listener {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
             if (e.getCurrentItem() != null) {
-                if (e.getCurrentItem().equals(blue))
+                if (e.getSlot() == getInventory().getSize() - 5) {
+                    e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+                }
+                if (e.getSlot() == IridiumSkyblock.getInventories().blue.slot)
                     IridiumSkyblock.getIslandManager().getIslandViaId(islandID).setBorderColor(Color.Blue);
-                if (e.getCurrentItem().equals(red))
+                if (e.getSlot() == IridiumSkyblock.getInventories().red.slot)
                     IridiumSkyblock.getIslandManager().getIslandViaId(islandID).setBorderColor(Color.Red);
-                if (e.getCurrentItem().equals(green))
+                if (e.getSlot() == IridiumSkyblock.getInventories().green.slot)
                     IridiumSkyblock.getIslandManager().getIslandViaId(islandID).setBorderColor(Color.Green);
-                if (e.getCurrentItem().equals(off))
+                if (e.getSlot() == IridiumSkyblock.getInventories().off.slot)
                     IridiumSkyblock.getIslandManager().getIslandViaId(islandID).setBorderColor(Color.Off);
                 IridiumSkyblock.getIslandManager().getIslandViaId(islandID).sendBorder();
             }

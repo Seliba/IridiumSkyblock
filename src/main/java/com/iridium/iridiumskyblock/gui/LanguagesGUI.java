@@ -56,6 +56,7 @@ public class LanguagesGUI extends GUI implements Listener {
             i++;
         }
         setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.getInventories().nextPage));
+        setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.getInventories().previousPage));
     }
 
@@ -65,6 +66,9 @@ public class LanguagesGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
             if (languages.containsKey(e.getSlot())) {
                 IridiumSkyblock.getInstance().setLanguage(languages.get(e.getSlot()), (Player) e.getWhoClicked());
             } else if (e.getSlot() == getInventory().getSize() - 7) {

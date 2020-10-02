@@ -75,7 +75,6 @@ public class IridiumSkyblock extends JavaPlugin {
     public static IslandManager islandManager;
     @Getter
     private static CommandManager commandManager;
-    public boolean updatingBlocks = false;
     public List<String> languages = new ArrayList<>();
     public LanguagesGUI languagesGUI;
     @Getter
@@ -480,23 +479,18 @@ public class IridiumSkyblock extends JavaPlugin {
 
             @Override
             public void run() {
-                if (!updatingBlocks) {
-                    if (!islands.hasNext()) {
-                        islands = new ArrayList<>(islandManager.islands.keySet()).listIterator();
-                    }
-                    if (islands.hasNext()) {
-                        int id = islands.next();
-                        Island island = islandManager.getIslandViaId(id);
-                        if (island != null) {
-                            if (!island.updating) {
-                                updatingBlocks = true;
-                                island.initBlocks();
-                            }
-                        }
+                if (!islands.hasNext()) {
+                    islands = new ArrayList<>(islandManager.islands.keySet()).listIterator();
+                }
+                if (islands.hasNext()) {
+                    int id = islands.next();
+                    Island island = islandManager.getIslandViaId(id);
+                    if (island != null) {
+                        island.initBlocks();
                     }
                 }
             }
-        }, 0, 0);
+        }, 0, getConfiguration().valueUpdateInterval);
     }
 
     public void sendErrorMessage(Exception e) {
@@ -592,6 +586,11 @@ public class IridiumSkyblock extends JavaPlugin {
         blockValues = persist.getFile(BlockValues.class).exists() ? persist.load(BlockValues.class) : new BlockValues();
         shop = persist.getFile(Shop.class).exists() ? persist.load(Shop.class) : new Shop();
         border = persist.getFile(Border.class).exists() ? persist.load(Border.class) : new Border();
+
+        if (inventories.red.slot == null) inventories.red.slot = 10;
+        if (inventories.green.slot == null) inventories.green.slot = 12;
+        if (inventories.blue.slot == null) inventories.blue.slot = 14;
+        if (inventories.off.slot == null) inventories.off.slot = 16;
 
         missions.missions.remove(null);
 

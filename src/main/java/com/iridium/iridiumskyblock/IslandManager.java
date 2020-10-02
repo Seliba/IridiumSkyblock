@@ -106,7 +106,7 @@ public class IslandManager {
             }
         }
 
-        IridiumSkyblock.getInstance().saveConfigs();
+        IridiumSkyblock.getInstance().saveData();
 
         nextID++;
     }

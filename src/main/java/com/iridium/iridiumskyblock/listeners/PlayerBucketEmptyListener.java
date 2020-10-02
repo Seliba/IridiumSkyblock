@@ -8,6 +8,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -25,11 +26,12 @@ public class PlayerBucketEmptyListener implements Listener {
         final Material type = event.getBucket();
         final ItemStack item = event.getPlayer().getItemInHand();
         Block block;
-        if (supports) {
+        final boolean isInPaper113 = Bukkit.getVersion().contains("Paper") && Bukkit.getBukkitVersion().contains("1.13");
+        if (supports && !isInPaper113) {
             block = event.getBlock();
         } else {
             try {
-                block = (Block) event.getClass().getMethod("getClickedBlock").invoke(event);
+                block = (Block) PlayerBucketEmptyEvent.class.getMethod("getBlockClicked").invoke(event);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
                 return;

@@ -148,6 +148,10 @@ public class Utils {
         return IridiumSkyblock.getBlockValues().blockvalue.containsKey(XMaterial.matchXMaterial(b.getType())) || b.getState() instanceof CreatureSpawner || IridiumSkyblock.getConfiguration().limitedBlocks.containsKey(XMaterial.matchXMaterial(b.getType()));
     }
 
+    public static boolean isBlockValuable(XMaterial material) {
+        return IridiumSkyblock.getBlockValues().blockvalue.containsKey(material) || IridiumSkyblock.getConfiguration().limitedBlocks.containsKey(material);
+    }
+
     public static List<Island> getTopIslands() {
         List<Island> islands = new ArrayList<>(IridiumSkyblock.getIslandManager().islands.values());
         islands.sort(Comparator.comparingDouble(Island::getValue));

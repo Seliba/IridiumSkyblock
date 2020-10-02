@@ -1,11 +1,7 @@
 package com.iridium.iridiumskyblock.listeners;
 
+import com.iridium.iridiumskyblock.*;
 import com.iridium.iridiumskyblock.configs.Config;
-import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.Island;
-import com.iridium.iridiumskyblock.IslandManager;
-import com.iridium.iridiumskyblock.Utils;
-import com.iridium.iridiumskyblock.XMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -83,8 +79,6 @@ public class BlockFromToListener implements Listener {
                         if (original == null) return 1;
                         return original + 1;
                     });
-                    if (island.updating)
-                        island.tempValues.add(location);
                     island.calculateIslandValue();
                 }
             });

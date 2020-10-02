@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,8 +58,10 @@ public class PermissionsGUI extends GUI implements Listener {
                     i++;
                 }
             }
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         }
     }
+
 
     @Override
     @EventHandler
@@ -68,6 +71,9 @@ public class PermissionsGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
             int i = 11;
             for (Role role : Role.values()) {
                 if (e.getSlot() == i) {
@@ -80,6 +86,10 @@ public class PermissionsGUI extends GUI implements Listener {
                 PermissionsGUI gui = permissions.get(role);
                 if (e.getInventory().equals(gui.getInventory())) {
                     e.setCancelled(true);
+                    if (e.getSlot() == getInventory().getSize() - 5) {
+                        e.getWhoClicked().openInventory(getIsland().getPermissionsGUI().getInventory());
+                        return;
+                    }
                     if (role.getRank() < u.role.getRank()) {
                         int i = 0;
                         try {

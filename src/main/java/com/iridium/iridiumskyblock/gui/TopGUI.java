@@ -9,11 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TopGUI extends GUI implements Listener {
 
@@ -29,6 +25,7 @@ public class TopGUI extends GUI implements Listener {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
         List<Island> top = Utils.getTopIslands();
+        ItemStack filler = Utils.makeItem(IridiumSkyblock.getInventories().topfiller);
         for (int i : IridiumSkyblock.getConfiguration().islandTopSlots.keySet()) {
             if (top.size() >= i) {
                 Island island = top.get(i - 1);
@@ -44,9 +41,10 @@ public class TopGUI extends GUI implements Listener {
                 islands.put(IridiumSkyblock.getConfiguration().islandTopSlots.get(i), island.getId());
                 setItem(IridiumSkyblock.getConfiguration().islandTopSlots.get(i), head);
             } else {
-                setItem(IridiumSkyblock.getConfiguration().islandTopSlots.get(i), Utils.makeItemHidden(IridiumSkyblock.getInventories().background));
+                setItem(IridiumSkyblock.getConfiguration().islandTopSlots.get(i), filler);
             }
         }
+        setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
     }
 
     @EventHandler
@@ -55,6 +53,9 @@ public class TopGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(User.getUser((Player) e.getWhoClicked()).getIsland().getIslandMenuGUI().getInventory());
+            }
             if (islands.containsKey(e.getSlot())) {
                 e.getWhoClicked().closeInventory();
                 Island island = IridiumSkyblock.getIslandManager().getIslandViaId(islands.get(e.getSlot()));

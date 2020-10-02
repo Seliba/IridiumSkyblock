@@ -84,7 +84,7 @@ public class ShopGUI extends GUI implements Listener {
     public boolean contains(Player p, XMaterial materials, int amount) {
         int total = 0;
         for (ItemStack item : p.getInventory().getContents()) {
-            if (item == null) continue;
+            if (item.getType().isAir()) continue;
             if (materials.isSimilar(item)) {
                 total += item.getAmount();
             }
@@ -115,7 +115,7 @@ public class ShopGUI extends GUI implements Listener {
                                 int index = 0;
                                 for (ItemStack itemStack : e.getWhoClicked().getInventory().getContents()) {
                                     if (removed >= item.amount) break;
-                                    if (itemStack != null) {
+                                    if (!itemStack.getType().isAir()) {
                                         if (item.material.isSimilar(itemStack)) {
                                             if (removed + itemStack.getAmount() <= item.amount) {
                                                 removed += itemStack.getAmount();

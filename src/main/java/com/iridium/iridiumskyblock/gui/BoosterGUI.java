@@ -2,7 +2,9 @@ package com.iridium.iridiumskyblock.gui;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,20 +30,31 @@ public class BoosterGUI extends GUI implements Listener {
                 setItem(IridiumSkyblock.getBoosters().experianceBooster.slot, Utils.makeItem(IridiumSkyblock.getInventories().exp, getIsland()));
             if (IridiumSkyblock.getBoosters().flightBooster.enabled)
                 setItem(IridiumSkyblock.getBoosters().flightBooster.slot, Utils.makeItem(IridiumSkyblock.getInventories().flight, getIsland()));
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         }
     }
-
+    public void sendMessage(Player p,String s) {
+        for (String m : getIsland().getMembers()) {
+            Player pl = Bukkit.getPlayer(User.getUser(m).name);
+            if (pl != null) {
+                pl.sendMessage(Utils.color(IridiumSkyblock.getMessages().activatedBooster.replace("%prefix%",IridiumSkyblock.getConfiguration().prefix).replace("%player%",p.getName()).replace("%boostername%",s)));
+            }
+        }
+    }
     @EventHandler
     @Override
     public void onInventoryClick(InventoryClickEvent e) {
         if (e.getInventory().equals(getInventory())) {
             Player p = (Player) e.getWhoClicked();
-            Island island = IridiumSkyblock.getIslandManager().islands.get(islandID);
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
             if (e.getSlot() == IridiumSkyblock.getBoosters().spawnerBooster.slot && IridiumSkyblock.getBoosters().spawnerBooster.enabled) {
                 if (getIsland().getSpawnerBooster() == 0) {
                     if (Utils.canBuy(p, IridiumSkyblock.getBoosters().spawnerBooster.vaultCost, IridiumSkyblock.getBoosters().spawnerBooster.crystalsCost)) {
+                        sendMessage(p,"Spawner");
                         getIsland().setSpawnerBooster(IridiumSkyblock.getBoosters().spawnerBooster.time);
                     } else {
                         e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -53,6 +66,7 @@ public class BoosterGUI extends GUI implements Listener {
             if (e.getSlot() == IridiumSkyblock.getBoosters().farmingBooster.slot && IridiumSkyblock.getBoosters().farmingBooster.enabled) {
                 if (getIsland().getFarmingBooster() == 0) {
                     if (Utils.canBuy(p, IridiumSkyblock.getBoosters().farmingBooster.vaultCost, IridiumSkyblock.getBoosters().farmingBooster.crystalsCost)) {
+                        sendMessage(p,"Farming");
                         getIsland().setFarmingBooster(IridiumSkyblock.getBoosters().farmingBooster.time);
                     } else {
                         e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -64,6 +78,7 @@ public class BoosterGUI extends GUI implements Listener {
             if (e.getSlot() == IridiumSkyblock.getBoosters().experianceBooster.slot && IridiumSkyblock.getBoosters().experianceBooster.enabled) {
                 if (getIsland().getExpBooster() == 0) {
                     if (Utils.canBuy(p, IridiumSkyblock.getBoosters().experianceBooster.vaultCost, IridiumSkyblock.getBoosters().experianceBooster.crystalsCost)) {
+                        sendMessage(p,"Experience");
                         getIsland().setExpBooster(IridiumSkyblock.getBoosters().experianceBooster.time);
                     } else {
                         e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -75,6 +90,7 @@ public class BoosterGUI extends GUI implements Listener {
             if (e.getSlot() == IridiumSkyblock.getBoosters().flightBooster.slot && IridiumSkyblock.getBoosters().flightBooster.enabled) {
                 if (getIsland().getFlightBooster() == 0) {
                     if (Utils.canBuy(p, IridiumSkyblock.getBoosters().flightBooster.vaultCost, IridiumSkyblock.getBoosters().flightBooster.crystalsCost)) {
+                        sendMessage(p,"Flight");
                         getIsland().setFlightBooster(IridiumSkyblock.getBoosters().flightBooster.time);
                     } else {
                         e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

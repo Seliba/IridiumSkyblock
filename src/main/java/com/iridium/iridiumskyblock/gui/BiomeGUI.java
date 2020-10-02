@@ -55,6 +55,7 @@ public class BiomeGUI extends GUI implements Listener {
             }
         }
         setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.getInventories().nextPage));
+        setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.getInventories().previousPage));
     }
 
@@ -78,6 +79,9 @@ public class BiomeGUI extends GUI implements Listener {
                     if (root.pages.containsKey(page - 1)) {
                         e.getWhoClicked().openInventory(root.pages.get(page - 1).getInventory());
                     }
+                }
+                if (e.getSlot() == getInventory().getSize() - 5) {
+                    e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
                 }
                 if (biomes.containsKey(e.getSlot())) {
                     getIsland().setBiome(biomes.get(e.getSlot()));

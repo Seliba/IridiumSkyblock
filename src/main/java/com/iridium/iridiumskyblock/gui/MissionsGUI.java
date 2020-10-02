@@ -23,6 +23,7 @@ public class MissionsGUI extends GUI implements Listener {
         if (getInventory().getViewers().isEmpty()) return;
         if (IridiumSkyblock.getIslandManager().islands.containsKey(islandID)) {
             Island island = IridiumSkyblock.getIslandManager().islands.get(islandID);
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
             for (Missions.Mission mission : IridiumSkyblock.getMissions().missions) {
                 List<Utils.Placeholder> placeholderList = Utils.getIslandPlaceholders(island);
 
@@ -47,6 +48,9 @@ public class MissionsGUI extends GUI implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
         }
     }
 }

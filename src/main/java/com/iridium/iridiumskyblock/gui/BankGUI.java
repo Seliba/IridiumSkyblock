@@ -24,7 +24,9 @@ public class BankGUI extends GUI implements Listener {
             setItem(IridiumSkyblock.getInventories().experience.slot == null ? 11 : IridiumSkyblock.getInventories().experience.slot, Utils.makeItemHidden(IridiumSkyblock.getInventories().experience, getIsland()));
             setItem(IridiumSkyblock.getInventories().crystals.slot == null ? 13 : IridiumSkyblock.getInventories().crystals.slot, Utils.makeItemHidden(IridiumSkyblock.getInventories().crystals, getIsland()));
             setItem(IridiumSkyblock.getInventories().money.slot == null ? 15 : IridiumSkyblock.getInventories().money.slot, Utils.makeItemHidden(IridiumSkyblock.getInventories().money, getIsland()));
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         }
+
     }
 
     @EventHandler
@@ -36,6 +38,9 @@ public class BankGUI extends GUI implements Listener {
             Player p = (Player) e.getWhoClicked();
             Island island = getIsland();
             User u = User.getUser(p);
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
             if (e.getSlot() == (IridiumSkyblock.getInventories().experience.slot == null ? 11 : IridiumSkyblock.getInventories().experience.slot)) {
                 if (e.getClick().equals(ClickType.SHIFT_LEFT)) {
                     if ((island.getPermissions((u.islandID == island.getId() || island.isCoop(u.getIsland())) ? (island.isCoop(u.getIsland()) ? Role.Member : u.getRole()) : Role.Visitor).withdrawBank) || u.bypassing) {
@@ -69,8 +74,13 @@ public class BankGUI extends GUI implements Listener {
                 if (e.getClick().equals(ClickType.SHIFT_LEFT)) {
                     if ((island.getPermissions((u.islandID == island.getId() || island.isCoop(u.getIsland())) ? (island.isCoop(u.getIsland()) ? Role.Member : u.getRole()) : Role.Visitor).withdrawBank) || u.bypassing) {
                         if (island.getCrystals() > 0) {
-                            p.getInventory().addItem(Utils.getCrystals(island.getCrystals()));
-                            island.setCrystals(0);
+                            if (p.getInventory().firstEmpty() != -1){
+                                p.getInventory().addItem(Utils.getCrystals(island.getCrystals()));
+                                island.setCrystals(0);
+                            } else {
+                                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().inventoryFull
+                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            }
                         }
                     }
                 } else if (e.getClick().equals(ClickType.SHIFT_RIGHT)) {
@@ -105,8 +115,13 @@ public class BankGUI extends GUI implements Listener {
                 } else if (e.getClick().equals(ClickType.LEFT)) {
                     if ((island.getPermissions((u.islandID == island.getId() || island.isCoop(u.getIsland())) ? (island.isCoop(u.getIsland()) ? Role.Member : u.getRole()) : Role.Visitor).withdrawBank) || u.bypassing) {
                         if (island.getCrystals() > 0) {
-                            island.setCrystals(island.getCrystals() - 1);
-                            p.getInventory().addItem(Utils.getCrystals(1));
+                            if (p.getInventory().firstEmpty() != -1){
+                                island.setCrystals(island.getCrystals() - 1);
+                                p.getInventory().addItem(Utils.getCrystals(1));
+                            } else {
+                                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().inventoryFull
+                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            }
                         }
                     }
                 }

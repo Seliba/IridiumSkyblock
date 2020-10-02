@@ -99,8 +99,6 @@ public class BlockPlaceListener implements Listener {
                 if (original == null) return 1;
                 return original + 1;
             });
-            if (island.updating)
-                island.tempValues.add(location);
 
             Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), island::calculateIslandValue);
         } catch (Exception e) {

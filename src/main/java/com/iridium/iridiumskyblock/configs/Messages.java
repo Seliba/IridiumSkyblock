@@ -26,6 +26,7 @@ public class Messages {
     public String flightEnabled = "%prefix% &7Your flight has been enabled.";
     public String flightBoosterNotActive = "%prefix% &7Your flight booster is not active.";
     public String notEnoughCrystals = "%prefix% &7You don't have enough island crystals.";
+    public String playerNotEnoughCrystals = "%prefix% &7%player% doesn't have enough island crystals.";
     public String maxLevelReached = "%prefix% &7Maximum level reached.";
     public String crystalAmount = "%prefix% &7You have %crystals% crystals.";
     public String maxMemberCount = "%prefix% &7Maximum member count reached.";
@@ -101,16 +102,18 @@ public class Messages {
     public String islandDeleted = "%prefix% &7Your island has been deleted";
     public String mustBeInIsland = "%prefix% &7You must be in your island to do this.";
     public String cannotSellItem = "%prefix% &7This is not a sellable item.";
-    public String updateStarted = "%prefix% &7%player%'s Island is being recalculated";
-    public String updateFinished = "%prefix% &7%player%'s Island recalculation has finished";
-    public String updatePercent = "%prefix% &7Recalculating %player%'s Island %percent%% complete";
-    public String alreadyRecalculating = "%prefix% &7Already recalculating %player%'s Island";
     public String blockLimitReached = "%prefix% &7The island limit for this block has already been reached";
     public String unknownCommand = "%prefix% &7Unknown Command, Try /is help";
     public String noPermissionBuild = "%prefix% &7You do not have permission to build on this island";
     public String noPermissionBreakSpawners = "%prefix% &7You do not have permission to break spawners on this island";
     public String depositedCrystals = "%prefix% &7You have deposited %amount% crystals into your island bank";
     public String helpPageHoverMessage = "Click to go to page %page%";
+    public String calculatingIslands = "%prefix% &7Calculating %amount% Players islands, Estimated time: %minutes% Minutes and %seconds% Seconds";
+    public String calculatingFinished = "%prefix% &7Calculating Players islands Finished";
+    public String calculationAlreadyInProcess = "%prefix% &7Calculating Players islands already in Process";
+    public String inventoryFull = "%prefix% &7Your inventory is full";
+    public String islandUpgraded = "%prefix% &7%player% upgraded your island's %upgradename% Upgrade from level %oldlvl% to level %newlvl%";
+    public String activatedBooster = "%prefix% &7%player% activated your islands %boostername% Booester";
 
     public Map<Role, String> roles = new HashMap<Role, String>() {{
         for (Role role : Role.values()) {

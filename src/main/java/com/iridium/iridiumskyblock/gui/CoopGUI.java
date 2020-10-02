@@ -46,6 +46,7 @@ public class CoopGUI extends GUI implements Listener {
                     island.removeCoop(id);
                 }
             }
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         }
     }
 
@@ -55,6 +56,9 @@ public class CoopGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            if (e.getSlot() == getInventory().getSize() - 5) {
+                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            }
             if (islands.containsKey(e.getSlot())) {
                 Island island = IridiumSkyblock.getIslandManager().getIslandViaId(islands.get(e.getSlot()));
                 User u = User.getUser((OfflinePlayer) e.getWhoClicked());
