@@ -145,19 +145,20 @@ public class BankGUI extends GUI implements Listener {
                 if (Vault.econ != null) {
                     if (e.getClick().equals(ClickType.SHIFT_LEFT)) {
                         if ((island.getPermissions((u.islandID == island.getId() || island.isCoop(u.getIsland())) ? (island.isCoop(u.getIsland()) ? Role.Member : u.getRole()) : Role.Visitor).withdrawBank) || u.bypassing) {
-                            Vault.econ.depositPlayer(p, island.money);
                             TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, -island.money));
                             island.money = 0;
+                            Vault.econ.depositPlayer(p, island.money);
                         }
                     } else if (e.getClick().equals(ClickType.SHIFT_RIGHT)) {
-                        island.money += Vault.econ.getBalance(p);
-                        TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, Vault.econ.getBalance(p)));
-                        Vault.econ.withdrawPlayer(p, Vault.econ.getBalance(p));
+                        double playerBalance = Vault.econ.getBalance(p);
+                        island.money += playerBalance;
+                        Vault.econ.withdrawPlayer(p, playerBalance);
+                        TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, playerBalance));
                     } else if (e.getClick().equals(ClickType.RIGHT)) {
                         double depositValue = Vault.econ.getBalance(p) > 1000 ? 1000 : Vault.econ.getBalance(p);
                         if (!(island.money > Double.MAX_VALUE - depositValue)) {
-                            island.money += depositValue;
                             Vault.econ.withdrawPlayer(p, depositValue);
+                            island.money += depositValue;
                             TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, depositValue));
                         }
                     } else if (e.getClick().equals(ClickType.LEFT)) {
@@ -167,9 +168,10 @@ public class BankGUI extends GUI implements Listener {
                                 Vault.econ.depositPlayer(p, 1000);
                                 TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, -1000));
                             } else {
-                                Vault.econ.depositPlayer(p, island.money);
-                                TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, -island.money));
+                                double depositAmount = island.money;
                                 island.money = 0;
+                                Vault.econ.depositPlayer(p, depositAmount);
+                                TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, -depositAmount));
                             }
                         }
                     }
