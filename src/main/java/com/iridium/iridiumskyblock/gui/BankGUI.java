@@ -151,8 +151,8 @@ public class BankGUI extends GUI implements Listener {
                         }
                     } else if (e.getClick().equals(ClickType.SHIFT_RIGHT)) {
                         double playerBalance = Vault.econ.getBalance(p);
-                        island.money += playerBalance;
                         Vault.econ.withdrawPlayer(p, playerBalance);
+                        island.money += playerBalance;
                         TransactionLogger.saveBankBalanceChange(p, new Transaction().add(TransactionType.MONEY, playerBalance));
                     } else if (e.getClick().equals(ClickType.RIGHT)) {
                         double depositValue = Vault.econ.getBalance(p) > 1000 ? 1000 : Vault.econ.getBalance(p);
