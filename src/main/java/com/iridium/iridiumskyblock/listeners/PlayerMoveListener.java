@@ -2,11 +2,7 @@ package com.iridium.iridiumskyblock.listeners;
 
 import com.earth2me.essentials.Essentials;
 import com.earth2me.essentials.spawn.EssentialsSpawn;
-import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.Island;
-import com.iridium.iridiumskyblock.IslandManager;
-import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.*;
 import com.iridium.iridiumskyblock.configs.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -36,6 +32,7 @@ public class PlayerMoveListener implements Listener {
                 if (world == null) return;
 
                 if (island != null) {
+                    if (!IridiumSkyblock.getConfiguration().keepInventoryOnVoid) player.getInventory().clear();
                     if (world.getName().equals(islandManager.getWorld().getName()))
                         island.teleportHome(player);
                     else
@@ -68,7 +65,7 @@ public class PlayerMoveListener implements Listener {
                     && (!island.isInIsland(location) || island.getFlightBooster() == 0)
                     && !player.getGameMode().equals(GameMode.CREATIVE)
                     && !(player.hasPermission("IridiumSkyblock.Fly")
-                        || player.hasPermission("iridiumskyblock.fly"))) {
+                    || player.hasPermission("iridiumskyblock.fly"))) {
                 player.setAllowFlight(false);
                 player.setFlying(false);
                 user.flying = false;

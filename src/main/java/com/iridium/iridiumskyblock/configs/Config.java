@@ -49,6 +49,7 @@ public class Config {
     public boolean prettierAbbreviations = true;
     public boolean logTransactions = true;
     public boolean logBankBalanceChange = true;
+    public boolean keepInventoryOnVoid = true;
     public boolean createIslandOnJoin = false;
     public boolean ignoreCooldownOnJoinCreation = false;
     public int deleteBackupsAfterDays = 7;

@@ -211,11 +211,12 @@ public class ShopGUI extends GUI implements Listener {
                                         .replace("%money%", Utils.NumberFormatter.format(item.buyVault))));
                             }
                         } else {
-                            e.getWhoClicked().sendMessage(Utils.color(responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.getMessages().cantBuy : IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            e.getWhoClicked().sendMessage(Utils.color((responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.getMessages().cantBuy : IridiumSkyblock.getMessages().notEnoughCrystals).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                         }
                     } else if (e.getClick().equals(ClickType.SHIFT_LEFT)) {
-                        double buyVault = (item.buyVault / item.amount) * 64;
-                        int buyCrystals = (int) Math.floor((item.buyCrystals / (double) item.amount) * 64);
+                        //If we are running commands we dont want to charge them 64x the price since we dont stack buy commands
+                        double buyVault = item.commands != null ? item.buyVault : (item.buyVault / item.amount) * 64;
+                        int buyCrystals = item.commands != null ? item.buyCrystals : (int) Math.floor((item.buyCrystals / (double) item.amount) * 64);
                         Utils.BuyResponce responce = Utils.canBuy((Player) e.getWhoClicked(), buyVault, buyCrystals);
                         if (responce == Utils.BuyResponce.SUCCESS) {
                             if (item.commands != null) {
