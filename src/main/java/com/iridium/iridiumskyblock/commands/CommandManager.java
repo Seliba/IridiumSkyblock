@@ -112,9 +112,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                     if (u.getIsland() != null) {
                         if (u.getIsland().getSchematic() == null) {
                             if (IridiumSkyblock.getSchematics().schematics.size() == 1) {
-                                for (Schematics.FakeSchematic schematic : IridiumSkyblock.getSchematics().schematics) {
-                                    u.getIsland().setSchematic(schematic.name);
-                                }
+                                u.getIsland().setSchematic(IridiumSkyblock.getSchematics().schematics.get(0).name);
+
                             } else {
                                 p.openInventory(u.getIsland().getSchematicSelectGUI().getInventory());
                                 return true;

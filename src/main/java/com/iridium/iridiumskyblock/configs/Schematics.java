@@ -3,8 +3,10 @@ package com.iridium.iridiumskyblock.configs;
 import com.cryptomorin.xseries.XBiome;
 import com.cryptomorin.xseries.XMaterial;
 
+import com.iridium.iridiumskyblock.IridiumSkyblock;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class Schematics {
     public List<FakeSchematic> schematics = Collections.singletonList(new FakeSchematic("island.schematic", "nether.schematic", -0.5, 96.00, -2.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,"", XMaterial.GRASS_BLOCK, XBiome.PLAINS, "&b&lDefault Island", Collections.singletonList("&7The default island"), 0));
@@ -46,6 +48,12 @@ public class Schematics {
             this.yNetherOffset = yNetherOffset;
             this.zNetherOffset = zNetherOffset;
             this.slot = slot;
+        }
+
+        public static Optional<FakeSchematic> getByName(String name) {
+            return IridiumSkyblock.getSchematics().schematics.stream()
+                .filter(schematic -> schematic.name.equals(name))
+                .findAny();
         }
     }
 }

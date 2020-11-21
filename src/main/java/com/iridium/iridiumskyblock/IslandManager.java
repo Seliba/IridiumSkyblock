@@ -65,12 +65,11 @@ public class IslandManager {
         user.role = Role.Owner;
 
         if (IridiumSkyblock.getSchematics().schematics.size() == 1) {
-            for (Schematics.FakeSchematic schematic : IridiumSkyblock.getSchematics().schematics) {
-                island.setSchematic(schematic.name);
-                island.setNetherschematic(schematic.netherisland);
-                island.setHome(island.getHome().add(schematic.x, schematic.y, schematic.z));
-                island.setNetherhome(island.getNetherhome().add(schematic.x, schematic.y, schematic.z));
-            }
+            Schematics.FakeSchematic schematic = IridiumSkyblock.getSchematics().schematics.get(0);
+            island.setSchematic(schematic.name);
+            island.setNetherschematic(schematic.netherisland);
+            island.setHome(island.getHome().add(schematic.x, schematic.y, schematic.z));
+            island.setNetherhome(island.getNetherhome().add(schematic.x, schematic.y, schematic.z));
             island.pasteSchematic(player, false);
         } else {
             player.openInventory(island.getSchematicSelectGUI().getInventory());

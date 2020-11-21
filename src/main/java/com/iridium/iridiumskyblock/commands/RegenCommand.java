@@ -27,11 +27,10 @@ public class RegenCommand extends Command {
                     if (time == 0 || user.bypassing) {
                         if (IridiumSkyblock.getSchematics().schematics.size() == 1) {
                             p.openInventory(new ConfirmationGUI(user.getIsland(), () -> {
-                                for (Schematics.FakeSchematic schematic : IridiumSkyblock.getSchematics().schematics) {
-                                    user.getIsland().setSchematic(schematic.name);
-                                    user.getIsland().setHome(user.getIsland().getHome().add(schematic.x, schematic.y, schematic.z));
-                                    user.getIsland().setNetherhome(user.getIsland().getNetherhome().add(schematic.x, schematic.y, schematic.z));
-                                }
+                                Schematics.FakeSchematic schematic = IridiumSkyblock.getSchematics().schematics.get(0);
+                                user.getIsland().setSchematic(schematic.name);
+                                user.getIsland().setHome(user.getIsland().getHome().add(schematic.x, schematic.y, schematic.z));
+                                user.getIsland().setNetherhome(user.getIsland().getNetherhome().add(schematic.x, schematic.y, schematic.z));
                                 user.getIsland().pasteSchematic(true);
                                 if (IridiumSkyblock.getConfiguration().restartUpgradesOnRegen) {
                                     user.getIsland().resetMissions();
@@ -76,11 +75,10 @@ public class RegenCommand extends Command {
         if (island != null) {
             if (IridiumSkyblock.getSchematics().schematics.size() == 1) {
                 p.openInventory(new ConfirmationGUI(island, () -> {
-                    for (Schematics.FakeSchematic schematic : IridiumSkyblock.getSchematics().schematics) {
-                        island.setSchematic(schematic.name);
-                        island.setHome(island.getHome().add(schematic.x, schematic.y, schematic.z));
-                        island.setNetherhome(island.getNetherhome().add(schematic.x, schematic.y, schematic.z));
-                    }
+                    Schematics.FakeSchematic schematic = IridiumSkyblock.getSchematics().schematics.get(0);
+                    island.setSchematic(schematic.name);
+                    island.setHome(island.getHome().add(schematic.x, schematic.y, schematic.z));
+                    island.setNetherhome(island.getNetherhome().add(schematic.x, schematic.y, schematic.z));
                     island.pasteSchematic(true);
                     if (IridiumSkyblock.getConfiguration().restartUpgradesOnRegen) {
                         island.resetMissions();
