@@ -114,7 +114,7 @@ public class BlockPlaceListener implements Listener {
     public void onBlockClick(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         final Block block = event.getClickedBlock();
-        if (block == null || block.getType().isAir()) return;
+        if (block == null || block.getType() == Material.AIR) return;
         final Location location = block.getLocation();
         final Island island = IslandManager.getIslandViaLocation(location);
 
