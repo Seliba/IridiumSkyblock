@@ -18,13 +18,13 @@ public class PlayerJoinLeaveListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         try {
             final Player player = event.getPlayer();
-            final IridiumSkyblock plugin = IridiumSkyblock.getInstance();
+            final IridiumSkyblock plugin = IridiumSkyblock.instance;
             if (player.isOp()) {
-                final String latest = plugin.getLatest();
-                if (plugin.getLatest() != null
-                        && IridiumSkyblock.getConfiguration().notifyAvailableUpdate
+                final String latest = plugin.latest;
+                if (plugin.latest != null
+                        && IridiumSkyblock.configuration.notifyAvailableUpdate
                         && !latest.equals(plugin.getDescription().getVersion())) {
-                    final String prefix = IridiumSkyblock.getConfiguration().prefix;
+                    final String prefix = IridiumSkyblock.configuration.prefix;
                     player.sendMessage(Utils.color(prefix + " &7This message is only seen by opped players."));
                     player.sendMessage(Utils.color(prefix + " &7Newer version available: " + latest));
                 }
@@ -34,17 +34,17 @@ public class PlayerJoinLeaveListener implements Listener {
             if (!user.tookInterestMessage) {
                 Island island = user.getIsland();
                 if (island != null)
-                    player.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandInterest
+                    player.sendMessage(Utils.color(IridiumSkyblock.messages.islandInterest
                             .replace("%exp%", Utils.NumberFormatter.format(island.interestExp))
                             .replace("%crystals%", Utils.NumberFormatter.format(island.interestCrystal))
                             .replace("%money%", Utils.NumberFormatter.format(island.interestMoney))
-                            .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            .replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                 user.tookInterestMessage = true;
             }
             user.name = player.getName();
 
-            if (user.getIsland() == null && IridiumSkyblock.getConfiguration().createIslandOnJoin) {
-                if (!user.isOnCooldown() || IridiumSkyblock.getConfiguration().ignoreCooldownOnJoinCreation) {
+            if (user.getIsland() == null && IridiumSkyblock.configuration.createIslandOnJoin) {
+                if (!user.isOnCooldown() || IridiumSkyblock.configuration.ignoreCooldownOnJoinCreation) {
                     IslandManager.createIsland(player);
                 } else {
                     player.sendMessage(Utils.color(user.getCooldownTimeMessage()));
@@ -53,21 +53,21 @@ public class PlayerJoinLeaveListener implements Listener {
 
             if (!IslandManager.isIslandWorld(location)) return;
 
-            if (user.flying && (user.getIsland() == null || user.getIsland().getFlightBooster() == 0)) {
+            if (user.flying && (user.getIsland() == null || user.getIsland().flightBooster == 0)) {
                 player.setAllowFlight(false);
                 player.setFlying(false);
                 user.flying = false;
             }
-            if (IridiumSkyblock.getConfiguration().disableBypassOnJoin || !player.hasPermission(IridiumSkyblock.getCommands().bypassCommand.getPermission()))
+            if (IridiumSkyblock.configuration.disableBypassOnJoin || !player.hasPermission(IridiumSkyblock.commands.bypassCommand.permission))
                 user.bypassing = false;
 
             final Island island = IslandManager.getIslandViaLocation(location);
             if (island == null) return;
 
             Bukkit.getScheduler().runTaskLater(plugin, () -> island.sendBorder(player), 1);
-            Bukkit.getScheduler().runTaskLater(plugin, () -> island.sendHomograms(player), 1);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> island.sendHolograms(player), 1);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 

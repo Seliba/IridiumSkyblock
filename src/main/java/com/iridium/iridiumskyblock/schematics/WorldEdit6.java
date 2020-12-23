@@ -7,11 +7,10 @@ import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.bukkit.BukkitUtil;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.schematic.SchematicFormat;
-import org.bukkit.Location;
-
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import org.bukkit.Location;
 
 public class WorldEdit6 implements WorldEdit {
 
@@ -45,7 +44,7 @@ public class WorldEdit6 implements WorldEdit {
             clipboard.paste(editSession, BukkitUtil.toVector(location.clone().add(clipboard.getWidth() / 2.00, clipboard.getHeight() / 2.00, clipboard.getLength() / 2.00)), true);
             flush.invoke(editSession);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().getLogger().warning("Failed to paste schematic using worldedit");
+            IridiumSkyblock.instance.getLogger().warning("Failed to paste schematic using worldedit");
             IridiumSkyblock.schematic.paste(file, location, island);
         }
     }

@@ -1,12 +1,17 @@
 package com.iridium.iridiumskyblock.serializer.typeadapter;
 
-import com.google.gson.*;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-
 import java.lang.reflect.Type;
 import java.util.logging.Level;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 public class LocationTypeAdapter implements JsonSerializer<Location>, JsonDeserializer<Location> {
 
@@ -17,11 +22,11 @@ public class LocationTypeAdapter implements JsonSerializer<Location>, JsonDeseri
             object.add("x", new JsonPrimitive(location.getX()));
             object.add("y", new JsonPrimitive(location.getY()));
             object.add("z", new JsonPrimitive(location.getZ()));
-            object.add("world", new JsonPrimitive(location.getWorld() == null ? IridiumSkyblock.getConfiguration().worldName : location.getWorld().getName()));
+            object.add("world", new JsonPrimitive(location.getWorld() == null ? IridiumSkyblock.configuration.worldName : location.getWorld().getName()));
             return object;
         } catch (Exception ex) {
             ex.printStackTrace();
-            IridiumSkyblock.getInstance().getLogger().log(Level.WARNING, "Error encountered while serializing a Location.");
+            IridiumSkyblock.instance.getLogger().log(Level.WARNING, "Error encountered while serializing a Location.");
             return object;
         }
     }
@@ -38,7 +43,7 @@ public class LocationTypeAdapter implements JsonSerializer<Location>, JsonDeseri
                     object.get("z").getAsDouble());
         } catch (Exception ex) {
             ex.printStackTrace();
-            IridiumSkyblock.getInstance().getLogger().log(Level.WARNING, "Error encountered while" +
+            IridiumSkyblock.instance.getLogger().log(Level.WARNING, "Error encountered while" +
                     " deserializing a Location.");
             return null;
         }

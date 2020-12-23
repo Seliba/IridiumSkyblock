@@ -5,6 +5,12 @@ import com.google.gson.JsonParser;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,14 +19,14 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.inventory.ItemStack;
-import org.jnbt.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import org.jnbt.ByteTag;
+import org.jnbt.CompoundTag;
+import org.jnbt.IntArrayTag;
+import org.jnbt.IntTag;
+import org.jnbt.ListTag;
+import org.jnbt.ShortTag;
+import org.jnbt.StringTag;
+import org.jnbt.Tag;
 
 public class Schematic implements WorldEdit {
 
@@ -36,14 +42,14 @@ public class Schematic implements WorldEdit {
     @Override
     public void paste(File file, Location location, Island island) {
         SchematicData schematicData = getSchematicData(file);
-        short length = schematicData.getLength();
-        short width = schematicData.getWidth();
-        short height = schematicData.getHeight();
+        short length = schematicData.length;
+        short width = schematicData.width;
+        short height = schematicData.height;
         location.subtract(width / 2.00, height / 2.00, length / 2.00); // Centers the schematic
-        if (schematicData.getSchematicVersion() == SchematicData.SchematicVersion.v_1_8) {
+        if (schematicData.schematicVersion == SchematicData.SchematicVersion.v_1_8) {
 
-            byte[] blocks = schematicData.getBlocks();
-            byte[] blockData = schematicData.getData();
+            byte[] blocks = schematicData.blocks;
+            byte[] blockData = schematicData.data;
 
             //LoadBlocks
             for (int x = 0; x < width; ++x) {
@@ -56,8 +62,8 @@ public class Schematic implements WorldEdit {
                 }
             }
             //Tile Entities
-            if (schematicData.getTileEntities() != null) {
-                for (Tag tag : schematicData.getTileEntities()) {
+            if (schematicData.tileEntities != null) {
+                for (Tag tag : schematicData.tileEntities) {
                     if (!(tag instanceof CompoundTag))
                         continue;
                     CompoundTag t = (CompoundTag) tag;
@@ -97,10 +103,10 @@ public class Schematic implements WorldEdit {
                         if (block.getState() instanceof Sign) {
                             Sign sign = (Sign) block.getState();
                             JsonParser parser = new JsonParser();
-                            String line1 = parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                            String line2 = parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                            String line3 = parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                            String line4 = parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
+                            String line1 = parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                            String line2 = parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                            String line3 = parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                            String line4 = parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsString().isEmpty() ? "" : parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
                             if (!parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsString().isEmpty() && parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().has("color"))
                                 line1 = ChatColor.valueOf(parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("color").getAsString().toUpperCase()) + line1;
                             if (!parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsString().isEmpty() && parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().has("color"))
@@ -127,19 +133,19 @@ public class Schematic implements WorldEdit {
                             for (int z = 0; z < length; ++z) {
                                 int index = y * width * length + z * width + x;
                                 Block block = new Location(location.getWorld(), x + location.getX(), y + location.getY(), z + location.getZ()).getBlock();
-                                for (String s : schematicData.getPalette().keySet()) {
-                                    int i = SchematicData.getChildTag(schematicData.getPalette(), s, IntTag.class).getValue();
-                                    if (schematicData.getBlockdata()[index] == i) {
+                                for (String s : schematicData.palette.keySet()) {
+                                    int i = SchematicData.getChildTag(schematicData.palette, s, IntTag.class).getValue();
+                                    if (schematicData.blockdata[index] == i) {
                                         block.setBlockData(Bukkit.createBlockData(s), false);
                                     }
                                 }
                             }
                         }
                     }
-                    if (schematicData.getVersion() == 2) {
+                    if (schematicData.version == 2) {
                         //Tile Entities
-                        if (schematicData.getTileEntities() != null) {
-                            for (Tag tag : schematicData.getTileEntities()) {
+                        if (schematicData.tileEntities != null) {
+                            for (Tag tag : schematicData.tileEntities) {
                                 if (!(tag instanceof CompoundTag))
                                     continue;
                                 CompoundTag t = (CompoundTag) tag;
@@ -179,10 +185,10 @@ public class Schematic implements WorldEdit {
                                     if (block.getState() instanceof Sign) {
                                         Sign sign = (Sign) block.getState();
                                         JsonParser parser = new JsonParser();
-                                        String line1 = parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                                        String line2 = parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                                        String line3 = parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
-                                        String line4 = parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.getOwner()).name);
+                                        String line1 = parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                                        String line2 = parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                                        String line3 = parser.parse(SchematicData.getChildTag(tags, "Text3", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
+                                        String line4 = parser.parse(SchematicData.getChildTag(tags, "Text4", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("text").getAsString().replace("[ISLAND_OWNER]", User.getUser(island.owner).name);
                                         if (parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().has("color"))
                                             line1 = ChatColor.valueOf(parser.parse(SchematicData.getChildTag(tags, "Text1", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().get("color").getAsString().toUpperCase()) + line1;
                                         if (parser.parse(SchematicData.getChildTag(tags, "Text2", StringTag.class).getValue()).getAsJsonObject().get("extra").getAsJsonArray().get(0).getAsJsonObject().has("color"))
@@ -202,11 +208,11 @@ public class Schematic implements WorldEdit {
                         }
                     }
                 } catch (Exception e) {
-                    IridiumSkyblock.getInstance().sendErrorMessage(e);
+                    IridiumSkyblock.instance.sendErrorMessage(e);
                 }
             } else {
                 location.getBlock().setType(Material.STONE);
-                IridiumSkyblock.getInstance().getLogger().warning("Tried to load a 1.13+ schematic in a native minecraft version");
+                IridiumSkyblock.instance.getLogger().warning("Tried to load a 1.13+ schematic in a native minecraft version");
             }
         }
     }

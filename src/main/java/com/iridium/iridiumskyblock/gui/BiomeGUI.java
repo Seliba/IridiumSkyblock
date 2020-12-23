@@ -6,6 +6,10 @@ import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Config;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -17,13 +21,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
 public class BiomeGUI extends GUI implements Listener {
-
     private int i = 0;
 
     private int slot = 0;
@@ -40,15 +38,15 @@ public class BiomeGUI extends GUI implements Listener {
 
     public BiomeGUI(Island island, World.Environment environment) {
         this.environment = environment;
-        IridiumSkyblock.getInstance().registerListeners(this);
-        int size = (int) (Math.floor(Biome.values().length / ((double) IridiumSkyblock.getInventories().biomeGUISize - 9)) + 1);
+        IridiumSkyblock.instance.registerListeners(this);
+        int size = (int) (Math.floor(Biome.values().length / ((double) IridiumSkyblock.inventories.biomeGUISize - 9)) + 1);
         for (int i = 1; i <= size; i++) {
             pages.put(i, new BiomeGUI(island, i, this));
         }
     }
 
     public BiomeGUI(Island island, int page, BiomeGUI root) {
-        super(island, IridiumSkyblock.getInventories().biomeGUISize, IridiumSkyblock.getInventories().biomeGUITitle);
+        super(island, IridiumSkyblock.inventories.biomeGUISize, IridiumSkyblock.inventories.biomeGUITitle);
         this.page = page;
         this.root = root;
     }
@@ -59,11 +57,11 @@ public class BiomeGUI extends GUI implements Listener {
         this.i = 0;
         this.slot = 0;
         super.addContent();
-        IridiumSkyblock.getConfiguration().islandBiomes.keySet().stream().filter(xBiome -> xBiome.getEnvironment().equals(root.environment)).sorted(Comparator.comparing(XBiome::toString)).forEach((biome) -> {
+        IridiumSkyblock.configuration.islandBiomes.keySet().stream().filter(xBiome -> xBiome.getEnvironment().equals(root.environment)).sorted(Comparator.comparing(XBiome::toString)).forEach((biome) -> {
             if (biome.getBiome() != null) {
                 if (i >= 45 * (page - 1) && slot < 45) {
-                    Config.BiomeConfig biomeConfig = IridiumSkyblock.getConfiguration().islandBiomes.get(biome);
-                    ItemStack itemStack = Utils.makeItem(IridiumSkyblock.getInventories().biome, Arrays.asList(
+                    Config.BiomeConfig biomeConfig = IridiumSkyblock.configuration.islandBiomes.get(biome);
+                    ItemStack itemStack = Utils.makeItem(IridiumSkyblock.inventories.biome, Arrays.asList(
                             new Utils.Placeholder("price", Utils.NumberFormatter.format(biomeConfig.price)),
                             new Utils.Placeholder("crystals", Utils.NumberFormatter.format(biomeConfig.crystals)),
                             new Utils.Placeholder("biome", WordUtils.capitalize(biome.name().toLowerCase().replace("_", " ")))));
@@ -76,18 +74,18 @@ public class BiomeGUI extends GUI implements Listener {
                 i++;
             }
         });
-        setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.getInventories().nextPage));
-        if (IridiumSkyblock.getInventories().backButtons)
-            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
-        setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.getInventories().previousPage));
+        setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.inventories.nextPage));
+        if (IridiumSkyblock.inventories.backButtons)
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.inventories.back));
+        setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.inventories.previousPage));
     }
 
     public void sendBiomeChangeMessage(String biome, Player p) {
-        for (String member : getIsland().getMembers()) {
+        for (String member : getIsland().members) {
             Player pl = Bukkit.getPlayer(User.getUser(member).name);
             if (pl != null) {
-                pl.sendMessage(Utils.color(IridiumSkyblock.getMessages().biomeChanged
-                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                pl.sendMessage(Utils.color(IridiumSkyblock.messages.biomeChanged
+                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                         .replace("%biome%", biome).replace("%player%", p.getName())));
             }
         }
@@ -115,12 +113,12 @@ public class BiomeGUI extends GUI implements Listener {
                         p.openInventory(root.pages.get(page - 1).getInventory());
                     }
                 }
-                if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.getInventories().backButtons) {
-                    p.openInventory(getIsland().getIslandMenuGUI().getInventory());
+                if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.inventories.backButtons) {
+                    p.openInventory(getIsland().islandMenuGUI.getInventory());
                 }
                 if (biomes.containsKey(e.getSlot())) {
-                    Config.BiomeConfig biomeConfig = IridiumSkyblock.getConfiguration().islandBiomes.get(biomes.get(e.getSlot()));
-                    Utils.BuyResponce responce = Utils.canBuy(p, IridiumSkyblock.getConfiguration().islandBiomes.getOrDefault(biomes.get(e.getSlot()), new Config.BiomeConfig()).price, biomeConfig.crystals);
+                    Config.BiomeConfig biomeConfig = IridiumSkyblock.configuration.islandBiomes.get(biomes.get(e.getSlot()));
+                    Utils.BuyResponce responce = Utils.canBuy(p, IridiumSkyblock.configuration.islandBiomes.getOrDefault(biomes.get(e.getSlot()), new Config.BiomeConfig()).price, biomeConfig.crystals);
                     if (responce == Utils.BuyResponce.SUCCESS) {
                         switch (root.environment) {
                             case NORMAL:
@@ -129,14 +127,14 @@ public class BiomeGUI extends GUI implements Listener {
                             case NETHER:
                                 getIsland().setNetherBiome(biomes.get(e.getSlot()));
                         }
-                        p.sendMessage(Utils.color(IridiumSkyblock.getMessages().biomePurchased
-                                .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                        p.sendMessage(Utils.color(IridiumSkyblock.messages.biomePurchased
+                                .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                                 .replace("%biome%", WordUtils.capitalize(biomes.get(e.getSlot()).name().toLowerCase().replace("_", " ")))
                                 .replace("%crystals%", biomeConfig.crystals + "")
                                 .replace("%money", Utils.NumberFormatter.format(biomeConfig.price))));
                         sendBiomeChangeMessage(WordUtils.capitalize(biomes.get(e.getSlot()).name().toLowerCase().replace("_", " ")), p);
                     } else {
-                        p.sendMessage(Utils.color(responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.getMessages().cantBuy : IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        p.sendMessage(Utils.color(responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.messages.cantBuy : IridiumSkyblock.messages.notEnoughCrystals.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                     }
                 }
             }

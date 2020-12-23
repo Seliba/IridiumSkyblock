@@ -2,6 +2,7 @@ package com.iridium.iridiumskyblock.listeners;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
+import java.lang.reflect.InvocationTargetException;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -14,8 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class PlayerBucketEmptyListener implements Listener {
 
@@ -38,7 +37,7 @@ public class PlayerBucketEmptyListener implements Listener {
             }
         }
         final Player player = event.getPlayer();
-        if (IridiumSkyblock.getConfiguration().allowWaterInNether) {
+        if (IridiumSkyblock.configuration.allowWaterInNether) {
             final World world = block.getWorld();
             if (!world.getEnvironment().equals(World.Environment.NETHER)) return;
             if (type != Material.WATER_BUCKET) return;

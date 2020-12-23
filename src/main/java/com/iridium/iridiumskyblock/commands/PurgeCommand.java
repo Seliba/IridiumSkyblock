@@ -4,10 +4,9 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
-import org.bukkit.command.CommandSender;
-
 import java.util.Arrays;
 import java.util.List;
+import org.bukkit.command.CommandSender;
 
 public class PurgeCommand extends Command {
 
@@ -25,18 +24,18 @@ public class PurgeCommand extends Command {
         try {
             days = Integer.parseInt(args[1]);
         } catch (NumberFormatException exception) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.notNumber.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             return;
         }
         if (IslandManager.id != 0) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().calculationAlreadyInProcess.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.calculationAlreadyInProcess.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             return;
         }
         int total = IslandManager.purgeIslands(days, sender);
         double totalSeconds = total * 5;
         int minutes = (int) Math.floor(totalSeconds / 60.00);
         double seconds = (int) (totalSeconds - (minutes * 60));
-        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().purgingIslands.replace("%seconds%", String.valueOf(seconds)).replace("%minutes%", String.valueOf(minutes)).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+        sender.sendMessage(Utils.color(IridiumSkyblock.messages.purgingIslands.replace("%seconds%", String.valueOf(seconds)).replace("%minutes%", String.valueOf(minutes)).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
     }
 
     @Override

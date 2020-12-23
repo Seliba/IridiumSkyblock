@@ -4,11 +4,10 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.Collections;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class ChatCommand extends Command {
 
@@ -23,12 +22,12 @@ public class ChatCommand extends Command {
         if (user.getIsland() != null) {
             user.islandChat = !user.islandChat;
             if (user.islandChat) {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().chatEnabled.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(Utils.color(IridiumSkyblock.messages.chatEnabled.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             } else {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().chatDisabled.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(Utils.color(IridiumSkyblock.messages.chatDisabled.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

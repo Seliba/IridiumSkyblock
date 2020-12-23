@@ -4,13 +4,12 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import java.util.Collections;
+import java.util.List;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-
-import java.util.Collections;
-import java.util.List;
 
 public class GiveCrystalsCommand extends Command {
 
@@ -21,7 +20,7 @@ public class GiveCrystalsCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length != 3) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is givecrystals <player> <amount>");
+            sender.sendMessage(Utils.color(IridiumSkyblock.configuration.prefix) + "/is givecrystals <player> <amount>");
             return;
         }
 
@@ -32,18 +31,18 @@ public class GiveCrystalsCommand extends Command {
                 if (island != null) {
                     if (NumberUtils.isNumber(args[2])) {
                         int amount = Integer.parseInt(args[2]);
-                        island.setCrystals(island.getCrystals() + amount);
-                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().giveCrystals.replace("%crystals%", args[2]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        island.crystals += amount;
+                        sender.sendMessage(Utils.color(IridiumSkyblock.messages.giveCrystals.replace("%crystals%", args[2]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         if (player.getPlayer() != null)
-                            player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.getMessages().givenCrystals.replace("%crystals%", args[2]).replace("%player%", sender.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.messages.givenCrystals.replace("%crystals%", args[2]).replace("%player%", sender.getName()).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                     } else {
-                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix).replace("%error%", args[2])));
+                        sender.sendMessage(Utils.color(IridiumSkyblock.messages.notNumber.replace("%prefix%", IridiumSkyblock.configuration.prefix).replace("%error%", args[2])));
                     }
                 } else {
-                    sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    sender.sendMessage(Utils.color(IridiumSkyblock.messages.playerNoIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                 }
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.playerOffline.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         }
     }

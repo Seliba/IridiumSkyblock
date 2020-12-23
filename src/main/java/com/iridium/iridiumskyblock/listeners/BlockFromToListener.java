@@ -6,6 +6,8 @@ import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Config;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import java.util.List;
+import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,9 +19,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockFromToEvent;
-
-import java.util.List;
-import java.util.Random;
 
 public class BlockFromToListener implements Listener {
 
@@ -41,25 +40,25 @@ public class BlockFromToListener implements Listener {
                     event.setCancelled(true);
             }
 
-            if (!IridiumSkyblock.getUpgrades().oresUpgrade.enabled) return;
+            if (!IridiumSkyblock.upgrades.oresUpgrade.enabled) return;
 
             if (event.getFace() == BlockFace.DOWN) return;
 
             if (!isSurroundedByWater(toLocation))
                 return;
 
-            final int oreLevel = island.getOreLevel();
+            final int oreLevel = island.oreLevel;
             final World world = location.getWorld();
             if (world == null) return;
 
             final String worldName = world.getName();
-            final Config config = IridiumSkyblock.getConfiguration();
+            final Config config = IridiumSkyblock.configuration;
             List<String> islandOreUpgrades;
             if (worldName.equals(config.worldName)) islandOreUpgrades = IridiumSkyblock.oreUpgradeCache.get(oreLevel);
             else if (worldName.equals(config.netherWorldName)) islandOreUpgrades = IridiumSkyblock.netherOreUpgradeCache.get(oreLevel);
             else return;
 
-            Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> {
+            Bukkit.getScheduler().runTask(IridiumSkyblock.instance, () -> {
                 final Material toMaterial = toBlock.getType();
                 if (!(toMaterial.equals(Material.COBBLESTONE) || toMaterial.equals(Material.STONE)))
                     return;
@@ -86,7 +85,7 @@ public class BlockFromToListener implements Listener {
                 }
             });
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().sendErrorMessage(ex);
+            IridiumSkyblock.instance.sendErrorMessage(ex);
         }
     }
 
@@ -102,7 +101,7 @@ public class BlockFromToListener implements Listener {
 
             island.failedGenerators.add(location);
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().sendErrorMessage(ex);
+            IridiumSkyblock.instance.sendErrorMessage(ex);
         }
     }
 

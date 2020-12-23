@@ -1,8 +1,12 @@
 package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XMaterial;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Inventories {
 

@@ -1,12 +1,15 @@
 package com.iridium.iridiumskyblock.commands;
 
-import com.iridium.iridiumskyblock.*;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.Role;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.Utils;
+import java.util.Collections;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 public class WarpsCommand extends Command {
 
@@ -25,16 +28,16 @@ public class WarpsCommand extends Command {
             island = user.getIsland();
         }
         if (island != null) {
-            if (island.getPermissions(user.islandID == island.getId() ? user.role : Role.Visitor).useWarps || user.bypassing) {
-                p.openInventory(island.getWarpGUI().getInventory());
+            if (island.getPermissions(user.islandID == island.id ? user.role : Role.Visitor).useWarps || user.bypassing) {
+                p.openInventory(island.warpGUI.getInventory());
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.noPermission.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
             if (user.getIsland() != null) {
-                p.openInventory(user.getIsland().getWarpGUI().getInventory());
+                p.openInventory(user.getIsland().warpGUI.getInventory());
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         }
     }

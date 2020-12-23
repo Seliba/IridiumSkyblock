@@ -2,7 +2,6 @@ package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XBiome;
 import com.cryptomorin.xseries.XMaterial;
-
 import java.util.Collections;
 import java.util.List;
 

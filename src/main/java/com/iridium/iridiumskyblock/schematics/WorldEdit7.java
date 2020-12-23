@@ -12,10 +12,9 @@ import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
-import org.bukkit.Location;
-
 import java.io.File;
 import java.io.FileInputStream;
+import org.bukkit.Location;
 
 public class WorldEdit7 implements WorldEdit {
 
@@ -40,7 +39,7 @@ public class WorldEdit7 implements WorldEdit {
                 Operations.complete(operation);
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().getLogger().warning("Failed to paste schematic using worldedit");
+            IridiumSkyblock.instance.getLogger().warning("Failed to paste schematic using worldedit");
             IridiumSkyblock.schematic.paste(file, location, island);
         }
     }

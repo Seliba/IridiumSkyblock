@@ -4,13 +4,12 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import java.util.Collections;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 public class VisitCommand extends Command {
 
@@ -28,13 +27,13 @@ public class VisitCommand extends Command {
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
         User user = User.getUser(player);
         if (user.getIsland() != null) {
-            if (user.getIsland().isVisit() || User.getUser(p).bypassing || p.hasPermission("iridiumskyblock.visitbypass")) {
+            if (user.getIsland().visit || User.getUser(p).bypassing || p.hasPermission("iridiumskyblock.visitbypass")) {
                 user.getIsland().teleportHome(p);
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

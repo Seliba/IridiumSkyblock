@@ -29,12 +29,12 @@ public class PlayerMoveListener implements Listener {
             final Location location = player.getLocation();
             if (!IslandManager.isIslandWorld(location)) return;
 
-            final Config config = IridiumSkyblock.getConfiguration();
+            final Config config = IridiumSkyblock.configuration;
 
             if (event.getFrom().getX() != event.getTo().getX() || event.getFrom().getZ() != event.getTo().getZ() || event.getFrom().getY() != event.getTo().getY() && event.getTo().getY() < 0) {
                 final Island island = IslandManager.getIslandViaLocation(location);
 
-                if (island != null && !island.isVisit() && !island.equals(userIsland) && !island.isCoop(userIsland) && !user.bypassing && !player.hasPermission("iridiumskyblock.visitbypass")) {
+                if (island != null && !island.visit && !island.equals(userIsland) && !island.isCoop(userIsland) && !user.bypassing && !player.hasPermission("iridiumskyblock.visitbypass")) {
                     island.spawnPlayer(event.getPlayer());
                     return;
                 }
@@ -44,7 +44,7 @@ public class PlayerMoveListener implements Listener {
                     if (world == null) return;
 
                     if (island != null) {
-                        if (!IridiumSkyblock.getConfiguration().keepInventoryOnVoid) player.getInventory().clear();
+                        if (!IridiumSkyblock.configuration.keepInventoryOnVoid) player.getInventory().clear();
                         if (world.getName().equals(IslandManager.getWorld().getName()))
                             island.teleportHome(player);
                         else
@@ -71,18 +71,18 @@ public class PlayerMoveListener implements Listener {
             if (userIsland == null) return;
 
             if (user.flying
-                    && (!userIsland.isInIsland(location) || userIsland.getFlightBooster() == 0)
+                    && (!userIsland.isInIsland(location) || userIsland.flightBooster == 0)
                     && !player.getGameMode().equals(GameMode.CREATIVE)
                     && !(player.hasPermission("IridiumSkyblock.Fly")
                     || player.hasPermission("iridiumskyblock.fly"))) {
                 player.setAllowFlight(false);
                 player.setFlying(false);
                 user.flying = false;
-                player.sendMessage(Utils.color(IridiumSkyblock.getMessages().flightDisabled
+                player.sendMessage(Utils.color(IridiumSkyblock.messages.flightDisabled
                         .replace("%prefix%", config.prefix)));
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.block.CreatureSpawner;
 public class EpicSpawners implements SpawnerSupport {
 
     public EpicSpawners() {
-        IridiumSkyblock.getInstance().getLogger().info("EpicSpawners support loaded");
+        IridiumSkyblock.instance.getLogger().info("EpicSpawners support loaded");
     }
 
     public int getSpawnerAmount(CreatureSpawner spawner) {

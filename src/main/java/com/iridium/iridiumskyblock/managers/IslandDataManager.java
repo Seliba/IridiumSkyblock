@@ -2,8 +2,6 @@ package com.iridium.iridiumskyblock.managers;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
-import org.bukkit.Bukkit;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import org.bukkit.Bukkit;
 
 public class IslandDataManager {
 
@@ -20,9 +19,9 @@ public class IslandDataManager {
     //To Index exclusive
     public static CompletableFuture<List<Integer>> getIslands(IslandSortType sortType, int fromIndex, int toIndex, boolean ignorePrivate) {
         CompletableFuture<List<Integer>> completableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.instance, () -> {
             List<Integer> islands = new ArrayList<>();
-            Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+            Connection connection = IridiumSkyblock.sqlManager.getConnection();
             try {
                 int index = 0;
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM islanddata ORDER BY ? DESC;");
@@ -46,18 +45,18 @@ public class IslandDataManager {
     }
 
     public static void save(Island island, boolean async) {
-        if(async) Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.getInstance(), () -> save(island, false));
-            Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+        if(async) Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.instance, () -> save(island, false));
+            Connection connection = IridiumSkyblock.sqlManager.getConnection();
             try {
                 PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM islanddata where islandID=?;");
-                deleteStatement.setInt(1, island.getId());
+                deleteStatement.setInt(1, island.id);
                 deleteStatement.executeUpdate();
                 deleteStatement.close();
                 PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO islanddata (islandID,value,votes,private) VALUES (?,?,?,?);");
-                insertStatement.setInt(1, island.getId());
-                insertStatement.setDouble(2, island.getValue());
+                insertStatement.setInt(1, island.id);
+                insertStatement.setDouble(2, island.value);
                 insertStatement.setInt(3, island.getVotes());
-                insertStatement.setBoolean(4, !island.isVisit());
+                insertStatement.setBoolean(4, !island.visit);
                 insertStatement.executeUpdate();
                 insertStatement.close();
                 connection.close();

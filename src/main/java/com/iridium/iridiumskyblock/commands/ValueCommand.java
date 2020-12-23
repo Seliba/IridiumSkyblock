@@ -4,13 +4,12 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import java.util.Collections;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 public class ValueCommand extends Command {
 
@@ -30,9 +29,9 @@ public class ValueCommand extends Command {
             island = user.getIsland();
         }
         if (island != null) {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandValue.replace("%value%", island.getFormattedValue()).replace("%rank%", Utils.getIslandRank(island) + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(Utils.color(IridiumSkyblock.messages.islandValue.replace("%value%", island.getFormattedValue()).replace("%rank%", Utils.getIslandRank(island) + "").replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

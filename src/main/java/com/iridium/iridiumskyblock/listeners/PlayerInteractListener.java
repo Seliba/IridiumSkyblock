@@ -35,8 +35,8 @@ public class PlayerInteractListener implements Listener {
                     int crystals = Utils.getCrystals(player.getItemInHand()) * player.getItemInHand().getAmount();
                     if (crystals != 0) {
                         player.setItemInHand(null);
-                        user.getIsland().setCrystals(user.getIsland().getCrystals() + crystals);
-                        player.sendMessage(Utils.color(IridiumSkyblock.getMessages().depositedCrystals.replace("%amount%", crystals + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        user.getIsland().crystals += crystals;
+                        player.sendMessage(Utils.color(IridiumSkyblock.messages.depositedCrystals.replace("%amount%", crystals + "").replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                     }
                 }
             }
@@ -62,7 +62,7 @@ public class PlayerInteractListener implements Listener {
                 } else if (!user.bypassing) event.setCancelled(true);
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 
@@ -77,7 +77,7 @@ public class PlayerInteractListener implements Listener {
             if (island == null) return;
             if (!island.getPermissions(user).interact) event.setCancelled(true);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 
@@ -92,7 +92,7 @@ public class PlayerInteractListener implements Listener {
             if (island == null) return;
             if (!island.getPermissions(user).interact) event.setCancelled(true);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 }

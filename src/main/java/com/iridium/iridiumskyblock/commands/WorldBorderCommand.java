@@ -1,16 +1,15 @@
 package com.iridium.iridiumskyblock.commands;
 
+import com.iridium.iridiumskyblock.Color;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import com.iridium.iridiumskyblock.Color;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class WorldBorderCommand extends Command {
 
@@ -34,13 +33,13 @@ public class WorldBorderCommand extends Command {
                 } else if (args[1].equalsIgnoreCase("off") && IridiumSkyblock.border.OffEnabled) {
                     island.setBorderColor(Color.Off);
                 } else {
-                    p.openInventory(island.getBorderColorGUI().getInventory());
+                    p.openInventory(island.borderColorGUI.getInventory());
                 }
             }else {
-                p.openInventory(island.getBorderColorGUI().getInventory());
+                p.openInventory(island.borderColorGUI.getInventory());
             }
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 
@@ -48,9 +47,9 @@ public class WorldBorderCommand extends Command {
     public void admin(CommandSender sender, String[] args, Island island) {
         Player p = (Player) sender;
         if (island != null) {
-            p.openInventory(island.getBorderColorGUI().getInventory());
+            p.openInventory(island.borderColorGUI.getInventory());
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

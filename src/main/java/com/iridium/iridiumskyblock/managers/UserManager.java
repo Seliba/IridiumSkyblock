@@ -2,14 +2,13 @@ package com.iridium.iridiumskyblock.managers;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.User;
-import org.bukkit.Bukkit;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
+import org.bukkit.Bukkit;
 
 public class UserManager {
 
@@ -24,14 +23,14 @@ public class UserManager {
     public static User getUser(UUID uuid) {
         if (cache.containsKey(uuid)) return cache.get(uuid);
         try {
-            Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+            Connection connection = IridiumSkyblock.sqlManager.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE UUID =?;");
             statement.setString(1, uuid.toString());
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 //There is a value
-                User user = IridiumSkyblock.getPersist().getGson().fromJson(resultSet.getString("json"), User.class);
+                User user = IridiumSkyblock.persist.gson.fromJson(resultSet.getString("json"), User.class);
                 cache.put(uuid, user);
                 connection.close();
                 statement.close();
@@ -41,7 +40,7 @@ public class UserManager {
                 PreparedStatement insert = connection.prepareStatement("INSERT INTO users (UUID,json) VALUES (?,?);");
                 User user = new User(uuid);
                 insert.setString(1, uuid.toString());
-                insert.setString(2, IridiumSkyblock.getPersist().getGson().toJson(user));
+                insert.setString(2, IridiumSkyblock.persist.gson.toJson(user));
                 insert.executeUpdate();
 
                 cache.put(uuid, user);
@@ -56,11 +55,11 @@ public class UserManager {
     }
 
     public static void saveUser(User user, boolean async) {
-        if(async) Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.getInstance(), () -> saveUser(user, false));
+        if(async) Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.instance, () -> saveUser(user, false));
             try {
-                Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+                Connection connection = IridiumSkyblock.sqlManager.getConnection();
                 PreparedStatement insert = connection.prepareStatement("UPDATE users SET json = ? WHERE UUID = ?;");
-                insert.setString(1, IridiumSkyblock.getPersist().getGson().toJson(user));
+                insert.setString(1, IridiumSkyblock.persist.gson.toJson(user));
                 insert.setString(2, user.player);
                 insert.executeUpdate();
                 insert.close();

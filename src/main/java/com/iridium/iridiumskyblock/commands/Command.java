@@ -1,28 +1,23 @@
 package com.iridium.iridiumskyblock.commands;
 
 import com.iridium.iridiumskyblock.Island;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-@RequiredArgsConstructor
 public abstract class Command {
-    @Getter
-    @NotNull
-    private final List<String> aliases;
-    @Getter
-    @NotNull
-    private final String description;
-    @Getter
-    @NotNull
-    private final String permission;
-    @Getter
-    private final boolean player;
-    @Getter
-    private final boolean enabled = true;
+    @NotNull public final List<String> aliases;
+    @NotNull public final String description;
+    @NotNull public final String permission;
+    public final boolean player;
+    public final boolean enabled = true;
+
+    public Command(@NotNull List<String> aliases, @NotNull String description, @NotNull String permission, boolean player) {
+        this.aliases = aliases;
+        this.description = description;
+        this.permission = permission;
+        this.player = player;
+    }
 
     public abstract void execute(CommandSender sender, String[] args);
 

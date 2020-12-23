@@ -7,7 +7,7 @@ import org.bukkit.block.CreatureSpawner;
 public class AdvancedSpawners implements SpawnerSupport {
 
     public AdvancedSpawners() {
-        IridiumSkyblock.getInstance().getLogger().info("AdvancedSpawners support loaded");
+        IridiumSkyblock.instance.getLogger().info("AdvancedSpawners support loaded");
     }
 
     public int getSpawnerAmount(CreatureSpawner spawner) {

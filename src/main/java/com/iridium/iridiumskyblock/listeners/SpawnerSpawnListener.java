@@ -19,13 +19,13 @@ public class SpawnerSpawnListener implements Listener {
             final Island island = IslandManager.getIslandViaLocation(location);
             if (island == null) return;
 
-            if (island.getSpawnerBooster() == 0) return;
+            if (island.spawnerBooster == 0) return;
 
-            final IridiumSkyblock plugin = IridiumSkyblock.getInstance();
+            final IridiumSkyblock plugin = IridiumSkyblock.instance;
             final CreatureSpawner spawner = event.getSpawner();
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> spawner.setDelay(spawner.getDelay() / 2), 0);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 

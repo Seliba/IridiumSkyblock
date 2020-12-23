@@ -1,13 +1,18 @@
 package com.iridium.iridiumskyblock.managers;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import org.bukkit.Bukkit;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.bukkit.Bukkit;
 
 public class ClaimManager {
 
@@ -18,7 +23,7 @@ public class ClaimManager {
         if (cache.containsKey(chunkKey)) return cache.get(chunkKey);
         Set<Integer> islands = new HashSet<>();
         try {
-            Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+            Connection connection = IridiumSkyblock.sqlManager.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM claims WHERE x =? AND z=?;");
             statement.setInt(1, x);
             statement.setInt(2, z);
@@ -37,9 +42,9 @@ public class ClaimManager {
     }
 
     public static void addClaim(int x, int z, int island) {
-        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.instance, () -> {
             try {
-                Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+                Connection connection = IridiumSkyblock.sqlManager.getConnection();
                 PreparedStatement insert = connection.prepareStatement("INSERT INTO claims (x,z,island) VALUES (?,?,?);");
                 insert.setInt(1, x);
                 insert.setInt(2, z);
@@ -55,9 +60,9 @@ public class ClaimManager {
     }
 
     public static void removeClaims(int island) {
-        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(IridiumSkyblock.instance, () -> {
             try {
-                Connection connection = IridiumSkyblock.getSqlManager().getConnection();
+                Connection connection = IridiumSkyblock.sqlManager.getConnection();
                 PreparedStatement insert = connection.prepareStatement("DELETE FROM claims WHERE island=?;");
                 insert.setInt(1, island);
                 insert.executeUpdate();

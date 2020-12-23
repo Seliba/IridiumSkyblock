@@ -4,11 +4,10 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.Arrays;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class ChatSpyCommand extends Command {
 
@@ -22,9 +21,9 @@ public class ChatSpyCommand extends Command {
         User u = User.getUser(p);
         u.spyingIslandsChat = !u.spyingIslandsChat;
         if (u.spyingIslandsChat) {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().chatSpyEnabled.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(Utils.color(IridiumSkyblock.messages.chatSpyEnabled.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().chatSpyDisabled.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(Utils.color(IridiumSkyblock.messages.chatSpyDisabled.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

@@ -1,11 +1,9 @@
 package com.iridium.iridiumskyblock;
 
-import lombok.Getter;
-
 public enum Role {
     Owner(4), CoOwner(3), Moderator(2), Member(1), Visitor(-1);
 
-    @Getter int rank;
+    public final int rank;
 
     Role(int rank) {
         this.rank = rank;
@@ -13,8 +11,8 @@ public enum Role {
 
     @Override
     public String toString() {
-        if (IridiumSkyblock.getMessages().roles.containsKey(this)) {
-            return IridiumSkyblock.getMessages().roles.get(this);
+        if (IridiumSkyblock.messages.roles.containsKey(this)) {
+            return IridiumSkyblock.messages.roles.get(this);
         }
         return this.name();
     }

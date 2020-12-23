@@ -24,7 +24,7 @@ public class ItemCraftListener implements Listener {
                 return;
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 

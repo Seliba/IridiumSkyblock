@@ -3,7 +3,6 @@ package com.iridium.iridiumskyblock.managers;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.configs.SQL;
 import com.zaxxer.hikari.HikariDataSource;
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ public class SQLManager {
     }
 
     private void setupConnection() {
-        final SQL sql = IridiumSkyblock.getSql();
+        final SQL sql = IridiumSkyblock.sql;
         hikariDataSource.setMaximumPoolSize(sql.poolSize);
         hikariDataSource.setLeakDetectionThreshold(3000);
         hikariDataSource.setConnectionTestQuery("SELECT 1;");
@@ -28,7 +27,7 @@ public class SQLManager {
             } catch (ClassNotFoundException exception) {
                 exception.printStackTrace();
             }
-            hikariDataSource.setJdbcUrl("jdbc:sqlite:" + new File(IridiumSkyblock.getInstance().getDataFolder(), sql.database + ".db"));
+            hikariDataSource.setJdbcUrl("jdbc:sqlite:" + new File(IridiumSkyblock.instance.getDataFolder(), sql.database + ".db"));
         } else {
             //Use SQL
             try {
@@ -78,7 +77,7 @@ public class SQLManager {
             connection.close();
 
         } catch (SQLException ex) {
-            IridiumSkyblock.getInstance().getLogger().log(Level.SEVERE, "SQLite exception on Creating Tables", ex);
+            IridiumSkyblock.instance.getLogger().log(Level.SEVERE, "SQLite exception on Creating Tables", ex);
         }
     }
 

@@ -1,11 +1,17 @@
 package com.iridium.iridiumskyblock.listeners;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.iridium.iridiumskyblock.*;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.MissionType;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Config;
 import com.iridium.iridiumskyblock.configs.Missions.Mission;
 import com.iridium.iridiumskyblock.configs.Missions.MissionData;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import java.util.List;
+import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,9 +25,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.material.Crops;
-
-import java.util.List;
-import java.util.Map;
 
 public class BlockPlaceListener implements Listener {
 
@@ -46,19 +49,19 @@ public class BlockPlaceListener implements Listener {
 
             final Material material = block.getType();
             final XMaterial xmaterial = XMaterial.matchXMaterial(material);
-            final Config config = IridiumSkyblock.getConfiguration();
+            final Config config = IridiumSkyblock.configuration;
             final Integer max = config.limitedBlocks.get(xmaterial);
             if (max != null) {
                 if (island.valuableBlocks.getOrDefault(xmaterial.name(), 0) >= max) {
-                    player.sendMessage(Utils.color(IridiumSkyblock.getMessages().blockLimitReached
+                    player.sendMessage(Utils.color(IridiumSkyblock.messages.blockLimitReached
                             .replace("%prefix%", config.prefix)));
                     event.setCancelled(true);
                     return;
                 }
             }
 
-            if (user.islandID == island.getId()) {
-                for (Mission mission : IridiumSkyblock.getMissions().missions) {
+            if (user.islandID == island.id) {
+                for (Mission mission : IridiumSkyblock.missions.missions) {
                     final Map<String, Integer> levels = island.getMissionLevels();
                     levels.putIfAbsent(mission.name, 1);
 
@@ -83,7 +86,7 @@ public class BlockPlaceListener implements Listener {
                 event.setCancelled(true);
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 
@@ -104,9 +107,9 @@ public class BlockPlaceListener implements Listener {
                 return original + 1;
             });
 
-            Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), island::calculateIslandValue);
+            Bukkit.getScheduler().runTask(IridiumSkyblock.instance, island::calculateIslandValue);
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 
@@ -123,10 +126,10 @@ public class BlockPlaceListener implements Listener {
         if (island == null) return;
         int amount = event.getPlayer().getItemInHand().getAmount();
 
-        if (IridiumSkyblock.getConfiguration().enableBlockStacking) {
+        if (IridiumSkyblock.configuration.enableBlockStacking) {
             boolean canStack = false;
 
-            if (IridiumSkyblock.getStackable().blockList.contains(xmaterial)) {
+            if (IridiumSkyblock.stackable.blockList.contains(xmaterial)) {
                 if (!(block.getState() instanceof CreatureSpawner))
                     canStack = true;
             }
@@ -137,13 +140,13 @@ public class BlockPlaceListener implements Listener {
                     if (original == null) return 1 + amount;
                     return original + amount;
                 });
-                Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), (Runnable) island::sendHomograms);
+                Bukkit.getScheduler().runTask(IridiumSkyblock.instance, (Runnable) island::sendHolograms);
                 event.getPlayer().setItemInHand(null);
                 island.valuableBlocks.compute(xmaterial.name(), (name, original) -> {
                     if (original == null) return 1;
                     return original + 1;
                 });
-                Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), island::calculateIslandValue);
+                Bukkit.getScheduler().runTask(IridiumSkyblock.instance, island::calculateIslandValue);
             }
         }
     }

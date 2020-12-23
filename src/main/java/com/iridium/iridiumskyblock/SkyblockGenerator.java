@@ -1,25 +1,25 @@
 package com.iridium.iridiumskyblock;
 
 import com.iridium.iridiumskyblock.configs.Config;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class SkyblockGenerator extends ChunkGenerator {
 
     public byte[][] blockSections;
 
     @Override
-    public ChunkData generateChunkData(World world, Random random, int cx, int cz, BiomeGrid biomeGrid) {
+    public @NotNull ChunkData generateChunkData(@NotNull World world, @NotNull Random random, int cx, int cz, @NotNull BiomeGrid biomeGrid) {
         final ChunkData chunkData = createChunkData(world);
 
         Biome biome;
-        final Config config = IridiumSkyblock.getConfiguration();
+        final Config config = IridiumSkyblock.configuration;
         final String worldName = world.getName();
         if (worldName.equals(config.worldName))
             biome = config.defaultBiome.getBiome();
@@ -44,12 +44,12 @@ public class SkyblockGenerator extends ChunkGenerator {
     }
 
     @Override
-    public boolean canSpawn(World world, int x, int z) {
+    public boolean canSpawn(@NotNull World world, int x, int z) {
         return true;
     }
 
     @Override
-    public List<BlockPopulator> getDefaultPopulators(World world) {
+    public @NotNull List<BlockPopulator> getDefaultPopulators(@NotNull World world) {
         return Collections.emptyList();
     }
 }

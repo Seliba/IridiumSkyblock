@@ -4,6 +4,9 @@ import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Shop;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,10 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ShopGUI extends GUI implements Listener {
 
@@ -29,10 +28,10 @@ public class ShopGUI extends GUI implements Listener {
     public Map<Integer, Shop.ShopItem> items = new HashMap<>();
 
     public ShopGUI() {
-        super(IridiumSkyblock.getInventories().shopGUISize, IridiumSkyblock.getInventories().shopGUITitle);
-        IridiumSkyblock.getInstance().registerListeners(this);
+        super(IridiumSkyblock.inventories.shopGUISize, IridiumSkyblock.inventories.shopGUITitle);
+        IridiumSkyblock.instance.registerListeners(this);
 
-        for (Shop.ShopObject shop : IridiumSkyblock.getShop().shop) {
+        for (Shop.ShopObject shop : IridiumSkyblock.shop.shop) {
             setItem(shop.slot, Utils.makeItem(shop.display, 1, shop.displayName));
             if (!shops.containsKey(shop.slot)) {
                 shops.put(shop.slot, new ShopGUI(shop, this));
@@ -41,14 +40,14 @@ public class ShopGUI extends GUI implements Listener {
     }
 
     public ShopGUI(Shop.ShopObject shop, int page, ShopGUI root) {
-        super(IridiumSkyblock.getInventories().shopGUISize, IridiumSkyblock.getInventories().shopGUITitle);
+        super(IridiumSkyblock.inventories.shopGUISize, IridiumSkyblock.inventories.shopGUITitle);
         this.shop = shop;
         this.page = page;
         this.root = root;
     }
 
     public ShopGUI(Shop.ShopObject shop, ShopGUI root) {
-        scheduler = Bukkit.getScheduler().scheduleAsyncRepeatingTask(IridiumSkyblock.getInstance(), this::addPages, 0, 5);
+        scheduler = Bukkit.getScheduler().scheduleAsyncRepeatingTask(IridiumSkyblock.instance, this::addPages, 0, 5);
         this.shop = shop;
         this.root = root;
 
@@ -67,22 +66,22 @@ public class ShopGUI extends GUI implements Listener {
     public void addContent() {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
-        if (!IridiumSkyblock.getConfiguration().islandShop) return;
+        if (!IridiumSkyblock.configuration.islandShop) return;
         if (shop != null) {
             for (Shop.ShopItem item : shop.items) {
                 if (item.page == page) {
                     items.put(item.slot, item);
                     setItem(item.slot, Utils.makeItem(item.material, item.amount, item.displayName,
-                            Utils.color(Utils.processMultiplePlaceholders(IridiumSkyblock.getShop().lore, Arrays.asList(
+                            Utils.color(Utils.processMultiplePlaceholders(IridiumSkyblock.shop.lore, Arrays.asList(
                                     new Utils.Placeholder("buyvaultprice", Utils.NumberFormatter.format(item.buyVault)),
                                     new Utils.Placeholder("sellvaultprice", Utils.NumberFormatter.format(item.sellVault)),
                                     new Utils.Placeholder("buycrystalprice", Utils.NumberFormatter.format(item.buyCrystals)),
                                     new Utils.Placeholder("sellcrystalprice", Utils.NumberFormatter.format(item.sellCrystals)))))));
                 }
             }
-            setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.getInventories().nextPage));
-            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
-            setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.getInventories().previousPage));
+            setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.inventories.nextPage));
+            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.inventories.back));
+            setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.inventories.previousPage));
         }
     }
 
@@ -137,17 +136,17 @@ public class ShopGUI extends GUI implements Listener {
                                     index++;
                                 }
                                 Utils.pay((Player) e.getWhoClicked(), item.sellVault, item.sellCrystals);
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().shopSoldMessage
-                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.shopSoldMessage
+                                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                                         .replace("%item%", item.material + "")
                                         .replace("%amount%", item.amount + "")
                                         .replace("%crystals%", Utils.NumberFormatter.format(item.sellCrystals))
                                         .replace("%money%", Utils.NumberFormatter.format(item.sellVault))));
                             } else {
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().cantSell.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.cantSell.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                             }
                         } else {
-                            e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().cannotSellItem.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.cannotSellItem.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         }
                     } else if (e.getClick().equals(ClickType.SHIFT_RIGHT)) {
                         double sellVault = (item.sellVault / item.amount) * 64;
@@ -176,17 +175,17 @@ public class ShopGUI extends GUI implements Listener {
                                     index++;
                                 }
                                 Utils.pay((Player) e.getWhoClicked(), sellVault, sellCrystals);
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().shopSoldMessage
-                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.shopSoldMessage
+                                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                                         .replace("%item%", item.material + "")
                                         .replace("%amount%", 64 + "")
                                         .replace("%crystals%", Utils.NumberFormatter.format(sellCrystals))
                                         .replace("%money%", Utils.NumberFormatter.format(sellVault))));
                             } else {
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().cantSell.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.cantSell.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                             }
                         } else {
-                            e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().cannotSellItem.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.cannotSellItem.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         }
                     } else if (e.getClick().equals(ClickType.LEFT)) {
                         Utils.BuyResponce responce = Utils.canBuy((Player) e.getWhoClicked(), item.buyVault, item.buyCrystals);
@@ -203,15 +202,15 @@ public class ShopGUI extends GUI implements Listener {
                                 } else {
                                     e.getWhoClicked().getLocation().getWorld().dropItem(e.getWhoClicked().getLocation(), itemStack);
                                 }
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().shopBoughtMessage
-                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.shopBoughtMessage
+                                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                                         .replace("%item%", item.material + "")
                                         .replace("%amount%", item.amount + "")
                                         .replace("%crystals%", Utils.NumberFormatter.format(item.buyCrystals))
                                         .replace("%money%", Utils.NumberFormatter.format(item.buyVault))));
                             }
                         } else {
-                            e.getWhoClicked().sendMessage(Utils.color((responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.getMessages().cantBuy : IridiumSkyblock.getMessages().notEnoughCrystals).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            e.getWhoClicked().sendMessage(Utils.color((responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.messages.cantBuy : IridiumSkyblock.messages.notEnoughCrystals).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         }
                     } else if (e.getClick().equals(ClickType.SHIFT_LEFT)) {
                         //If we are running commands we dont want to charge them 64x the price since we dont stack buy commands
@@ -231,15 +230,15 @@ public class ShopGUI extends GUI implements Listener {
                                 } else {
                                     e.getWhoClicked().getLocation().getWorld().dropItem(e.getWhoClicked().getLocation(), itemStack);
                                 }
-                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.getMessages().shopBoughtMessage
-                                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                                e.getWhoClicked().sendMessage(Utils.color(IridiumSkyblock.messages.shopBoughtMessage
+                                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                                         .replace("%item%", item.material + "")
                                         .replace("%amount%", 64 + "")
                                         .replace("%crystals%", Utils.NumberFormatter.format(buyCrystals))
                                         .replace("%money%", Utils.NumberFormatter.format(buyVault))));
                             }
                         } else {
-                            e.getWhoClicked().sendMessage(Utils.color(responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.getMessages().cantBuy : IridiumSkyblock.getMessages().notEnoughCrystals.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            e.getWhoClicked().sendMessage(Utils.color(responce == Utils.BuyResponce.NOT_ENOUGH_VAULT ? IridiumSkyblock.messages.cantBuy : IridiumSkyblock.messages.notEnoughCrystals.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         }
                     }
                 }

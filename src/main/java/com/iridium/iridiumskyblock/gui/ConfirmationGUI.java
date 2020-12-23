@@ -13,25 +13,25 @@ public class ConfirmationGUI extends GUI implements Listener {
     public Runnable runnable;
 
     public ConfirmationGUI(Island island, Runnable runnable, String action) {
-        super(island, 27, IridiumSkyblock.getInventories().confirmationGUITitle.replace("%action%", action));
-        IridiumSkyblock.getInstance().registerListeners(this);
+        super(island, 27, IridiumSkyblock.inventories.confirmationGUITitle.replace("%action%", action));
+        IridiumSkyblock.instance.registerListeners(this);
         this.runnable = runnable;
         for (int i = 0; i < getInventory().getSize(); i++) {
-            setItem(i, Utils.makeItemHidden(IridiumSkyblock.getInventories().background));
+            setItem(i, Utils.makeItemHidden(IridiumSkyblock.inventories.background));
         }
-        setItem(12, Utils.makeItem(XMaterial.LIME_STAINED_GLASS_PANE, 1, IridiumSkyblock.getMessages().yes));
-        setItem(14, Utils.makeItem(XMaterial.RED_STAINED_GLASS_PANE, 1, IridiumSkyblock.getMessages().no));
+        setItem(12, Utils.makeItem(XMaterial.LIME_STAINED_GLASS_PANE, 1, IridiumSkyblock.messages.yes));
+        setItem(14, Utils.makeItem(XMaterial.RED_STAINED_GLASS_PANE, 1, IridiumSkyblock.messages.no));
     }
 
     public ConfirmationGUI(Runnable runnable, String action) {
-        super(27, IridiumSkyblock.getInventories().confirmationGUITitle.replace("%action%", action));
-        IridiumSkyblock.getInstance().registerListeners(this);
+        super(27, IridiumSkyblock.inventories.confirmationGUITitle.replace("%action%", action));
+        IridiumSkyblock.instance.registerListeners(this);
         this.runnable = runnable;
         for (int i = 0; i < getInventory().getSize(); i++) {
-            setItem(i, Utils.makeItemHidden(IridiumSkyblock.getInventories().background));
+            setItem(i, Utils.makeItemHidden(IridiumSkyblock.inventories.background));
         }
-        setItem(12, Utils.makeItem(XMaterial.LIME_STAINED_GLASS_PANE, 1, IridiumSkyblock.getMessages().yes));
-        setItem(14, Utils.makeItem(XMaterial.RED_STAINED_GLASS_PANE, 1, IridiumSkyblock.getMessages().no));
+        setItem(12, Utils.makeItem(XMaterial.LIME_STAINED_GLASS_PANE, 1, IridiumSkyblock.messages.yes));
+        setItem(14, Utils.makeItem(XMaterial.RED_STAINED_GLASS_PANE, 1, IridiumSkyblock.messages.no));
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.bukkit.block.CreatureSpawner;
 public class UltimateStacker implements SpawnerSupport{
 
     public UltimateStacker() {
-        IridiumSkyblock.getInstance().getLogger().info("UltimateStacker support loaded");
+        IridiumSkyblock.instance.getLogger().info("UltimateStacker support loaded");
     }
 
     public int getSpawnerAmount(CreatureSpawner spawner) {

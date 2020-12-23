@@ -3,14 +3,17 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.Utils;
-import net.md_5.bungee.api.chat.*;
+import java.util.Collections;
+import java.util.List;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 public class HelpCommand extends Command {
 
@@ -28,28 +31,28 @@ public class HelpCommand extends Command {
             }
             page = Integer.parseInt(args[1]);
         }
-        int maxpage = (int) Math.ceil(IridiumSkyblock.getCommandManager().commands.size() / 18.00);
+        int maxpage = (int) Math.ceil(IridiumSkyblock.commandManager.commands.size() / 18.00);
         int current = 0;
-        p.sendMessage(Utils.color(IridiumSkyblock.getMessages().helpHeader));
-        for (com.iridium.iridiumskyblock.commands.Command command : IridiumSkyblock.getCommandManager().commands) {
-            if ((p.hasPermission(command.getPermission()) || command.getPermission().equalsIgnoreCase("") || command.getPermission().equalsIgnoreCase("iridiumskyblock.")) && command.isEnabled()) {
+        p.sendMessage(Utils.color(IridiumSkyblock.messages.helpHeader));
+        for (com.iridium.iridiumskyblock.commands.Command command : IridiumSkyblock.commandManager.commands) {
+            if ((p.hasPermission(command.permission) || command.permission.equalsIgnoreCase("") || command.permission.equalsIgnoreCase("iridiumskyblock.")) && command.enabled) {
                 if (current >= (page - 1) * 18 && current < page * 18)
-                    p.sendMessage(Utils.color(IridiumSkyblock.getMessages().helpMessage.replace("%command%", command.getAliases().get(0)).replace("%description%", command.getDescription())));
+                    p.sendMessage(Utils.color(IridiumSkyblock.messages.helpMessage.replace("%command%", command.aliases.get(0)).replace("%description%", command.description)));
                 current++;
             }
         }
-        BaseComponent[] components = TextComponent.fromLegacyText(Utils.color(IridiumSkyblock.getMessages().helpfooter.replace("%maxpage%", maxpage + "").replace("%page%", page + "")));
+        BaseComponent[] components = TextComponent.fromLegacyText(Utils.color(IridiumSkyblock.messages.helpfooter.replace("%maxpage%", maxpage + "").replace("%page%", page + "")));
 
         for (BaseComponent component : components) {
-            if (ChatColor.stripColor(component.toLegacyText()).contains(IridiumSkyblock.getMessages().nextPage)) {
+            if (ChatColor.stripColor(component.toLegacyText()).contains(IridiumSkyblock.messages.nextPage)) {
                 if (page < maxpage) {
                     component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/is help " + (page + 1)));
-                    component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(IridiumSkyblock.getMessages().helpPageHoverMessage.replace("%page%", "" + (page + 1))).create()));
+                    component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(IridiumSkyblock.messages.helpPageHoverMessage.replace("%page%", "" + (page + 1))).create()));
                 }
-            } else if (ChatColor.stripColor(component.toLegacyText()).contains(IridiumSkyblock.getMessages().previousPage)) {
+            } else if (ChatColor.stripColor(component.toLegacyText()).contains(IridiumSkyblock.messages.previousPage)) {
                 if (page > 1) {
                     component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/is help " + (page - 1)));
-                    component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(IridiumSkyblock.getMessages().helpPageHoverMessage.replace("%page%", "" + (page - 1))).create()));
+                    component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(IridiumSkyblock.messages.helpPageHoverMessage.replace("%page%", "" + (page - 1))).create()));
                 }
             }
         }

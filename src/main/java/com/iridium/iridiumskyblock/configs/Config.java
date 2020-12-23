@@ -5,10 +5,13 @@ import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.MissionRestart;
 import com.iridium.iridiumskyblock.Permissions;
 import com.iridium.iridiumskyblock.Role;
-import org.bukkit.entity.EntityType;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import org.bukkit.entity.EntityType;
 
 public class Config {
     public String prefix = "&b&lIridiumSkyblock &8»";

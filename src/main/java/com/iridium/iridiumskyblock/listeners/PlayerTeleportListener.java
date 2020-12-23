@@ -5,6 +5,7 @@ import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -12,8 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-
-import java.util.UUID;
 
 public class PlayerTeleportListener implements Listener {
 
@@ -27,7 +26,7 @@ public class PlayerTeleportListener implements Listener {
             if (toIsland == null) return;
 
             final Player player = event.getPlayer();
-            Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.getInstance(), () -> toIsland.sendHomograms(player), 1);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.instance, () -> toIsland.sendHolograms(player), 1);
             final User user = User.getUser(player);
 
             if (event.getCause().equals(TeleportCause.ENDER_PEARL)) {
@@ -37,28 +36,28 @@ public class PlayerTeleportListener implements Listener {
                     return;
                 }
             }
-            if (user.islandID == toIsland.getId()) return;
+            if (user.islandID == toIsland.id) return;
 
-            if ((toIsland.isVisit() && !toIsland.isBanned(user)) || user.bypassing || player.hasPermission("iridiumskyblock.visitbypass")) {
+            if ((toIsland.visit && !toIsland.isBanned(user)) || user.bypassing || player.hasPermission("iridiumskyblock.visitbypass")) {
                 if (!toIsland.isInIsland(fromLocation)) {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.getInstance(), () -> toIsland.sendBorder(player), 1);
-                    if (user.islandID != toIsland.getId()) {
-                        player.sendMessage(Utils.color(IridiumSkyblock.getMessages().visitingIsland.replace("%player%", User.getUser(toIsland.getOwner()).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.instance, () -> toIsland.sendBorder(player), 1);
+                    if (user.islandID != toIsland.id) {
+                        player.sendMessage(Utils.color(IridiumSkyblock.messages.visitingIsland.replace("%player%", User.getUser(toIsland.owner).name).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                         if (player.hasPermission("iridiumskyblock.silentvisit")) return;
-                        for (String pl : toIsland.getMembers()) {
+                        for (String pl : toIsland.members) {
                             Player p = Bukkit.getPlayer(UUID.fromString(pl));
                             if (p != null && p.canSee(player)) {
-                                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().visitedYourIsland.replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                                p.sendMessage(Utils.color(IridiumSkyblock.messages.visitedYourIsland.replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                             }
                         }
                     }
                 }
             } else {
                 event.setCancelled(true);
-                player.sendMessage(Utils.color(IridiumSkyblock.getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                player.sendMessage(Utils.color(IridiumSkyblock.messages.playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 }

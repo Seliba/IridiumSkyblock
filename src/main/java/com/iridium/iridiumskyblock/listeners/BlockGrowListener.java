@@ -25,7 +25,7 @@ public class BlockGrowListener implements Listener {
             final Island island = IslandManager.getIslandViaLocation(location);
             if (island == null) return;
 
-            if (island.getFarmingBooster() == 0) return;
+            if (island.farmingBooster == 0) return;
 
             final Material material = block.getType();
             if (!XBlock.isCrop(XMaterial.matchXMaterial(material))) return;
@@ -37,7 +37,7 @@ public class BlockGrowListener implements Listener {
             blockState.setData(crops);
             blockState.update();
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 }

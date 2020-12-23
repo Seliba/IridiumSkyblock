@@ -5,22 +5,23 @@ import com.cryptomorin.xseries.XMaterial;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.serializer.typeadapter.*;
-import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.inventory.Inventory;
-
+import com.iridium.iridiumskyblock.serializer.typeadapter.DateTypeAdapter;
+import com.iridium.iridiumskyblock.serializer.typeadapter.EnumTypeAdapter;
+import com.iridium.iridiumskyblock.serializer.typeadapter.InventoryTypeAdapter;
+import com.iridium.iridiumskyblock.serializer.typeadapter.LocationTypeAdapter;
+import com.iridium.iridiumskyblock.serializer.typeadapter.XBiomeTypeAdapter;
+import com.iridium.iridiumskyblock.serializer.typeadapter.XMaterialsTypeAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.util.Date;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.inventory.Inventory;
 
 public class Persist {
-
-    @Getter
-    private final Gson gson = buildGson().create();
+    public final Gson gson = buildGson().create();
 
     public static String getName(Class<?> clazz) {
         return clazz.getSimpleName().toLowerCase();
@@ -55,7 +56,7 @@ public class Persist {
     // ------------------------------------------------------------ //
 
     public File getFile(String name) {
-        return new File(IridiumSkyblock.getInstance().getDataFolder(), name + ".json");
+        return new File(IridiumSkyblock.instance.getDataFolder(), name + ".json");
     }
 
     public File getFile(Class<?> clazz) {
@@ -77,7 +78,7 @@ public class Persist {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                IridiumSkyblock.getInstance().sendErrorMessage(e);
+                IridiumSkyblock.instance.sendErrorMessage(e);
             }
         }
         DiscUtil.writeCatch(file, gson.toJson(instance));
@@ -98,8 +99,8 @@ public class Persist {
         try {
             return gson.fromJson(content, clazz);
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().getLogger().severe("Failed to parse " + file.toString() + ": " + ex.getMessage());
-            Bukkit.getPluginManager().disablePlugin(IridiumSkyblock.getInstance());
+            IridiumSkyblock.instance.getLogger().severe("Failed to parse " + file.toString() + ": " + ex.getMessage());
+            Bukkit.getPluginManager().disablePlugin(IridiumSkyblock.instance);
         }
 
         return null;
@@ -109,8 +110,8 @@ public class Persist {
         try {
             return gson.fromJson(content, clazz);
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().getLogger().severe("Failed to parse json");
-            Bukkit.getPluginManager().disablePlugin(IridiumSkyblock.getInstance());
+            IridiumSkyblock.instance.getLogger().severe("Failed to parse json");
+            Bukkit.getPluginManager().disablePlugin(IridiumSkyblock.instance);
         }
 
         return null;

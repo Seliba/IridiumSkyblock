@@ -8,7 +8,7 @@ import org.bukkit.block.CreatureSpawner;
 public class RoseStacker implements SpawnerSupport{
 
     public RoseStacker() {
-        IridiumSkyblock.getInstance().getLogger().info("RoseStacker support loaded");
+        IridiumSkyblock.instance.getLogger().info("RoseStacker support loaded");
     }
 
     public int getSpawnerAmount(CreatureSpawner spawner) {

@@ -4,11 +4,10 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.Collections;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PrivateCommand extends Command {
 
@@ -22,36 +21,36 @@ public class PrivateCommand extends Command {
         User user = User.getUser(p);
         if (user.getIsland() != null) {
             if (user.bypassing || user.getIsland().getPermissions(user.role).islandprivate) {
-                user.getIsland().setVisit(false);
+                user.getIsland().visit = false;
                 int visitorCount = 0;
                 for (Player visitor : user.getIsland().getPlayersOnIsland()) {
                     if (user.getIsland().equals(User.getUser(visitor).getIsland()) || User.getUser(visitor).bypassing || user.getIsland().isCoop(User.getUser(visitor).getIsland()) || visitor.hasPermission("iridiumskyblock.visitbypass"))
                         continue;
 
                     user.getIsland().spawnPlayer(visitor);
-                    visitor.sendMessage(Utils.color(IridiumSkyblock.getMessages().expelledIslandLocked
-                            .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                    visitor.sendMessage(Utils.color(IridiumSkyblock.messages.expelledIslandLocked
+                            .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                             .replace("%player%", p.getName())));
                     visitorCount++;
                 }
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPrivate
-                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                p.sendMessage(Utils.color(IridiumSkyblock.messages.islandNowPrivate
+                        .replace("%prefix%", IridiumSkyblock.configuration.prefix)
                         .replace("%amount%", visitorCount + "")));
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.noPermission.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 
     @Override
     public void admin(CommandSender sender, String[] args, Island island) {
         if (island != null) {
-            island.setVisit(false);
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPrivate.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            island.visit = false;
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.islandNowPrivate.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

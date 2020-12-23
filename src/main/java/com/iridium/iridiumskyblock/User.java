@@ -2,11 +2,15 @@ package com.iridium.iridiumskyblock;
 
 import com.iridium.iridiumskyblock.managers.IslandManager;
 import com.iridium.iridiumskyblock.managers.UserManager;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class User {
 
@@ -45,7 +49,7 @@ public class User {
     public Role getRole() {
         if (role == null) {
             if (getIsland() != null) {
-                if (getIsland().getOwner().equals(player)) {
+                if (getIsland().owner.equals(player)) {
                     role = Role.Owner;
                 } else {
                     role = Role.Member;
@@ -58,7 +62,7 @@ public class User {
     }
 
     public boolean isOnCooldown() {
-        return IridiumSkyblock.getConfiguration().createCooldown && this.lastCreate != null && !this.bypassing && new Date().before(this.lastCreate);
+        return IridiumSkyblock.configuration.createCooldown && this.lastCreate != null && !this.bypassing && new Date().before(this.lastCreate);
     }
 
     public String getCooldownTimeMessage() {
@@ -67,7 +71,7 @@ public class User {
         int hours = (int) Math.floor(TimeUnit.SECONDS.toHours(time - day * 86400));
         int minute = (int) Math.floor((time - day * 86400 - hours * 3600) / 60.00);
         int second = (int) Math.floor((time - day * 86400 - hours * 3600) % 60.00);
-        return IridiumSkyblock.getMessages().createCooldown.replace("%days%", day + "").replace("%hours%", hours + "").replace("%minutes%", minute + "").replace("%seconds%", second + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix);
+        return IridiumSkyblock.messages.createCooldown.replace("%days%", day + "").replace("%hours%", hours + "").replace("%minutes%", minute + "").replace("%seconds%", second + "").replace("%prefix%", IridiumSkyblock.configuration.prefix);
     }
 
     public static User getUser(UUID uuid) {

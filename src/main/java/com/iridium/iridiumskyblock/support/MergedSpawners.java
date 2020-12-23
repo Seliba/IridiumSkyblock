@@ -7,7 +7,7 @@ import org.bukkit.block.CreatureSpawner;
 public class MergedSpawners implements SpawnerSupport{
 
     public MergedSpawners() {
-        IridiumSkyblock.getInstance().getLogger().info("MergedSpawners support loaded");
+        IridiumSkyblock.instance.getLogger().info("MergedSpawners support loaded");
     }
 
     public int getSpawnerAmount(CreatureSpawner spawner) {

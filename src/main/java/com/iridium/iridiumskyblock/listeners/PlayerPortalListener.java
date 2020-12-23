@@ -5,6 +5,7 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import java.lang.reflect.InvocationTargetException;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,8 +14,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class PlayerPortalListener implements Listener {
 
@@ -29,8 +28,8 @@ public class PlayerPortalListener implements Listener {
 
             if (!event.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)) return;
 
-            if (!IridiumSkyblock.getConfiguration().netherIslands) {
-                if (!IridiumSkyblock.getConfiguration().publicNetherPortals) event.setCancelled(true);
+            if (!IridiumSkyblock.configuration.netherIslands) {
+                if (!IridiumSkyblock.configuration.publicNetherPortals) event.setCancelled(true);
                 return;
             }
 
@@ -46,7 +45,7 @@ public class PlayerPortalListener implements Listener {
 
                 // This setting forces portal search radius to 16, avoiding conflicts with bordering portals
                 // (May have unintended consequences...?)
-                if (IridiumSkyblock.getConfiguration().forceShortPortalRadius)
+                if (IridiumSkyblock.configuration.forceShortPortalRadius)
                     event.setSearchRadius(16);
             } else {
                 try {
@@ -57,7 +56,7 @@ public class PlayerPortalListener implements Listener {
 
                     // This setting forces portal search radius to 16, avoiding conflicts with bordering portals
                     // (May have unintended consequences...?)
-                    if (IridiumSkyblock.getConfiguration().forceShortPortalRadius) {
+                    if (IridiumSkyblock.configuration.forceShortPortalRadius) {
                         Class.forName("org.bukkit.TravelAgent")
                                 .getMethod("setSearchRadius", int.class)
                                 .invoke(PlayerPortalEvent.class.getMethod("getPortalTravelAgent").invoke(event), 16);
@@ -72,19 +71,19 @@ public class PlayerPortalListener implements Listener {
 
             final String worldName = world.getName();
 
-            if (worldName.equals(IridiumSkyblock.getConfiguration().worldName))
-                event.setTo(island.getNetherhome());
-            else if (worldName.equals(IridiumSkyblock.getConfiguration().netherWorldName))
-                event.setTo(island.getHome());
-            Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> {
+            if (worldName.equals(IridiumSkyblock.configuration.worldName))
+                event.setTo(island.getNetherHome());
+            else if (worldName.equals(IridiumSkyblock.configuration.netherWorldName))
+                event.setTo(island.home);
+            Bukkit.getScheduler().runTask(IridiumSkyblock.instance, () -> {
                 Island is = IslandManager.getIslandViaLocation(player.getLocation());
                 if (is != null) {
                     is.sendBorder(player);
-                    is.sendHomograms(player);
+                    is.sendHolograms(player);
                 }
             });
         } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+            IridiumSkyblock.instance.sendErrorMessage(e);
         }
     }
 }

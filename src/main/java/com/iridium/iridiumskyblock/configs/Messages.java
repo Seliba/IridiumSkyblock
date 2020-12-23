@@ -1,7 +1,6 @@
 package com.iridium.iridiumskyblock.configs;
 
 import com.iridium.iridiumskyblock.Role;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

@@ -5,13 +5,12 @@ import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.api.IslandJoinEvent;
+import java.util.Collections;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 public class JoinCommand extends Command {
 
@@ -22,7 +21,7 @@ public class JoinCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length != 2) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is join <player>");
+            sender.sendMessage(Utils.color(IridiumSkyblock.configuration.prefix) + "/is join <player>");
             return;
         }
         Player p = (Player) sender;
@@ -32,21 +31,21 @@ public class JoinCommand extends Command {
         Island island = u.getIsland();
         if (island != null) {
             if (user.getIsland() == null) {
-                if (user.invites.contains(island.getId())) {
+                if (user.invites.contains(island.id)) {
                     IslandJoinEvent joinEvent = new IslandJoinEvent(island, user);
                     Bukkit.getPluginManager().callEvent(joinEvent);
                     if (!joinEvent.isCancelled()) {
                         island.addUser(user);
-                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().joinedIsland.replace("%player%", User.getUser(island.getOwner()).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        sender.sendMessage(Utils.color(IridiumSkyblock.messages.joinedIsland.replace("%player%", User.getUser(island.owner).name).replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                     }
                 } else {
-                    sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noActiveInvites.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    sender.sendMessage(Utils.color(IridiumSkyblock.messages.noActiveInvites.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                 }
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerAlreadyHaveIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(Utils.color(IridiumSkyblock.messages.playerAlreadyHaveIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
         }
     }
 

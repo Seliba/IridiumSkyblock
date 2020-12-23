@@ -4,17 +4,16 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Missions;
+import java.util.List;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.util.List;
-
 public class MissionsGUI extends GUI implements Listener {
 
     public MissionsGUI(Island island) {
-        super(island, IridiumSkyblock.getInventories().missionsGUISize, IridiumSkyblock.getInventories().missionsGUITitle);
-        IridiumSkyblock.getInstance().registerListeners(this);
+        super(island, IridiumSkyblock.inventories.missionsGUISize, IridiumSkyblock.inventories.missionsGUITitle);
+        IridiumSkyblock.instance.registerListeners(this);
     }
 
     @Override
@@ -23,7 +22,7 @@ public class MissionsGUI extends GUI implements Listener {
         if (getInventory().getViewers().isEmpty()) return;
         if (getIsland()!=null) {
             Island island = getIsland();
-            for (Missions.Mission mission : IridiumSkyblock.getMissions().missions) {
+            for (Missions.Mission mission : IridiumSkyblock.missions.missions) {
                 List<Utils.Placeholder> placeholderList = Utils.getIslandPlaceholders(island);
 
                 if (!island.getMissionLevels().containsKey(mission.name))
@@ -35,10 +34,10 @@ public class MissionsGUI extends GUI implements Listener {
                 placeholderList.add(new Utils.Placeholder("vaultReward", data.vaultReward + ""));
                 placeholderList.add(new Utils.Placeholder("crystalsReward", data.crystalReward + ""));
                 placeholderList.add(new Utils.Placeholder("amount", data.amount + ""));
-                placeholderList.add(new Utils.Placeholder("status", island.getMission(mission.name) == Integer.MIN_VALUE ? IridiumSkyblock.getMessages().completed : island.getMission(mission.name) + "/" + data.amount + ""));
+                placeholderList.add(new Utils.Placeholder("status", island.getMission(mission.name) == Integer.MIN_VALUE ? IridiumSkyblock.messages.completed : island.getMission(mission.name) + "/" + data.amount + ""));
                 setItem(mission.item.slot, Utils.makeItemHidden(mission.item, placeholderList));
             }
-            if (IridiumSkyblock.getInventories().backButtons) setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
+            if (IridiumSkyblock.inventories.backButtons) setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.inventories.back));
         }
     }
 
@@ -47,8 +46,8 @@ public class MissionsGUI extends GUI implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
-            if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.getInventories().backButtons) {
-                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.inventories.backButtons) {
+                e.getWhoClicked().openInventory(getIsland().islandMenuGUI.getInventory());
             }
         }
     }

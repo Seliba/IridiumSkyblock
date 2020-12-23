@@ -28,14 +28,14 @@ public class EntityExplodeListener implements Listener {
             if (island == null) return;
 
 
-            if (!IridiumSkyblock.getConfiguration().allowExplosions) {
+            if (!IridiumSkyblock.configuration.allowExplosions) {
                 event.setCancelled(true);
                 return;
             }
-            Island fromIsland = IridiumSkyblock.getInstance().entities.get(entity.getUniqueId());
+            Island fromIsland = IridiumSkyblock.instance.entities.get(entity.getUniqueId());
             if (fromIsland == null || !fromIsland.isInIsland(location)) {
                 event.setCancelled(true);
-                IridiumSkyblock.getInstance().entities.remove(entity.getUniqueId());
+                IridiumSkyblock.instance.entities.remove(entity.getUniqueId());
                 return;
             }
 
@@ -43,7 +43,7 @@ public class EntityExplodeListener implements Listener {
                 if (!fromIsland.isInIsland(location) || island.stackedBlocks.containsKey(block.getLocation())) {
                     final BlockState state = block.getState();
                     IridiumSkyblock.nms.setBlockFast(block, 0, (byte) 0);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.getInstance(), () -> state.update(true, true));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(IridiumSkyblock.instance, () -> state.update(true, true));
                 } else {
                     if (!Utils.isBlockValuable(block)) continue;
 
@@ -56,7 +56,7 @@ public class EntityExplodeListener implements Listener {
             }
             island.calculateIslandValue();
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().sendErrorMessage(ex);
+            IridiumSkyblock.instance.sendErrorMessage(ex);
         }
     }
 
@@ -69,7 +69,7 @@ public class EntityExplodeListener implements Listener {
             if (island.stackedBlocks.containsKey(location)) {
                 BlockState state = block.getState();
                 IridiumSkyblock.nms.setBlockFast(block, 0, (byte) 0);
-                Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> state.update(true, false));
+                Bukkit.getScheduler().runTask(IridiumSkyblock.instance, () -> state.update(true, false));
             }
         }
     }

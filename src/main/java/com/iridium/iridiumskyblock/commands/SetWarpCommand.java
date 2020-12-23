@@ -4,11 +4,10 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.Arrays;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SetWarpCommand extends Command {
 
@@ -26,13 +25,13 @@ public class SetWarpCommand extends Command {
                 if (Utils.isSafe(p.getLocation(), user.getIsland())) {
                     user.getIsland().addWarp(p, p.getLocation(), args[1], password);
                 } else {
-                    p.sendMessage(Utils.color(IridiumSkyblock.getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    p.sendMessage(Utils.color(IridiumSkyblock.messages.isNotSafe.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                 }
             } else {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is setwarp <name> (password)");
+            p.sendMessage(Utils.color(IridiumSkyblock.configuration.prefix) + "/is setwarp <name> (password)");
         }
     }
 
@@ -45,13 +44,13 @@ public class SetWarpCommand extends Command {
                 if (Utils.isSafe(p.getLocation(), island)) {
                     island.addWarp(p, p.getLocation(), args[1], password);
                 } else {
-                    p.sendMessage(Utils.color(IridiumSkyblock.getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    p.sendMessage(Utils.color(IridiumSkyblock.messages.isNotSafe.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
                 }
             } else {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(Utils.color(IridiumSkyblock.messages.noIsland.replace("%prefix%", IridiumSkyblock.configuration.prefix)));
             }
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is setwarp <name> (password)");
+            p.sendMessage(Utils.color(IridiumSkyblock.configuration.prefix) + "/is setwarp <name> (password)");
         }
     }
 

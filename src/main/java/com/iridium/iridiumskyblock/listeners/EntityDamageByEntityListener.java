@@ -4,8 +4,15 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import java.util.Objects;
+import java.util.function.Supplier;
 import org.bukkit.Location;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,9 +20,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.vehicle.VehicleDamageEvent;
 import org.bukkit.projectiles.ProjectileSource;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class EntityDamageByEntityListener implements Listener {
 
@@ -32,7 +36,7 @@ public class EntityDamageByEntityListener implements Listener {
         if (event.getCause() == EntityDamageEvent.DamageCause.VOID) return;
 
         //The user is visiting this island, so disable damage
-        if (user.islandID != island.getId() && IridiumSkyblock.getConfiguration().disablePvPOnIslands) {
+        if (user.islandID != island.id && IridiumSkyblock.configuration.disablePvPOnIslands) {
             event.setCancelled(true);
         }
 
@@ -51,7 +55,7 @@ public class EntityDamageByEntityListener implements Listener {
             if (damager instanceof Egg && damagee instanceof ItemFrame) {
                 Player player = (Player) ((Egg) damager).getShooter();
                 User user = User.getUser(player);
-                if (player != null && !island.getMembers().contains(player.getUniqueId().toString()) && !island.isCoop(user.getIsland())) {
+                if (player != null && !island.members.contains(player.getUniqueId().toString()) && !island.isCoop(user.getIsland())) {
                     event.setCancelled(true);
                 }
             }
@@ -68,7 +72,7 @@ public class EntityDamageByEntityListener implements Listener {
             final Supplier<User> damagingUserSupplier = () -> User.getUser(damagingPlayerSupplier.get());
 
             // Deals with two players pvping in IridiumSkyblock world
-            if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+            if (IridiumSkyblock.configuration.disablePvPOnIslands
                     && damagee instanceof Player
                     && damager instanceof Player) {
                 event.setCancelled(true);
@@ -76,7 +80,7 @@ public class EntityDamageByEntityListener implements Listener {
             }
 
             // Deals with A player getting damaged by a bow fired from a player in IridiumSkyblock world
-            if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+            if (IridiumSkyblock.configuration.disablePvPOnIslands
                     && damagee instanceof Player
                     && damager instanceof Arrow
                     && projectileSourceSupplier.get() instanceof Player) {
@@ -102,7 +106,7 @@ public class EntityDamageByEntityListener implements Listener {
             }
 
             //Deals with a mob attacking a player that doesn't belong to the island (/is home traps?)
-            if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+            if (IridiumSkyblock.configuration.disablePvPOnIslands
                     && damagee instanceof Player
                     && !(damager instanceof Player)) {
                 if (damageeIslandSupplier.get() != null) {
@@ -117,7 +121,7 @@ public class EntityDamageByEntityListener implements Listener {
             }
 
             // Deals with two allies pvping
-            if (IridiumSkyblock.getConfiguration().disablePvPBetweenIslandMembers
+            if (IridiumSkyblock.configuration.disablePvPBetweenIslandMembers
                     && damagee instanceof Player
                     && damager instanceof Player
                     && damageeIslandSupplier.get() != null
@@ -127,7 +131,7 @@ public class EntityDamageByEntityListener implements Listener {
             }
 
             // Deals with two allies pvping with bows
-            if (IridiumSkyblock.getConfiguration().disablePvPBetweenIslandMembers
+            if (IridiumSkyblock.configuration.disablePvPBetweenIslandMembers
                     && damagee instanceof Player
                     && damager instanceof Arrow
                     && projectileSourceSupplier.get() instanceof Player
@@ -137,7 +141,7 @@ public class EntityDamageByEntityListener implements Listener {
                 return;
             }
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().sendErrorMessage(ex);
+            IridiumSkyblock.instance.sendErrorMessage(ex);
         }
     }
 
@@ -158,7 +162,7 @@ public class EntityDamageByEntityListener implements Listener {
             if (!island.getPermissions(attackerUser).killMobs)
                 event.setCancelled(true);
         } catch (Exception ex) {
-            IridiumSkyblock.getInstance().sendErrorMessage(ex);
+            IridiumSkyblock.instance.sendErrorMessage(ex);
         }
     }
 
@@ -171,7 +175,7 @@ public class EntityDamageByEntityListener implements Listener {
             Island island = IslandManager.getIslandViaLocation(location);
             Player player = (Player) ((Egg) event.getRemover()).getShooter();
             User user = User.getUser(player);
-            if (player != null && island != null && !island.getMembers().contains(player.getUniqueId().toString()) && !island.isCoop(user.getIsland())) {
+            if (player != null && island != null && !island.members.contains(player.getUniqueId().toString()) && !island.isCoop(user.getIsland())) {
                 event.setCancelled(true);
             }
         }
