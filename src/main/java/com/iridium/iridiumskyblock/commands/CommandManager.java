@@ -28,7 +28,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     public void registerCommands() {
         List<String> manuallyRegisteredCommands = Arrays.asList("shopCommand");
         Arrays.stream(IridiumSkyblock.commands.getClass().getFields())
-            .filter(field -> field.getClass().getSuperclass() == Command.class)
+            .filter(field -> field.getClass().getSuperclass() == com.iridium.iridiumskyblock.commands.Command.class)
             .filter(field -> !manuallyRegisteredCommands.contains(field.getName()))
             .map(field -> {
                 try {
