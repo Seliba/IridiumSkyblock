@@ -7,7 +7,9 @@ import com.iridium.iridiumskyblock.configs.Schematics;
 import com.iridium.iridiumskyblock.managers.IslandManager;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,20 +26,20 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     }
 
     public void registerCommands() {
-        for (Field field : IridiumSkyblock.commands.getClass().getFields()) {
-            if (field.getName().equals("shopCommand") || !field.getName().endsWith("Command")) {
-                continue;
-            }
-
-            try {
-                field.setAccessible(true);
-                com.iridium.iridiumskyblock.commands.Command command = (com.iridium.iridiumskyblock.commands.Command) field
-                    .get(IridiumSkyblock.commands);
-                registerCommand(command);
-            } catch (IllegalAccessException exception) {
-                exception.printStackTrace();
-            }
-        }
+        List<String> manuallyRegisteredCommands = Arrays.asList("shopCommand");
+        Arrays.stream(IridiumSkyblock.commands.getClass().getFields())
+            .filter(field -> field.getClass().getSuperclass() == Command.class)
+            .filter(field -> !manuallyRegisteredCommands.contains(field.getName()))
+            .map(field -> {
+                try {
+                    return (com.iridium.iridiumskyblock.commands.Command) field.get(IridiumSkyblock.commands);
+                } catch (IllegalAccessException exception) {
+                    exception.printStackTrace();
+                    return null;
+                }
+            })
+            .filter(Objects::nonNull)
+            .forEach(this::registerCommand);
 
         if (IridiumSkyblock.configuration.islandShop) {
             registerCommand(IridiumSkyblock.commands.shopCommand);
