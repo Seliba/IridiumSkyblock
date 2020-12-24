@@ -3,6 +3,7 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.commands.Command;
 import com.iridium.iridiumskyblock.configs.Schematics;
 import com.iridium.iridiumskyblock.managers.IslandManager;
 import java.lang.reflect.Field;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
 
 public class CommandManager implements CommandExecutor, TabCompleter {
 
-    public List<com.iridium.iridiumskyblock.commands.Command> commands = new ArrayList<>();
+    public List<Command> commands = new ArrayList<>();
 
     public CommandManager(String command) {
         IridiumSkyblock.instance.getCommand(command).setExecutor(this);
@@ -28,11 +28,11 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     public void registerCommands() {
         List<String> manuallyRegisteredCommands = Arrays.asList("shopCommand");
         Arrays.stream(IridiumSkyblock.commands.getClass().getFields())
-            .filter(field -> field.getClass().getSuperclass() == com.iridium.iridiumskyblock.commands.Command.class)
+            .filter(field -> field.getClass().getSuperclass() == Command.class)
             .filter(field -> !manuallyRegisteredCommands.contains(field.getName()))
             .map(field -> {
                 try {
-                    return (com.iridium.iridiumskyblock.commands.Command) field.get(IridiumSkyblock.commands);
+                    return (Command) field.get(IridiumSkyblock.commands);
                 } catch (IllegalAccessException exception) {
                     exception.printStackTrace();
                     return null;
@@ -46,16 +46,16 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         }
     }
 
-    public void registerCommand(com.iridium.iridiumskyblock.commands.Command command) {
+    public void registerCommand(Command command) {
         commands.add(command);
     }
 
-    public void unRegisterCommand(com.iridium.iridiumskyblock.commands.Command command) {
+    public void unRegisterCommand(Command command) {
         commands.remove(command);
     }
 
     @Override
-    public boolean onCommand(CommandSender cs, Command cmd, String s, String[] args) {
+    public boolean onCommand(CommandSender cs, org.bukkit.command.Command cmd, String s, String[] args) {
         try {
             if (!IridiumSkyblock.configuration.mainCommandPerm.equalsIgnoreCase("") && !cs
                 .hasPermission(IridiumSkyblock.configuration.mainCommandPerm)) {
@@ -64,7 +64,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 return false;
             }
             if (args.length != 0) {
-                for (com.iridium.iridiumskyblock.commands.Command command : commands) {
+                for (Command command : commands) {
                     if (command.aliases.contains(args[0]) && command.enabled) {
                         if (command.player && !(cs instanceof Player)) {
                             // Must be a player
@@ -119,11 +119,11 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender cs, Command cmd, String s, String[] args) {
+    public List<String> onTabComplete(CommandSender cs, org.bukkit.command.Command cmd, String s, String[] args) {
         try {
             if (args.length == 1) {
                 ArrayList<String> result = new ArrayList<>();
-                for (com.iridium.iridiumskyblock.commands.Command command : commands) {
+                for (Command command : commands) {
                     for (String alias : command.aliases) {
                         if (alias.toLowerCase().startsWith(args[0].toLowerCase()) && (
                             command.enabled && (cs.hasPermission(command.permission)
@@ -135,7 +135,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 }
                 return result;
             }
-            for (com.iridium.iridiumskyblock.commands.Command command : commands) {
+            for (Command command : commands) {
                 if (command.aliases.contains(args[0]) && (command.enabled && (
                     cs.hasPermission(command.permission) || command.permission.equalsIgnoreCase("")
                         || command.permission.equalsIgnoreCase("iridiumskyblock.")))) {
