@@ -282,8 +282,8 @@ public class Island {
         Bukkit.getScheduler().runTaskLater(IridiumSkyblock.instance, this::calculateIslandValue, 20);
     }
 
-    private void computeValue(IridiumSkyblock plugin, int finalX, int finalZ, Chunk netherChunk) {
-        ChunkSnapshot netherSnapshot = netherChunk.getChunkSnapshot(true, false, false);
+    private void computeValue(IridiumSkyblock plugin, int finalX, int finalZ, Chunk chunk) {
+        ChunkSnapshot netherSnapshot = chunk.getChunkSnapshot(true, false, false);
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             for (int x1 = 0; x1 < 16; x1++) {
