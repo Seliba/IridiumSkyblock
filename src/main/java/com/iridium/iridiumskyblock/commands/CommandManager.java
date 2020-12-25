@@ -3,10 +3,8 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
-import com.iridium.iridiumskyblock.commands.Command;
 import com.iridium.iridiumskyblock.configs.Schematics;
 import com.iridium.iridiumskyblock.managers.IslandManager;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +26,6 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     public void registerCommands() {
         List<String> manuallyRegisteredCommands = Arrays.asList("shopCommand");
         Arrays.stream(IridiumSkyblock.commands.getClass().getFields())
-            .filter(field -> field.getClass().getSuperclass() == Command.class)
             .filter(field -> !manuallyRegisteredCommands.contains(field.getName()))
             .map(field -> {
                 try {
@@ -39,6 +36,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 }
             })
             .filter(Objects::nonNull)
+            .filter(command -> command.getClass().getSuperclass() == Command.class)
             .forEach(this::registerCommand);
 
         if (IridiumSkyblock.configuration.islandShop) {
