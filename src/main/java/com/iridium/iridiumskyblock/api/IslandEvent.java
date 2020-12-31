@@ -17,6 +17,11 @@ public abstract class IslandEvent extends Event {
         return handlers;
     }
 
+    @NotNull
+    public static HandlerList getHandlerList() {
+      return handlers;
+    }
+
     public IslandEvent(@NotNull Island island) {
         this.island = island;
     }
