@@ -32,15 +32,17 @@ public class IslandDemoteEvent extends IslandEvent implements Cancellable {
         this.cancelled = b;
     }
 
+    @NotNull
     public User getTarget() {
         return target;
     }
 
+    @NotNull
     public User getDemoter() {
         return demoter;
     }
 
-    public Role getRole() {
+    public Role getNewRole() {
         return role;
     }
 }

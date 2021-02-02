@@ -85,7 +85,7 @@ public class MembersGUI extends GUI implements Listener {
                                         e.getWhoClicked().sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                                     }
                                 } else {
-                                    IslandDemoteEvent event = new IslandDemoteEvent(island, u, user, Role.getViaRank(u.getRole().rank + 1));
+                                    IslandDemoteEvent event = new IslandDemoteEvent(island, u, user, Role.getViaRank(u.getRole().rank - 1));
                                     Bukkit.getPluginManager().callEvent(event);
                                     if (!event.isCancelled()) {
                                         u.role = Role.getViaRank(u.getRole().rank - 1);
