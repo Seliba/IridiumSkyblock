@@ -46,7 +46,7 @@ public class JoinCommand extends Command {
                 sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerAlreadyHaveIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         } else {
-            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
     }
 
