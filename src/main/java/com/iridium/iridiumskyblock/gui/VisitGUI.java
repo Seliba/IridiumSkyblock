@@ -10,7 +10,6 @@ import com.iridium.iridiumskyblock.utils.ItemStackUtils;
 import com.iridium.iridiumskyblock.utils.Placeholder;
 import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,10 +60,11 @@ public class VisitGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
+            Player player = (Player) e.getWhoClicked();
             if (islands.containsKey(e.getSlot())) {
                 Island island = IslandManager.getIslandViaId(islands.get(e.getSlot()));
-                User u = User.getUser((OfflinePlayer) e.getWhoClicked());
-                if (island.visit || u.bypassing) {
+                User u = User.getUser(player);
+                if (island.visit || u.bypassing || User.getUser(island.owner).hasCoopVisitPermissions(u)) {
                     if (e.getClick() == ClickType.RIGHT) {
                         if (island.hasVoted(u)) {
                             island.removeVote(u);
@@ -72,23 +72,23 @@ public class VisitGUI extends GUI implements Listener {
                             island.addVote(u);
                         }
                     } else {
-                        e.getWhoClicked().closeInventory();
-                        island.teleportHome((Player) e.getWhoClicked());
+                        player.closeInventory();
+                        island.teleportHome(player);
                     }
                 } else {
-                    e.getWhoClicked().sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+                    player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             } else if (e.getSlot() == getInventory().getSize() - 7) {
                 VisitGUI visitGUI = IridiumSkyblock.getInstance().getVisitGUI().getPage(page - 1);
                 if (visitGUI != null) {
                     visitGUI.addContent();
-                    e.getWhoClicked().openInventory(visitGUI.getInventory());
+                    player.openInventory(visitGUI.getInventory());
                 }
             } else if (e.getSlot() == getInventory().getSize() - 3) {
                 VisitGUI visitGUI = IridiumSkyblock.getInstance().getVisitGUI().getPage(page + 1);
                 if (visitGUI != null) {
                     visitGUI.addContent();
-                    e.getWhoClicked().openInventory(visitGUI.getInventory());
+                    player.openInventory(visitGUI.getInventory());
                 }
             }
         }

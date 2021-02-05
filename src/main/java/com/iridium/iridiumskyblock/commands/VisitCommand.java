@@ -30,9 +30,11 @@ public class VisitCommand extends Command {
         }
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
         User user = User.getUser(player);
-        if (user.getIsland() != null) {
-            if (user.getIsland().visit || User.getUser(p).bypassing || p.hasPermission("iridiumskyblock.visitbypass")) {
-                user.getIsland().teleportHome(p);
+        User commandExecutor = User.getUser(p);
+        Island island = user.getIsland();
+        if (island != null) {
+            if (island.visit || User.getUser(p).bypassing || p.hasPermission("iridiumskyblock.visitbypass") || user.hasCoopVisitPermissions(commandExecutor)) {
+                island.teleportHome(p);
             } else {
                 sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }

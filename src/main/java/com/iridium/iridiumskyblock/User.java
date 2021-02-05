@@ -107,4 +107,12 @@ public class User {
     public void save(Connection connection) {
         UserManager.saveUser(this, connection);
     }
+
+    public boolean hasCoopVisitPermissions(User otherUser) {
+        return IridiumSkyblock.getInstance().getConfiguration().coopPrivateIslandAccess &&
+                this.getIsland() != null &&
+                otherUser.getIsland() != null &&
+                getIsland().isCoop(otherUser.getIsland());
+    }
+
 }

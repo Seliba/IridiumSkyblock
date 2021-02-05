@@ -72,7 +72,7 @@ public class CoopGUI extends GUI implements Listener {
                         e.getWhoClicked().sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                     }
                 } else {
-                    if (island.visit || u.bypassing) {
+                    if (island.visit || u.bypassing || User.getUser(island.owner).hasCoopVisitPermissions(u)) {
                         island.teleportHome((Player) e.getWhoClicked());
                     } else {
                         e.getWhoClicked().sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playersIslandIsPrivate.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
