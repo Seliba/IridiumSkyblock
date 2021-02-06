@@ -238,9 +238,9 @@
         <dependency>
             <groupId>com.songoda</groupId>
             <artifactId>EpicSpawners</artifactId>
-            <version>12.4.1</version>
+            <version>7.0.5</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/deps/EpicSpawners-6.2.jar</systemPath>
+            <systemPath>${project.basedir}/deps/EpicSpawners-7.0.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.gc</groupId>
