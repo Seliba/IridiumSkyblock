@@ -34,7 +34,7 @@ public class PlayerMoveListener implements Listener {
             final Island island = IslandManager.getIslandViaLocation(location);
             final boolean hasCoopVisitPermissions = User.getUser(island.owner).hasCoopVisitPermissions(user);
 
-            if (island != null && !island.visit && !island.equals(userIsland) && hasCoopVisitPermissions && !user.bypassing && !player.hasPermission("iridiumskyblock.visitbypass")) {
+            if (island != null && !island.visit && !island.equals(userIsland) && !hasCoopVisitPermissions && !user.bypassing && !player.hasPermission("iridiumskyblock.visitbypass")) {
                 island.spawnPlayer(event.getPlayer());
                 return;
             }
