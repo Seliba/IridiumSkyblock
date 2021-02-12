@@ -12,6 +12,7 @@ import com.iridium.iridiumskyblock.gui.*;
 import com.iridium.iridiumskyblock.managers.IslandDataManager;
 import com.iridium.iridiumskyblock.managers.IslandManager;
 import com.iridium.iridiumskyblock.support.SpawnerSupport;
+import io.netty.util.internal.ConcurrentSet;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -113,7 +114,7 @@ public class Island {
 
     private Date lastRegen;
 
-    private transient Set<Player> playersOnIsland;
+    private transient ConcurrentSet<Player> playersOnIsland;
     private long lastPlayerCaching;
 
     private static final transient boolean IS_FLAT = XMaterial.supports(13);
@@ -560,7 +561,7 @@ public class Island {
 
     public void init() {
         if (islandWarps == null) islandWarps = new ArrayList<>();
-        this.playersOnIsland = new HashSet<>();
+        this.playersOnIsland = new ConcurrentSet<>();
         this.lastPlayerCaching = 0L;
         if (netherschematic == null) {
             for (Schematics.FakeSchematic fakeSchematic : IridiumSkyblock.getSchematics().schematicList) {
