@@ -4,7 +4,8 @@ import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.Color;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.MiscUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
@@ -27,7 +28,7 @@ public class v1_15_R1 implements NMS {
         if (state instanceof InventoryHolder) {
             ((InventoryHolder) state).getInventory().clear();
         }
-        XMaterial material = Utils.getXMaterialFromId(blockId, (byte) 0);
+        XMaterial material = MiscUtils.getXMaterialFromId(blockId, (byte) 0);
         if (material != null && material.parseMaterial() != null) {
             block.setBlockData(IridiumSkyblock.getInstance().fromLegacy(material.parseMaterial(), data), false);
         }
@@ -86,7 +87,7 @@ public class v1_15_R1 implements NMS {
 
             entityArmorStand.setInvisible(true);
             entityArmorStand.setCustomNameVisible(true);
-            entityArmorStand.setCustomName(new ChatMessage(Utils.color(text.get(i))));
+            entityArmorStand.setCustomName(new ChatMessage(StringUtils.color(text.get(i))));
 
             user.addHologram(entityArmorStand);
 

@@ -1,8 +1,8 @@
 package com.iridium.iridiumskyblock.gui;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Shop;
+import com.iridium.iridiumskyblock.utils.ItemStackUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -14,12 +14,12 @@ public class ShopMenuGUI extends GUI implements Listener {
     public MultiplePagesGUI<MultiplePagesGUI<ShopGUI>> pages;
 
     public ShopMenuGUI() {
-        super(IridiumSkyblock.getInventories().shopGUISize, IridiumSkyblock.getInventories().shopGUITitle);
+        super(IridiumSkyblock.getInstance().getInventories().shopGUISize, IridiumSkyblock.getInstance().getInventories().shopGUITitle);
         IridiumSkyblock.getInstance().registerListeners(this);
 
         pages = new MultiplePagesGUI<>(() -> {
-            for (Shop.ShopObject shopObject : IridiumSkyblock.getShop().shop) {
-                setItem(shopObject.slot, Utils.makeItem(shopObject.display, 1, shopObject.displayName));
+            for (Shop.ShopObject shopObject : IridiumSkyblock.getInstance().getShop().shop) {
+                setItem(shopObject.slot, ItemStackUtils.makeItem(shopObject.display, 1, shopObject.displayName));
                 pages.addPage(shopObject.slot, getMultiplePagesGUI(shopObject));
             }
         }, false);

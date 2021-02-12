@@ -2,9 +2,9 @@ package com.iridium.iridiumskyblock.commands;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Schematics;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -26,11 +26,11 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
     public void registerCommands() {
         List<String> manuallyRegisteredCommands = Arrays.asList("shopCommand");
-        Arrays.stream(IridiumSkyblock.getCommands().getClass().getFields())
+        Arrays.stream(IridiumSkyblock.getInstance().getCommands().getClass().getFields())
                 .filter(field -> !manuallyRegisteredCommands.contains(field.getName()))
                 .map(field -> {
                     try {
-                        return (Command) field.get(IridiumSkyblock.getCommands());
+                        return (Command) field.get(IridiumSkyblock.getInstance().getCommands());
                     } catch (IllegalAccessException exception) {
                         exception.printStackTrace();
                         return null;
@@ -40,8 +40,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 .filter(command -> command.getClass().getSuperclass() == Command.class)
                 .forEach(this::registerCommand);
 
-        if (IridiumSkyblock.getConfiguration().islandShop) {
-            registerCommand(IridiumSkyblock.getCommands().shopCommand);
+        if (IridiumSkyblock.getInstance().getConfiguration().islandShop) {
+            registerCommand(IridiumSkyblock.getInstance().getCommands().shopCommand);
         }
     }
 
@@ -55,10 +55,10 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender cs, org.bukkit.command.Command cmd, String s, String[] args) {
-        if (!IridiumSkyblock.getConfiguration().mainCommandPerm.equalsIgnoreCase("") && !cs
-                .hasPermission(IridiumSkyblock.getConfiguration().mainCommandPerm)) {
-            cs.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission
-                    .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+        if (!IridiumSkyblock.getInstance().getConfiguration().mainCommandPerm.equalsIgnoreCase("") && !cs
+                .hasPermission(IridiumSkyblock.getInstance().getConfiguration().mainCommandPerm)) {
+            cs.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermission
+                    .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             return false;
         }
         if (args.length != 0) {
@@ -66,8 +66,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 if (command.aliases.contains(args[0]) && command.enabled) {
                     if (command.player && !(cs instanceof Player)) {
                         // Must be a player
-                        cs.sendMessage(Utils.color(IridiumSkyblock.getMessages().mustBeAPlayer
-                                .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        cs.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().mustBeAPlayer
+                                .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                         return true;
                     }
                     if ((cs.hasPermission(command.permission) || command.permission
@@ -76,8 +76,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                         command.execute(cs, args);
                     } else {
                         // No permission
-                        cs.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission
-                                .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        cs.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermission
+                                .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                     }
                     return true;
                 }
@@ -88,8 +88,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 User u = User.getUser(p);
                 if (u.getIsland() != null) {
                     if (u.getIsland().schematic == null) {
-                        if (IridiumSkyblock.getSchematics().schematicList.size() == 1) {
-                            for (Schematics.FakeSchematic schematic : IridiumSkyblock.getSchematics().schematicList) {
+                        if (IridiumSkyblock.getInstance().getSchematics().schematicList.size() == 1) {
+                            for (Schematics.FakeSchematic schematic : IridiumSkyblock.getInstance().getSchematics().schematicList) {
                                 u.getIsland().schematic = schematic.overworldData.schematic;
                                 u.getIsland().netherschematic = schematic.netherData.schematic;
                                 break;
@@ -99,7 +99,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                             return true;
                         }
                     }
-                    if (IridiumSkyblock.getConfiguration().islandMenu) {
+                    if (IridiumSkyblock.getInstance().getConfiguration().islandMenu) {
                         p.openInventory(u.getIsland().islandMenuGUI.getInventory());
                     } else {
                         u.getIsland().teleportHome(p);
@@ -110,8 +110,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                 return true;
             }
         }
-        cs.sendMessage(Utils.color(IridiumSkyblock.getMessages().unknownCommand
-                .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+        cs.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().unknownCommand
+                .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         return true;
     }
 

@@ -9,14 +9,6 @@ public enum Role {
         this.rank = rank;
     }
 
-    @Override
-    public String toString() {
-        if (IridiumSkyblock.getMessages().roles.containsKey(this)) {
-            return IridiumSkyblock.getMessages().roles.get(this);
-        }
-        return this.name();
-    }
-
     public static Role getViaRank(int i) {
         for (Role role : values()) {
             if (role.rank == i) {
@@ -24,5 +16,13 @@ public enum Role {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        if (IridiumSkyblock.getInstance().getMessages().roles.containsKey(this)) {
+            return IridiumSkyblock.getInstance().getMessages().roles.get(this);
+        }
+        return this.name();
     }
 }

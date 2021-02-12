@@ -9,21 +9,22 @@ public abstract class IslandEvent extends Event {
     @NotNull
     private static final HandlerList handlers = new HandlerList();
 
-    @NotNull private final Island island;
+    @NotNull
+    private final Island island;
+
+    public IslandEvent(@NotNull Island island) {
+        this.island = island;
+    }
+
+    @NotNull
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
     @Override
     @NotNull
     public HandlerList getHandlers() {
         return handlers;
-    }
-
-    @NotNull
-    public static HandlerList getHandlerList() {
-      return handlers;
-    }
-
-    public IslandEvent(@NotNull Island island) {
-        this.island = island;
     }
 
     public Island getIsland() {

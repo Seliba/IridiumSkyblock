@@ -1,6 +1,7 @@
 package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XMaterial;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -202,6 +203,8 @@ public class Shop {
         public int page;
         public List<String> commands;
 
+        public ShopItem(){}
+
         public ShopItem(XMaterial material, String displayName, int amount, double buyVault, double sellVault, int buyCrystals, int sellCrystals, int slot, int page) {
             this.material = material;
             this.displayName = displayName;
@@ -234,6 +237,8 @@ public class Shop {
         public String name;
         public List<ShopItem> items;
         public int slot;
+
+        public ShopObject(){}
 
         public ShopObject(XMaterial display, String displayName, String name, List<ShopItem> items, int slot) {
             this.display = display;

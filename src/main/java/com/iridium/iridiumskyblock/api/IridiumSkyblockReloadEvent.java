@@ -8,14 +8,14 @@ public class IridiumSkyblockReloadEvent extends Event {
     @NotNull
     private static final HandlerList handlers = new HandlerList();
 
-    @Override
     @NotNull
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
+    @Override
     @NotNull
-    public static HandlerList getHandlerList() {
+    public HandlerList getHandlers() {
         return handlers;
     }
 }

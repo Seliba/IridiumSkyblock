@@ -7,15 +7,17 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class IslandKickEvent extends IslandEvent implements Cancellable {
-  @Nullable private final User userWhoKicked;
-  @NotNull private final User kickedUser;
-  private boolean cancelled = false;
-  
-  public IslandKickEvent(@NotNull Island island, @Nullable User userWhoKicked, @NotNull User kickedUser) {
-    super(island);
-    this.userWhoKicked = userWhoKicked;
-    this.kickedUser = kickedUser;
-  }
+    @Nullable
+    private final User userWhoKicked;
+    @NotNull
+    private final User kickedUser;
+    private boolean cancelled = false;
+
+    public IslandKickEvent(@NotNull Island island, @Nullable User userWhoKicked, @NotNull User kickedUser) {
+        super(island);
+        this.userWhoKicked = userWhoKicked;
+        this.kickedUser = kickedUser;
+    }
 
     @Override
     public boolean isCancelled() {
@@ -27,11 +29,11 @@ public class IslandKickEvent extends IslandEvent implements Cancellable {
         this.cancelled = b;
     }
 
-  public User getUserWhoKicked() {
-    return userWhoKicked;
-  }
+    public User getUserWhoKicked() {
+        return userWhoKicked;
+    }
 
-  public User getKickedUser() {
-    return kickedUser;
-  }
+    public User getKickedUser() {
+        return kickedUser;
+    }
 }

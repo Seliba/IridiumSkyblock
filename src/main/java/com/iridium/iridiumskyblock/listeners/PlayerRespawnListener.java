@@ -12,7 +12,7 @@ public class PlayerRespawnListener implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        if (!IridiumSkyblock.getConfiguration().respawnAtIslandHome) return;
+        if (!IridiumSkyblock.getInstance().getConfiguration().respawnAtIslandHome) return;
         Player player = event.getPlayer();
         User user = User.getUser(player);
         Island island = user.getIsland();
