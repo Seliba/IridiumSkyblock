@@ -2,6 +2,9 @@ package com.iridium.iridiumskyblock.listeners;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.managers.IslandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -37,6 +40,14 @@ public class PlayerBucketEmptyListener implements Listener {
                 return;
             }
         }
+
+        // Temporary fix until https://hub.spigotmc.org/jira/browse/SPIGOT-6351 is fixed
+        User user = User.getUser(event.getPlayer());
+        Island island = IslandManager.getIslandViaLocation(block.getLocation());
+        if (user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) {
+            event.setCancelled(true);
+        }
+
         final Player player = event.getPlayer();
         if (IridiumSkyblock.getConfiguration().allowWaterInNether) {
             final World world = block.getWorld();
