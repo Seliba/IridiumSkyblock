@@ -7,7 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class IslandJoinEvent extends IslandEvent implements Cancellable {
-    @Nullable private final User user;
+    @Nullable
+    private final User user;
     private boolean cancelled = false;
 
     public IslandJoinEvent(@NotNull Island island, @Nullable User user) {

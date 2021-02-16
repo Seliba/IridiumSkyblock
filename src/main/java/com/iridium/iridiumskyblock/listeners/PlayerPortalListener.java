@@ -28,8 +28,8 @@ public class PlayerPortalListener implements Listener {
 
         if (!event.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)) return;
 
-        if (!IridiumSkyblock.getConfiguration().netherIslands) {
-            if (!IridiumSkyblock.getConfiguration().publicNetherPortals) event.setCancelled(true);
+        if (!IridiumSkyblock.getInstance().getConfiguration().netherIslands) {
+            if (!IridiumSkyblock.getInstance().getConfiguration().publicNetherPortals) event.setCancelled(true);
             return;
         }
 
@@ -40,10 +40,10 @@ public class PlayerPortalListener implements Listener {
             return;
         }
 
-        if(!IridiumSkyblock.getConfiguration().netherPortalCreation){
+        if (!IridiumSkyblock.getInstance().getConfiguration().netherPortalCreation) {
             event.setCancelled(true);
             island.teleportNetherHome(player);
-        }else {
+        } else {
             if (supports) {
                 event.setCanCreatePortal(true);
             } else {
@@ -53,7 +53,6 @@ public class PlayerPortalListener implements Listener {
                             .getMethod("setCanCreatePortal", boolean.class)
                             .invoke(PlayerPortalEvent.class.getMethod("getPortalTravelAgent").invoke(event), true);
                 } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -63,9 +62,9 @@ public class PlayerPortalListener implements Listener {
 
         final String worldName = world.getName();
 
-        if (worldName.equals(IridiumSkyblock.getConfiguration().worldName))
+        if (worldName.equals(IridiumSkyblock.getInstance().getConfiguration().worldName))
             event.setTo(island.getNetherHome());
-        else if (worldName.equals(IridiumSkyblock.getConfiguration().netherWorldName))
+        else if (worldName.equals(IridiumSkyblock.getInstance().getConfiguration().netherWorldName))
             event.setTo(island.home);
         Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> {
             Island is = IslandManager.getIslandViaLocation(player.getLocation());

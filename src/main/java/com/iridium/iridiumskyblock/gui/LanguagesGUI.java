@@ -2,7 +2,7 @@ package com.iridium.iridiumskyblock.gui;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.ItemStackUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,10 +36,10 @@ public class LanguagesGUI extends GUI implements Listener {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
         for (int slot : languages.keySet()) {
-            setItem(slot, Utils.makeItem(XMaterial.PAPER, 1, "&b&l" + languages.get(slot)));
+            setItem(slot, ItemStackUtils.makeItem(XMaterial.PAPER, 1, "&b&l" + languages.get(slot)));
         }
-        setItem(getInventory().getSize() - 3, Utils.makeItem(IridiumSkyblock.getInventories().nextPage));
-        setItem(getInventory().getSize() - 7, Utils.makeItem(IridiumSkyblock.getInventories().previousPage));
+        setItem(getInventory().getSize() - 3, ItemStackUtils.makeItem(IridiumSkyblock.getInstance().getInventories().nextPage));
+        setItem(getInventory().getSize() - 7, ItemStackUtils.makeItem(IridiumSkyblock.getInstance().getInventories().previousPage));
     }
 
     @Override

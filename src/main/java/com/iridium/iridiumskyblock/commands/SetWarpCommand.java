@@ -3,7 +3,8 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.MiscUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -23,16 +24,16 @@ public class SetWarpCommand extends Command {
             User user = User.getUser(p);
             if (user.getIsland() != null) {
                 String password = args.length == 3 ? args[2] : "";
-                if (Utils.isSafe(p.getLocation(), user.getIsland())) {
+                if (MiscUtils.isSafe(p.getLocation(), user.getIsland())) {
                     user.getIsland().addWarp(p, p.getLocation(), args[1], password);
                 } else {
-                    p.sendMessage(Utils.color(IridiumSkyblock.getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             } else {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is setwarp <name> (password)");
+            p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getConfiguration().prefix) + "/is setwarp <name> (password)");
         }
     }
 
@@ -42,16 +43,16 @@ public class SetWarpCommand extends Command {
         if (args.length == 2 || args.length == 3) {
             if (island != null) {
                 String password = args.length == 3 ? args[2] : "";
-                if (Utils.isSafe(p.getLocation(), island)) {
+                if (MiscUtils.isSafe(p.getLocation(), island)) {
                     island.addWarp(p, p.getLocation(), args[1], password);
                 } else {
-                    p.sendMessage(Utils.color(IridiumSkyblock.getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().isNotSafe.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             } else {
-                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is setwarp <name> (password)");
+            p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getConfiguration().prefix) + "/is setwarp <name> (password)");
         }
     }
 

@@ -21,14 +21,14 @@ public class ShopCommand extends Command {
         Player p = (Player) sender;
         if (args.length > 1) {
             String shopName = args[1];
-            for (Shop.ShopObject shopObject : IridiumSkyblock.getShop().shop) {
+            for (Shop.ShopObject shopObject : IridiumSkyblock.getInstance().getShop().shop) {
                 if (shopObject.name.equalsIgnoreCase(shopName)) {
-                    p.openInventory(IridiumSkyblock.getShopGUI().pages.getPage(shopObject.slot).getPage(1).getInventory());
+                    p.openInventory(IridiumSkyblock.getInstance().getShopGUI().pages.getPage(shopObject.slot).getPage(1).getInventory());
                     return;
                 }
             }
         }
-        p.openInventory(IridiumSkyblock.getShopGUI().getInventory());
+        p.openInventory(IridiumSkyblock.getInstance().getShopGUI().getInventory());
     }
 
     @Override
@@ -38,6 +38,6 @@ public class ShopCommand extends Command {
 
     @Override
     public List<String> TabComplete(CommandSender cs, org.bukkit.command.Command cmd, String s, String[] args) {
-        return IridiumSkyblock.getShop().shop.stream().map(shopObject -> shopObject.name).collect(Collectors.toList());
+        return IridiumSkyblock.getInstance().getShop().shop.stream().map(shopObject -> shopObject.name).collect(Collectors.toList());
     }
 }

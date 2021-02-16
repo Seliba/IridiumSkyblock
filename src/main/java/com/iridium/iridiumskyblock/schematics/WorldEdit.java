@@ -1,8 +1,9 @@
 package com.iridium.iridiumskyblock.schematics;
 
 import com.iridium.iridiumskyblock.Island;
-import java.io.File;
 import org.bukkit.Location;
+
+import java.io.File;
 
 public interface WorldEdit {
     int version();

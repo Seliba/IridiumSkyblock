@@ -2,7 +2,10 @@ package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XMaterial;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Inventories {
 
@@ -71,22 +74,34 @@ public class Inventories {
     public Item blue = new Item(XMaterial.BLUE_STAINED_GLASS_PANE, 14, 1, "&b&lBlue", new ArrayList<>());
     public Item off = new Item(XMaterial.WHITE_STAINED_GLASS_PANE, 16, 1, "&f&lOff", new ArrayList<>());
 
-    public Map<Item, String> menu = new HashMap<Item, String>() {{
-        put(new Item(XMaterial.WHITE_BED, 13, 1, "&b&lIsland Home", Collections.singletonList("&7Teleport to your island home")), "is home");
-        put(new Item(XMaterial.PLAYER_HEAD, 14, 1, "&b&lIsland Members", "Peaches_MLG", Collections.singletonList("&7View your island Members.")), "is members");
-        put(new Item(XMaterial.GRASS_BLOCK, 36, 1, "&b&lIsland Regen", Collections.singletonList("&7Regenerate your island.")), "is regen");
-        put(new Item(XMaterial.PLAYER_HEAD, 21, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODM4MWM1MjlkNTJlMDNjZDc0YzNiZjM4YmI2YmEzZmRlMTMzN2FlOWJmNTAzMzJmYWE4ODllMGEyOGU4MDgxZiJ9fX0=", 1, "&b&lIsland Upgrades", Collections.singletonList("&7Upgrade your island.")), "is upgrade");
-        put(new Item(XMaterial.IRON_SWORD, 22, 1, "&b&lIsland Missions", Collections.singletonList("&7View island missions.")), "is missions");
-        put(new Item(XMaterial.EXPERIENCE_BOTTLE, 23, 1, "&b&lIsland Boosters", Collections.singletonList("&7Boost your island.")), "is booster");
-        put(new Item(XMaterial.BOOK, 31, 1, "&b&lIsland Permissions", Collections.singletonList("&7Change island permissions.")), "is permissions");
-        put(new Item(XMaterial.DIAMOND, 0, 1, "&b&lIsland Top", Collections.singletonList("&7View top islands.")), "is top");
-        put(new Item(XMaterial.END_PORTAL_FRAME, 20, 1, "&b&lIsland Warps", Collections.singletonList("&7View your island warps.")), "is warps");
-        put(new Item(XMaterial.BEACON, 24, 1, "&b&lIsland Border", Collections.singletonList("&7Change your island border.")), "is border");
-        put(new Item(XMaterial.NAME_TAG, 32, 1, "&b&lIsland Coop", Collections.singletonList("&7View your Co-op Islands.")), "is coop");
-        put(new Item(XMaterial.GOLD_INGOT, 30, 1, "&b&lIsland Bank", Collections.singletonList("&7View your Island Bank.")), "is bank");
-        put(new Item(XMaterial.PLAYER_HEAD, 12, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDM4Y2YzZjhlNTRhZmMzYjNmOTFkMjBhNDlmMzI0ZGNhMTQ4NjAwN2ZlNTQ1Mzk5MDU1NTI0YzE3OTQxZjRkYyJ9fX0=", 1, "&b&lIsland Biome", Collections.singletonList("&7Change your island biome.")), "is biome");
-        put(new Item(XMaterial.BARRIER, 44, 1, "&b&lIsland Delete", Collections.singletonList("&7Delete your island.")), "is delete");
-    }};
+    public List<MenuItem> menu = Arrays.asList(
+            new MenuItem(new Item(XMaterial.WHITE_BED, 13, 1, "&b&lIsland Home", Collections.singletonList("&7Teleport to your island home")), "is home"),
+            new MenuItem(new Item(XMaterial.PLAYER_HEAD, 14, 1, "&b&lIsland Members", "Peaches_MLG", Collections.singletonList("&7View your island Members.")), "is members"),
+            new MenuItem(new Item(XMaterial.GRASS_BLOCK, 36, 1, "&b&lIsland Regen", Collections.singletonList("&7Regenerate your island.")), "is regen"),
+            new MenuItem(new Item(XMaterial.PLAYER_HEAD, 21, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODM4MWM1MjlkNTJlMDNjZDc0YzNiZjM4YmI2YmEzZmRlMTMzN2FlOWJmNTAzMzJmYWE4ODllMGEyOGU4MDgxZiJ9fX0=", 1, "&b&lIsland Upgrades", Collections.singletonList("&7Upgrade your island.")), "is upgrade"),
+            new MenuItem(new Item(XMaterial.IRON_SWORD, 22, 1, "&b&lIsland Missions", Collections.singletonList("&7View island missions.")), "is missions"),
+            new MenuItem(new Item(XMaterial.EXPERIENCE_BOTTLE, 23, 1, "&b&lIsland Boosters", Collections.singletonList("&7Boost your island.")), "is booster"),
+            new MenuItem(new Item(XMaterial.BOOK, 31, 1, "&b&lIsland Permissions", Collections.singletonList("&7Change island permissions.")), "is permissions"),
+            new MenuItem(new Item(XMaterial.DIAMOND, 0, 1, "&b&lIsland Top", Collections.singletonList("&7View top islands.")), "is top"),
+            new MenuItem(new Item(XMaterial.END_PORTAL_FRAME, 20, 1, "&b&lIsland Warps", Collections.singletonList("&7View your island warps.")), "is warps"),
+            new MenuItem(new Item(XMaterial.BEACON, 24, 1, "&b&lIsland Border", Collections.singletonList("&7Change your island border.")), "is border"),
+            new MenuItem(new Item(XMaterial.NAME_TAG, 32, 1, "&b&lIsland Coop", Collections.singletonList("&7View your Co-op Islands.")), "is coop"),
+            new MenuItem(new Item(XMaterial.GOLD_INGOT, 30, 1, "&b&lIsland Bank", Collections.singletonList("&7View your Island Bank.")), "is bank"),
+            new MenuItem(new Item(XMaterial.PLAYER_HEAD, 12, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDM4Y2YzZjhlNTRhZmMzYjNmOTFkMjBhNDlmMzI0ZGNhMTQ4NjAwN2ZlNTQ1Mzk5MDU1NTI0YzE3OTQxZjRkYyJ9fX0=", 1, "&b&lIsland Biome", Collections.singletonList("&7Change your island biome.")), "is biome"),
+            new MenuItem(new Item(XMaterial.BARRIER, 44, 1, "&b&lIsland Delete", Collections.singletonList("&7Delete your island.")), "is delete")
+    );
+
+    public static class MenuItem {
+        public Item item;
+        public String command;
+
+        public MenuItem(){}
+
+        public MenuItem(Item item, String command) {
+            this.item = item;
+            this.command = command;
+        }
+    }
 
     public static class Item {
 
@@ -97,6 +112,9 @@ public class Inventories {
         public String headOwner;
         public List<String> lore;
         public Integer slot;
+
+        public Item() {
+        }
 
         public Item(XMaterial material, int amount, String title, List<String> lore) {
             this.material = material;

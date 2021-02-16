@@ -27,7 +27,7 @@ public class PlayerExpChangeListener implements Listener {
         final Island island = user.getIsland();
         if (island == null) return;
 
-        for (Mission mission : IridiumSkyblock.getMissions().missions) {
+        for (Mission mission : IridiumSkyblock.getInstance().getMissions().missions) {
             final Map<String, Integer> levels = island.getMissionLevels();
             levels.putIfAbsent(mission.name, 1);
 

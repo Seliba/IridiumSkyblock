@@ -3,8 +3,7 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
-import org.apache.commons.lang.StringUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -22,7 +21,7 @@ public class GiveBoosterCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length != 4 && args.length != 3) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is givebooster <player> <booster> <time>");
+            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getConfiguration().prefix) + "/is givebooster <player> <booster> <time>");
             return;
         }
 
@@ -31,7 +30,7 @@ public class GiveBoosterCommand extends Command {
             if (player != null) {
                 Island island = User.getUser(player).getIsland();
                 if (island != null) {
-                    if (args.length == 3 || StringUtils.isNumeric(args[3])) {
+                    if (args.length == 3 || org.apache.commons.lang.StringUtils.isNumeric(args[3])) {
                         int amount = args.length == 3 ? 3600 : Integer.parseInt(args[3]);
                         if (IridiumSkyblock.getInstance().getIslandBoosters().stream().map(booster -> booster.name).collect(Collectors.toList()).contains(args[2])) {
                             island.addBoosterTime(args[2], amount);
@@ -39,13 +38,13 @@ public class GiveBoosterCommand extends Command {
                             sender.sendMessage("Unknown booster");
                         }
                     } else {
-                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix).replace("%error%", args[2])));
+                        sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix).replace("%error%", args[2])));
                     }
                 } else {
-                    sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         }
     }

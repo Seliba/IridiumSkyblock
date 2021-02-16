@@ -1,5 +1,6 @@
 package com.iridium.iridiumskyblock.bank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.configs.Inventories;
@@ -7,8 +8,10 @@ import org.bukkit.entity.Player;
 
 public class VaultBankItem implements BankItem<Double> {
 
-    private final Inventories.Item item;
+    private Inventories.Item item;
     private final boolean enabled = true;
+
+    public VaultBankItem(){}
 
     public VaultBankItem(Inventories.Item item) {
         this.item = item;
@@ -48,6 +51,7 @@ public class VaultBankItem implements BankItem<Double> {
     }
 
     @Override
+    @JsonIgnore
     public Double getDefaultWithdraw() {
         return 1000.00;
     }

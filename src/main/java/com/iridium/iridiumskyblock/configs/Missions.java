@@ -2,12 +2,9 @@ package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.MissionType;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.bukkit.CropState;
+
+import java.util.*;
 
 public class Missions {
 
@@ -68,11 +65,12 @@ public class Missions {
             }}, new Inventories.Item(XMaterial.COBBLESTONE, 16, 1, "&b&lBuilder Level {level}", Arrays.asList("&7Complete island missions to gain crystals", "&7that can be spent on Boosters and Upgrades.", "", "&b&lInformation:", "&b&l * &7Objective: &bPlace {amount} Blocks", "&b&l * &7Current Status: &b{status}", "&b&l * &7Reward: &b{crystalsReward} Island Crystals and ${vaultReward}", "", "&b&l[!] &bComplete this mission for rewards.")))
 
     );
-
     public static class Mission {
         public String name;
         public Map<Integer, MissionData> levels;
         public Inventories.Item item;
+
+        public Mission(){}
 
         public Mission(String name, Map<Integer, MissionData> levels, Inventories.Item item) {
             this.name = name;
@@ -87,6 +85,8 @@ public class Missions {
         public int amount;
         public MissionType type;
         public List<String> conditions;
+
+        public MissionData(){}
 
         public MissionData(int crystalReward, int vaultReward, int amount, MissionType type, List<String> conditions) {
             this.crystalReward = crystalReward;

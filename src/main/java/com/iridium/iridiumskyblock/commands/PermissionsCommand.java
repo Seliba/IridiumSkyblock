@@ -2,10 +2,11 @@ package com.iridium.iridiumskyblock.commands;
 
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import java.util.Collections;
-import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Collections;
+import java.util.List;
 
 public class PermissionsCommand extends Command {
 

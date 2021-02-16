@@ -3,7 +3,7 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -30,13 +30,13 @@ public class ValueCommand extends Command {
             island = user.getIsland();
         }
         if (island != null) {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandValue
+            p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().islandValue
                     .replace("%value%", island.getFormattedValue())
                     .replace("%level%", island.getFormattedLevel())
-                    .replace("%rank%", Utils.getIslandRank(island) + "")
-                    .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    .replace("%rank%", Integer.toString(island.getRank()))
+                    .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
     }
 

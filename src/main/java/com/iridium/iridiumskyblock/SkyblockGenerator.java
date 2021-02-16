@@ -20,7 +20,7 @@ public class SkyblockGenerator extends ChunkGenerator {
         final ChunkData chunkData = createChunkData(world);
 
         Biome biome;
-        final Config config = IridiumSkyblock.getConfiguration();
+        final Config config = IridiumSkyblock.getInstance().getConfiguration();
         final String worldName = world.getName();
         if (worldName.equals(config.worldName))
             biome = config.defaultBiome.getBiome();
