@@ -46,9 +46,9 @@ public class PlayerBucketEmptyListener implements Listener {
         // Temporary fix until https://hub.spigotmc.org/jira/browse/SPIGOT-6351 is resolved
         User user = User.getUser(event.getPlayer());
         Island island = IslandManager.getIslandViaLocation(block.getLocation());
-        if (island != null && user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) {
+        if ((island != null && user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) || (island != null && user.getIsland() == null)) {
             event.setCancelled(true);
-        }
+        } 
 
         final Player player = event.getPlayer();
         if (IridiumSkyblock.getConfiguration().allowWaterInNether) {
