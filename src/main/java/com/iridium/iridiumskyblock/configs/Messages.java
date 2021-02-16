@@ -32,10 +32,7 @@ public class Messages {
     public String maxLevelReached = "%prefix% &7Maximum level reached.";
     public String crystalAmount = "%prefix% &7You have %crystals% crystals.";
     public String maxMemberCount = "%prefix% &7Maximum member count reached.";
-    public String spawnerBoosterActive = "%prefix% &7Your spawner booster is already active.";
-    public String farmingBoosterActive = "%prefix% &7Your farming booster is already active.";
-    public String expBoosterActive = "%prefix% &7Your experience booster is already active.";
-    public String flightBoosterActive = "%prefix% &7Your flight booster is already active.";
+    public String boosterAlreadyActive = "%prefix% &7Your %booster% booster is already active.";
     public String noActiveInvites = "%prefix% &7You do not have any active invites for this island.";
     public String giveCrystals = "%prefix% &7You gave %player% %crystals% crystals.";
     public String givenCrystals = "%prefix% &7You have been given %crystals% crystals by %player%.";

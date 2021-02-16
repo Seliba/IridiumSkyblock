@@ -3,7 +3,7 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,12 +28,12 @@ public class ResetCrystalsCommand extends Command {
             Island island = User.getUser(player).getIsland();
             if (island != null) {
                 island.setCrystals(0);
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().resetCrystals.replace("%crystals%", args[1]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().resetCrystals.replace("%crystals%", args[1]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         } else {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
     }
 

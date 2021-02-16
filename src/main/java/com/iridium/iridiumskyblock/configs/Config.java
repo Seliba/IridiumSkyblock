@@ -56,6 +56,7 @@ public class Config {
     public boolean stripTopIslandPlaceholderColors = true;
     public boolean denyNaturalSpawnWhitelist = false;
     public boolean stackableBoosters = true;
+    public boolean coopPrivateIslandAccess = true;
     public int deleteBackupsAfterDays = 7;
     public int regenCooldown = 3600;
     public int distance = 151;

@@ -3,9 +3,8 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
-import org.apache.commons.lang.StringUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -28,20 +27,20 @@ public class AdminCommand extends Command {
             runCommand(args, p);
         } else if (args.length >= 2) {
             Island island;
-            if (!StringUtils.isNumeric(args[1])) {
+            if (!org.apache.commons.lang.StringUtils.isNumeric(args[1])) {
                 runCommand(args, p);
                 return;
             }
             int id = Integer.parseInt(args[1]);
             island = IslandManager.getIslandViaId(id);
             if (island != null) {
-                for (Command command : IridiumSkyblock.getCommandManager().commands) {
+                for (Command command : IridiumSkyblock.getInstance().getCommandManager().commands) {
                     if (command.aliases.contains(args[2]) && command.enabled) {
                         if ((sender.hasPermission(command.permission) || command.permission.equalsIgnoreCase("") || command.permission.equalsIgnoreCase("iridiumskyblock.")) && command.enabled) {
                             command.admin(sender, args, island);
                         } else {
                             // No permission
-                            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                         }
                         return;
                     }
@@ -60,7 +59,7 @@ public class AdminCommand extends Command {
         if (island != null) {
             p.openInventory(island.islandAdminGUI.getInventory());
         } else {
-            p.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
     }
 

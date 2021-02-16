@@ -1,6 +1,12 @@
 package com.iridium.iridiumskyblock.gui;
 
-import com.iridium.iridiumskyblock.*;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.IslandWarp;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.utils.ItemStackUtils;
+import com.iridium.iridiumskyblock.utils.Placeholder;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +21,7 @@ public class WarpGUI extends GUI implements Listener {
     public Map<Integer, IslandWarp> warps = new HashMap<>();
 
     public WarpGUI(Island island) {
-        super(island, IridiumSkyblock.getInventories().warpGUISize, IridiumSkyblock.getInventories().warpGUITitle);
+        super(island, IridiumSkyblock.getInstance().getInventories().warpGUISize, IridiumSkyblock.getInstance().getInventories().warpGUITitle);
         IridiumSkyblock.getInstance().registerListeners(this);
     }
 
@@ -23,16 +29,17 @@ public class WarpGUI extends GUI implements Listener {
     public void addContent() {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
-        if (getIsland()!=null) {
+        if (getIsland() != null) {
             Island island = getIsland();
             int i = 9;
             warps.clear();
             for (IslandWarp islandWarp : island.islandWarps) {
                 warps.put(i, islandWarp);
-                setItem(i, Utils.makeItem(IridiumSkyblock.getInventories().islandWarp, Collections.singletonList(new Utils.Placeholder("warp", islandWarp.getName()))));
+                setItem(i, ItemStackUtils.makeItem(IridiumSkyblock.getInstance().getInventories().islandWarp, Collections.singletonList(new Placeholder("warp", islandWarp.getName()))));
                 i++;
             }
-            if (IridiumSkyblock.getInventories().backButtons) setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
+            if (IridiumSkyblock.getInstance().getInventories().backButtons)
+                setItem(getInventory().getSize() - 5, ItemStackUtils.makeItem(IridiumSkyblock.getInstance().getInventories().back));
         }
     }
 
@@ -44,7 +51,7 @@ public class WarpGUI extends GUI implements Listener {
             User u = User.getUser(p);
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
-            if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.getInventories().backButtons) {
+            if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.getInstance().getInventories().backButtons) {
                 if (User.getUser((Player) e.getWhoClicked()).getIsland() != null) {
                     e.getWhoClicked().openInventory(User.getUser((Player) e.getWhoClicked()).getIsland().islandMenuGUI.getInventory());
                 } else {
@@ -60,9 +67,9 @@ public class WarpGUI extends GUI implements Listener {
                 } else {
                     if (islandWarp.getPassword().isEmpty()) {
                         p.teleport(islandWarp.getLocation());
-                        p.sendMessage(Utils.color(IridiumSkyblock.getMessages().teleporting.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().teleporting.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                     } else {
-                        p.sendMessage(Utils.color(IridiumSkyblock.getMessages().enterPassword.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        p.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().enterPassword.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                         u.islandWarp = islandWarp;
                     }
                 }

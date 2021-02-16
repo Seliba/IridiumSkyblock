@@ -21,28 +21,30 @@ public class UserManager {
 
     //Gets a user from UUID
     public static User getUser(UUID uuid) {
-        if (cache.containsKey(uuid)) return cache.get(uuid);
-        try {
-            Connection connection = IridiumSkyblock.getSqlManager().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE UUID =?;");
+        if (cache.containsKey(uuid)) {
+            return cache.get(uuid);
+        }
+
+        //TODO: Never make a DB query on the main thread...
+        try (Connection connection = IridiumSkyblock.getInstance().getSqlManager().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE UUID =?;")) {
+
             statement.setString(1, uuid.toString());
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                //There is a value
-                User user = IridiumSkyblock.getPersist().gson.fromJson(resultSet.getString("json"), User.class);
-                cache.put(uuid, user);
-                connection.close();
-                statement.close();
-                return user;
-            } else {
-                User user = new User(uuid);
-                cache.put(uuid, user);
-                saveUser(user, connection);
-                connection.commit();
-                connection.close();
-                statement.close();
-                return user;
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    //There is a value
+                    User user = IridiumSkyblock.getInstance().getPersist().load(User.class, resultSet.getString("json"));
+                    cache.put(uuid, user);
+
+                    return user;
+                } else {
+                    User user = new User(uuid);
+                    cache.put(uuid, user);
+                    saveUser(user, connection);
+                    connection.commit();
+                    return user;
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -51,13 +53,12 @@ public class UserManager {
     }
 
     public static void saveUser(User user, Connection connection) {
-        try {
-            String json = IridiumSkyblock.getPersist().gson.toJson(user);
-            PreparedStatement insert = connection.prepareStatement("REPLACE INTO users (UUID,json) VALUES (?,?);");
+
+        String json = IridiumSkyblock.getInstance().getPersist().toString(user);
+        try (PreparedStatement insert = connection.prepareStatement("REPLACE INTO users (UUID,json) VALUES (?,?);")) {
             insert.setString(1, user.player);
             insert.setString(2, json);
             insert.executeUpdate();
-            insert.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

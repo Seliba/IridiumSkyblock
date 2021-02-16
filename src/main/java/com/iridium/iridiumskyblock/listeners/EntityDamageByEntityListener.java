@@ -32,7 +32,7 @@ public class EntityDamageByEntityListener implements Listener {
         if (event.getCause() == EntityDamageEvent.DamageCause.VOID) return;
 
         //The user is visiting this island, so disable damage
-        if (user.islandID != island.id && IridiumSkyblock.getConfiguration().disablePvPOnIslands) {
+        if (user.islandID != island.id && IridiumSkyblock.getInstance().getConfiguration().disablePvPOnIslands) {
             event.setCancelled(true);
         }
 
@@ -67,7 +67,7 @@ public class EntityDamageByEntityListener implements Listener {
         final Supplier<User> damagingUserSupplier = () -> User.getUser(damagingPlayerSupplier.get());
 
         // Deals with two players pvping in IridiumSkyblock world
-        if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+        if (IridiumSkyblock.getInstance().getConfiguration().disablePvPOnIslands
                 && damagee instanceof Player
                 && damager instanceof Player) {
             event.setCancelled(true);
@@ -75,7 +75,7 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         // Deals with A player getting damaged by a bow fired from a player in IridiumSkyblock world
-        if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+        if (IridiumSkyblock.getInstance().getConfiguration().disablePvPOnIslands
                 && damagee instanceof Player
                 && damager instanceof Arrow
                 && projectileSourceSupplier.get() instanceof Player) {
@@ -101,7 +101,7 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         //Deals with a mob attacking a player that doesn't belong to the island (/is home traps?)
-        if (IridiumSkyblock.getConfiguration().disablePvPOnIslands
+        if (IridiumSkyblock.getInstance().getConfiguration().disablePvPOnIslands
                 && damagee instanceof Player
                 && !(damager instanceof Player)) {
             if (damageeIslandSupplier.get() != null) {
@@ -116,7 +116,7 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         // Deals with two allies pvping
-        if (IridiumSkyblock.getConfiguration().disablePvPBetweenIslandMembers
+        if (IridiumSkyblock.getInstance().getConfiguration().disablePvPBetweenIslandMembers
                 && damagee instanceof Player
                 && damager instanceof Player
                 && damageeIslandSupplier.get() != null
@@ -126,7 +126,7 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         // Deals with two allies pvping with bows
-        if (IridiumSkyblock.getConfiguration().disablePvPBetweenIslandMembers
+        if (IridiumSkyblock.getInstance().getConfiguration().disablePvPBetweenIslandMembers
                 && damagee instanceof Player
                 && damager instanceof Arrow
                 && projectileSourceSupplier.get() instanceof Player

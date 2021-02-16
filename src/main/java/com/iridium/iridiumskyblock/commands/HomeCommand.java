@@ -3,8 +3,8 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,10 +25,10 @@ public class HomeCommand extends Command {
         if (island != null) {
             island.teleportHome(p);
         } else {
-            if (IridiumSkyblock.getConfiguration().createIslandonHome) {
+            if (IridiumSkyblock.getInstance().getConfiguration().createIslandonHome) {
                 IslandManager.createIsland(p);
             } else {
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         }
     }

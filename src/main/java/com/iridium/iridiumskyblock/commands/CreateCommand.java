@@ -3,8 +3,8 @@ package com.iridium.iridiumskyblock.commands;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -22,7 +22,7 @@ public class CreateCommand extends Command {
         Player p = (Player) sender;
         User user = User.getUser(p);
         if (user.getIsland() != null) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().alreadyHaveIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().alreadyHaveIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         } else {
             IslandManager.createIsland(p);
         }

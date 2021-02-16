@@ -4,7 +4,7 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.vk2gpz.mergedspawner.api.MergedSpawnerAPI;
 import org.bukkit.block.CreatureSpawner;
 
-public class MergedSpawners implements SpawnerSupport{
+public class MergedSpawners implements SpawnerSupport {
 
     public MergedSpawners() {
         IridiumSkyblock.getInstance().getLogger().info("MergedSpawners support loaded");

@@ -4,6 +4,7 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.bank.BankItem;
+import com.iridium.iridiumskyblock.commands.Command;
 import com.iridium.iridiumskyblock.configs.Boosters;
 import com.iridium.iridiumskyblock.configs.Upgrades;
 import com.iridium.iridiumskyblock.managers.IslandDataManager;
@@ -25,6 +26,10 @@ public class IridiumSkyblockAPI {
         this.iridiumSkyblock = iridiumSkyblock;
     }
 
+    public static IridiumSkyblockAPI getInstance() {
+        return instance;
+    }
+
     /**
      * Gets an island from location
      *
@@ -41,7 +46,7 @@ public class IridiumSkyblockAPI {
      * @param id The id of the island
      * @since 3.0.0
      */
-    public Island getIslandViaID(int id) {
+    public @Nullable Island getIslandViaID(int id) {
         return IslandManager.getIslandViaId(id);
     }
 
@@ -99,7 +104,13 @@ public class IridiumSkyblockAPI {
         iridiumSkyblock.registerBankItem(bankItem);
     }
 
-    public static IridiumSkyblockAPI getInstance() {
-        return instance;
+    /**
+     * Registers a Command
+     *
+     * @param command The command we want to register
+     * @since 3.0.0
+     */
+    public void registerCommand(@NotNull Command command) {
+        iridiumSkyblock.getCommandManager().registerCommand(command);
     }
 }

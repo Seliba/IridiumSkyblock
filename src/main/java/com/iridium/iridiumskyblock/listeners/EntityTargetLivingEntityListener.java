@@ -22,7 +22,7 @@ public class EntityTargetLivingEntityListener implements Listener {
     @EventHandler
     public void onEntityTargetEntity(EntityTargetLivingEntityEvent event) {
         // Check if mobs should target island guests
-        if (IridiumSkyblock.getConfiguration().allowMobGuestTargeting) {
+        if (IridiumSkyblock.getInstance().getConfiguration().allowMobGuestTargeting) {
             return;
         }
 

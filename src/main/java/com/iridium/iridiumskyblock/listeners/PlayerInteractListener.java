@@ -3,8 +3,9 @@ package com.iridium.iridiumskyblock.listeners;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import com.iridium.iridiumskyblock.utils.MiscUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -31,11 +32,11 @@ public class PlayerInteractListener implements Listener {
 
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
             if (player.getItemInHand() != null) {
-                int crystals = Utils.getCrystals(player.getItemInHand()) * player.getItemInHand().getAmount();
+                int crystals = MiscUtils.getCrystals(player.getItemInHand()) * player.getItemInHand().getAmount();
                 if (crystals != 0) {
                     player.setItemInHand(null);
                     user.getIsland().setCrystals(user.getIsland().getCrystals() + crystals);
-                    player.sendMessage(Utils.color(IridiumSkyblock.getMessages().depositedCrystals.replace("%amount%", crystals + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().depositedCrystals.replace("%amount%", crystals + "").replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             }
         }

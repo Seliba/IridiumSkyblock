@@ -1,6 +1,6 @@
 package com.iridium.iridiumskyblock.listeners;
 
-import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.utils.MiscUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -17,7 +17,7 @@ public class ItemCraftListener implements Listener {
         if (inventory.getResult() == null) return;
 
         for (ItemStack itemStack : inventory.getContents()) {
-            if (Utils.getCrystals(itemStack) == 0) continue;
+            if (MiscUtils.getCrystals(itemStack) == 0) continue;
             inventory.setResult(null);
             return;
         }
@@ -25,7 +25,7 @@ public class ItemCraftListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (event.getInventory().getType() == InventoryType.ANVIL && Utils.getCrystals(event.getCurrentItem()) != 0) {
+        if (event.getInventory().getType() == InventoryType.ANVIL && MiscUtils.getCrystals(event.getCurrentItem()) != 0) {
             event.setCancelled(true);
         }
     }

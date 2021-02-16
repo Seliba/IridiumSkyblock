@@ -38,7 +38,7 @@ public class PlayerBucketEmptyListener implements Listener {
             }
         }
         final Player player = event.getPlayer();
-        if (IridiumSkyblock.getConfiguration().allowWaterInNether) {
+        if (IridiumSkyblock.getInstance().getConfiguration().allowWaterInNether) {
             final World world = block.getWorld();
             if (!world.getEnvironment().equals(World.Environment.NETHER)) return;
             if (type != Material.WATER_BUCKET) return;

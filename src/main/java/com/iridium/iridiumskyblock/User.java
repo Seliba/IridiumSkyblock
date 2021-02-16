@@ -39,6 +39,19 @@ public class User {
         flying = false;
     }
 
+    public static User getUser(UUID uuid) {
+        return UserManager.getUser(uuid);
+    }
+
+    public static User getUser(String uuid) {
+        return getUser(UUID.fromString(uuid));
+    }
+
+    public static User getUser(OfflinePlayer p) {
+        if (p == null) return null;
+        return UserManager.getUser(p.getUniqueId());
+    }
+
     public Island getIsland() {
         return IslandManager.getIslandViaId(islandID);
     }
@@ -59,7 +72,7 @@ public class User {
     }
 
     public boolean isOnCooldown() {
-        return IridiumSkyblock.getConfiguration().createCooldown && this.lastCreate != null && !this.bypassing && new Date().before(this.lastCreate);
+        return IridiumSkyblock.getInstance().getConfiguration().createCooldown && this.lastCreate != null && !this.bypassing && new Date().before(this.lastCreate);
     }
 
     public String getCooldownTimeMessage() {
@@ -68,20 +81,7 @@ public class User {
         int hours = (int) Math.floor(TimeUnit.SECONDS.toHours(time - day * 86400L));
         int minute = (int) Math.floor((time - day * 86400 - hours * 3600) / 60.00);
         int second = (int) Math.floor((time - day * 86400 - hours * 3600) % 60.00);
-        return IridiumSkyblock.getMessages().createCooldown.replace("%days%", day + "").replace("%hours%", hours + "").replace("%minutes%", minute + "").replace("%seconds%", second + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix);
-    }
-
-    public static User getUser(UUID uuid) {
-        return UserManager.getUser(uuid);
-    }
-
-    public static User getUser(String uuid) {
-        return getUser(UUID.fromString(uuid));
-    }
-
-    public static User getUser(OfflinePlayer p) {
-        if (p == null) return null;
-        return UserManager.getUser(p.getUniqueId());
+        return IridiumSkyblock.getInstance().getMessages().createCooldown.replace("%days%", day + "").replace("%hours%", hours + "").replace("%minutes%", minute + "").replace("%seconds%", second + "").replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix);
     }
 
     public List<Object> getHolograms() {
@@ -107,4 +107,12 @@ public class User {
     public void save(Connection connection) {
         UserManager.saveUser(this, connection);
     }
+
+    public boolean hasCoopVisitPermissions(User otherUser) {
+        return IridiumSkyblock.getInstance().getConfiguration().coopPrivateIslandAccess &&
+                this.getIsland() != null &&
+                otherUser.getIsland() != null &&
+                getIsland().isCoop(otherUser.getIsland());
+    }
+
 }

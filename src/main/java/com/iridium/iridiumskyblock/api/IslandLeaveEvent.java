@@ -7,13 +7,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class IslandLeaveEvent extends IslandEvent implements Cancellable {
-  @NotNull private final User user;
-  private boolean cancelled = false;
+    @NotNull
+    private final User user;
+    private boolean cancelled = false;
 
-  public IslandLeaveEvent(@NotNull Island island, @Nullable User user) {
-    super(island);
-    this.user = user;
-  }
+    public IslandLeaveEvent(@NotNull Island island, @Nullable User user) {
+        super(island);
+        this.user = user;
+    }
 
     @Override
     public boolean isCancelled() {
@@ -25,7 +26,7 @@ public class IslandLeaveEvent extends IslandEvent implements Cancellable {
         this.cancelled = b;
     }
 
-  public User getUser() {
-    return user;
-  }
+    public User getUser() {
+        return user;
+    }
 }

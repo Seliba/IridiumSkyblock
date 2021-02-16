@@ -1,11 +1,15 @@
 package com.iridium.iridiumskyblock.configs;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 
 public class Upgrades {
 
@@ -45,6 +49,9 @@ public class Upgrades {
         public Map<Integer, IslandUpgrade> upgrades;
         public Inventories.Item item;
 
+        public Upgrade() {
+        }
+
         public Upgrade(String name, boolean enabled, Map<Integer, IslandUpgrade> upgrades, Inventories.Item item) {
             this.name = name;
             this.enabled = enabled;
@@ -57,10 +64,18 @@ public class Upgrades {
         }
     }
 
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = PROPERTY)
+    @JsonSubTypes({
+            @JsonSubTypes.Type(value = IslandOreUpgrade.class, name = "IslandOreUpgrade"),
+            @JsonSubTypes.Type(value = IslandBlockLimitUpgrade.class, name = "IslandBlockLimitUpgrade")
+    })
     public static class IslandUpgrade {
         public int crystalsCost;
         public int vaultCost;
         public Integer size;
+
+        public IslandUpgrade() {
+        }
 
         public IslandUpgrade(int crystalsCost, int vaultCost, Integer size) {
             this.crystalsCost = crystalsCost;
@@ -73,6 +88,9 @@ public class Upgrades {
         public List<String> ores;
         public List<String> netherores;
 
+        public IslandOreUpgrade() {
+        }
+
         public IslandOreUpgrade(int crystalsCost, int vaultCost, List<String> ores, List<String> netherores) {
             super(crystalsCost, vaultCost, null);
             this.ores = ores;
@@ -82,6 +100,9 @@ public class Upgrades {
 
     public static class IslandBlockLimitUpgrade extends IslandUpgrade {
         public Map<XMaterial, Integer> limitedBlocks;
+
+        public IslandBlockLimitUpgrade() {
+        }
 
         public IslandBlockLimitUpgrade(int crystalsCost, int vaultCost, Map<XMaterial, Integer> limitedBlocks) {
             super(crystalsCost, vaultCost, null);

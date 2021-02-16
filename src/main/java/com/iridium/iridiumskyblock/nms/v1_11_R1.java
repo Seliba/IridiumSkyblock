@@ -2,17 +2,9 @@ package com.iridium.iridiumskyblock.nms;
 
 import com.iridium.iridiumskyblock.Color;
 import com.iridium.iridiumskyblock.User;
-import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.managers.IslandManager;
-import java.util.List;
-import net.minecraft.server.v1_11_R1.EntityArmorStand;
-import net.minecraft.server.v1_11_R1.IChatBaseComponent;
-import net.minecraft.server.v1_11_R1.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_11_R1.PacketPlayOutMapChunk;
-import net.minecraft.server.v1_11_R1.PacketPlayOutSpawnEntityLiving;
-import net.minecraft.server.v1_11_R1.PacketPlayOutTitle;
-import net.minecraft.server.v1_11_R1.PacketPlayOutWorldBorder;
-import net.minecraft.server.v1_11_R1.WorldBorder;
+import com.iridium.iridiumskyblock.utils.StringUtils;
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -21,6 +13,8 @@ import org.bukkit.craftbukkit.v1_11_R1.CraftChunk;
 import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class v1_11_R1 implements NMS {
     @Override
@@ -89,7 +83,7 @@ public class v1_11_R1 implements NMS {
 
             entityArmorStand.setInvisible(true);
             entityArmorStand.setCustomNameVisible(true);
-            entityArmorStand.setCustomName(Utils.color(text.get(i)));
+            entityArmorStand.setCustomName(StringUtils.color(text.get(i)));
 
             user.addHologram(entityArmorStand);
 

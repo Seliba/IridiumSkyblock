@@ -1,9 +1,14 @@
 package com.iridium.iridiumskyblock.listeners;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.iridium.iridiumskyblock.*;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.MissionType;
+import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.configs.Missions;
 import com.iridium.iridiumskyblock.managers.IslandManager;
+import com.iridium.iridiumskyblock.utils.MiscUtils;
+import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -32,7 +37,7 @@ public class BlockBreakListener implements Listener {
         final User user = User.getUser(player);
 
         if (user.islandID == island.id) {
-            for (Missions.Mission mission : IridiumSkyblock.getMissions().missions) {
+            for (Missions.Mission mission : IridiumSkyblock.getInstance().getMissions().missions) {
                 final int key = island.getMissionLevels().computeIfAbsent(mission.name, (name) -> 1);
                 final Map<Integer, Missions.MissionData> levels = mission.levels;
                 final Missions.MissionData level = levels.get(key);
@@ -59,9 +64,9 @@ public class BlockBreakListener implements Listener {
 
         if (!island.getPermissions(user).breakBlocks || (!island.getPermissions(user).breakSpawners && XMaterial.matchXMaterial(block.getType()).equals(XMaterial.SPAWNER))) {
             if (XMaterial.matchXMaterial(block.getType()).equals(XMaterial.SPAWNER)) {
-                player.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermissionBreakSpawners.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermissionBreakSpawners.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             } else {
-                player.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermissionBuild.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().noPermissionBuild.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
             event.setCancelled(true);
         }
@@ -76,7 +81,7 @@ public class BlockBreakListener implements Listener {
         if (island == null) return;
 
         final XMaterial xmaterial = XMaterial.matchXMaterial(block.getType());
-        if (Utils.isBlockValuable(block)) {
+        if (MiscUtils.isBlockValuable(block)) {
             island.valuableBlocks.computeIfPresent(xmaterial.name(), (name, original) -> original - 1);
             Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), island::calculateIslandValue);
         }
