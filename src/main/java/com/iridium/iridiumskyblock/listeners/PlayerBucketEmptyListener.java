@@ -26,6 +26,8 @@ public class PlayerBucketEmptyListener implements Listener {
 
     @EventHandler
     public void onBucketEmpty(PlayerBucketEmptyEvent event) {
+        if (!IslandManager.isIslandWorld(event.getPlayer().getLocation())) return;
+        
         final Material type = event.getBucket();
         final ItemStack item = event.getPlayer().getItemInHand();
         Block block;
@@ -41,10 +43,10 @@ public class PlayerBucketEmptyListener implements Listener {
             }
         }
 
-        // Temporary fix until https://hub.spigotmc.org/jira/browse/SPIGOT-6351 is fixed
+        // Temporary fix until https://hub.spigotmc.org/jira/browse/SPIGOT-6351 is resolved
         User user = User.getUser(event.getPlayer());
         Island island = IslandManager.getIslandViaLocation(block.getLocation());
-        if (user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) {
+        if (island != null && user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) {
             event.setCancelled(true);
         }
 
