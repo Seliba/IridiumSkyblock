@@ -40,7 +40,7 @@ public class PlayerFishListener implements Listener {
 
         if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
 
-        for (Mission mission : IridiumSkyblock.getMissions().missions) {
+        for (Mission mission : IridiumSkyblock.getInstance().getMissions().missions) {
             final Map<String, Integer> levels = userIsland.getMissionLevels();
             levels.putIfAbsent(mission.name, 1);
 
