@@ -32,7 +32,7 @@ public class InviteCommand extends Command {
         if (user.getIsland() != null) {
             if (u.getIsland() == null) {
                 if (user.bypassing || user.getIsland().getPermissions(user.role).inviteMembers) {
-                    u.invites.add(user.getIsland().getId());
+                    u.invites.add(user.getIsland().id);
                     runCommand(p, player);
                 } else {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -56,7 +56,7 @@ public class InviteCommand extends Command {
         User u = User.getUser(player);
         if (island != null) {
             if (u.getIsland() == null) {
-                u.invites.add(island.getId());
+                u.invites.add(island.id);
                 runCommand(p, player);
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerAlreadyHaveIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -68,14 +68,14 @@ public class InviteCommand extends Command {
 
     private void runCommand(Player player, OfflinePlayer invitedPlayer) {
         player.sendMessage(Utils
-            .color(IridiumSkyblock.getMessages().playerInvited.replace("%player%", invitedPlayer.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                .color(IridiumSkyblock.getMessages().playerInvited.replace("%player%", invitedPlayer.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         if (invitedPlayer.getPlayer() != null) {
             BaseComponent[] components = TextComponent.fromLegacyText(Utils.color(IridiumSkyblock.getMessages().invitedByPlayer.replace("%player%", player
-                .getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    .getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
 
             ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/is join " + player
-                .getName());
-            HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click to join players island!").create());
+                    .getName());
+            HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(IridiumSkyblock.getMessages().inviteHoverMessage).create());
             for (BaseComponent component : components) {
                 component.setClickEvent(clickEvent);
                 component.setHoverEvent(hoverEvent);

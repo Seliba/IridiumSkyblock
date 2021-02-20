@@ -1,8 +1,6 @@
 package com.iridium.iridiumskyblock;
 
 public class Permissions {
-
-
     public boolean breakBlocks;
     public boolean placeBlocks;
     public boolean interact;

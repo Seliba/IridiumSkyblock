@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +57,7 @@ public class PermissionsGUI extends GUI implements Listener {
                     i++;
                 }
             }
-            setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
+            if (IridiumSkyblock.getInventories().backButtons) setItem(getInventory().getSize() - 5, Utils.makeItem(IridiumSkyblock.getInventories().back));
         }
     }
 
@@ -71,8 +70,8 @@ public class PermissionsGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
-            if (e.getSlot() == getInventory().getSize() - 5) {
-                e.getWhoClicked().openInventory(getIsland().getIslandMenuGUI().getInventory());
+            if (e.getSlot() == getInventory().getSize() - 5 && IridiumSkyblock.getInventories().backButtons) {
+                e.getWhoClicked().openInventory(getIsland().islandMenuGUI.getInventory());
             }
             int i = 11;
             for (Role role : Role.values()) {
@@ -87,10 +86,10 @@ public class PermissionsGUI extends GUI implements Listener {
                 if (e.getInventory().equals(gui.getInventory())) {
                     e.setCancelled(true);
                     if (e.getSlot() == getInventory().getSize() - 5) {
-                        e.getWhoClicked().openInventory(getIsland().getPermissionsGUI().getInventory());
+                        e.getWhoClicked().openInventory(getIsland().permissionsGUI.getInventory());
                         return;
                     }
-                    if (role.getRank() < u.role.getRank()) {
+                    if (role.rank < u.role.rank) {
                         int i = 0;
                         try {
                             for (Field field : Permissions.class.getDeclaredFields()) {

@@ -1,13 +1,18 @@
 package com.iridium.iridiumskyblock.schematics;
 
-import lombok.Getter;
-import org.jnbt.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.jnbt.ByteArrayTag;
+import org.jnbt.CompoundTag;
+import org.jnbt.IntTag;
+import org.jnbt.ListTag;
+import org.jnbt.NBTInputStream;
+import org.jnbt.ShortTag;
+import org.jnbt.StringTag;
+import org.jnbt.Tag;
 
 public class SchematicData {
 
@@ -15,28 +20,17 @@ public class SchematicData {
         v1_13, v_1_8
     }
 
-    @Getter
-    private final short width;
-    @Getter
-    private final short length;
-    @Getter
-    private final short height;
-    @Getter
-    private List<Tag> tileEntities;
-    @Getter
-    private byte[] blocks;
-    @Getter
-    private byte[] data;
-    @Getter
-    private byte[] blockdata;
-    @Getter
-    private Map<String, Tag> palette;
-    @Getter
-    private final File file;
-    @Getter
-    private Integer version;
-    @Getter
-    private final SchematicVersion schematicVersion;
+    public final short width;
+    public final short length;
+    public final short height;
+    public final File file;
+    public final SchematicVersion schematicVersion;
+    public List<Tag> tileEntities;
+    public byte[] blocks;
+    public byte[] data;
+    public byte[] blockdata;
+    public Map<String, Tag> palette;
+    public Integer version;
 
     public SchematicData(File file, short width, short length, short height, List<Tag> tileEntities, byte[] blocks, byte[] data, List<Tag> entities) {
         this.blocks = blocks;

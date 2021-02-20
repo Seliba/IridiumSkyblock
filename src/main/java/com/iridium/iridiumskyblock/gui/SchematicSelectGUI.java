@@ -1,6 +1,10 @@
 package com.iridium.iridiumskyblock.gui;
 
-import com.iridium.iridiumskyblock.*;
+import com.cryptomorin.xseries.XMaterial;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Schematics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -19,9 +23,9 @@ public class SchematicSelectGUI extends GUI implements Listener {
     public void addContent() {
         super.addContent();
         if (getInventory().getViewers().isEmpty()) return;
-        if (IridiumSkyblock.getIslandManager().islands.containsKey(islandID)) {
+        if (getIsland() != null) {
             int i = 0;
-            for (Schematics.FakeSchematic fakeSchematic : IridiumSkyblock.getSchematics().schematics) {
+            for (Schematics.FakeSchematic fakeSchematic : IridiumSkyblock.getSchematics().schematicList) {
                 if (fakeSchematic.slot == null) fakeSchematic.slot = i;
                 try {
                     setItem(fakeSchematic.slot, Utils.makeItem(fakeSchematic.item, 1, fakeSchematic.displayname, fakeSchematic.lore));
@@ -39,11 +43,11 @@ public class SchematicSelectGUI extends GUI implements Listener {
         if (e.getInventory().equals(getInventory())) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(getInventory())) return;
-            for (Schematics.FakeSchematic fakeSchematic : IridiumSkyblock.getSchematics().schematics) {
+            for (Schematics.FakeSchematic fakeSchematic : IridiumSkyblock.getSchematics().schematicList) {
                 if (e.getSlot() == fakeSchematic.slot && (fakeSchematic.permission.isEmpty() || e.getWhoClicked().hasPermission(fakeSchematic.permission))) {
                     e.getWhoClicked().closeInventory();
-                    if (getIsland().getSchematic() != null) {
-                        for (String player : getIsland().getMembers()) {
+                    if (getIsland().schematic != null) {
+                        for (String player : getIsland().members) {
                             User user = User.getUser(player);
                             Player p = Bukkit.getPlayer(user.name);
                             if (p != null) {
@@ -51,27 +55,22 @@ public class SchematicSelectGUI extends GUI implements Listener {
                             }
                         }
                     }
-                    if (getIsland().getSchematic() == null) {
-                        getIsland().setSchematic(fakeSchematic.name);
-                        getIsland().setNetherschematic(fakeSchematic.netherisland);
+                    if (getIsland().schematic == null) {
+                        getIsland().schematic = fakeSchematic.overworldData.schematic;
+                        getIsland().netherschematic = fakeSchematic.netherData.schematic;
                         getIsland().pasteSchematic((Player) e.getWhoClicked(), false);
                     } else {
-                        getIsland().setSchematic(fakeSchematic.name);
-                        getIsland().setNetherschematic(fakeSchematic.netherisland);
+                        getIsland().schematic = fakeSchematic.overworldData.schematic;
+                        getIsland().netherschematic = fakeSchematic.netherData.schematic;
                         getIsland().pasteSchematic(true);
                     }
-                    getIsland().setHome(getIsland().getHome().add(fakeSchematic.x, fakeSchematic.y, fakeSchematic.z));
-                    getIsland().setNetherhome(getIsland().getNetherhome().add(fakeSchematic.x, fakeSchematic.y, fakeSchematic.z));
+                    getIsland().home = getIsland().home.add(fakeSchematic.x, fakeSchematic.y, fakeSchematic.z);
                     if (IridiumSkyblock.getConfiguration().restartUpgradesOnRegen) {
                         getIsland().resetMissions();
                         getIsland().setSizeLevel(1);
                         getIsland().setMemberLevel(1);
                         getIsland().setWarpLevel(1);
                         getIsland().setOreLevel(1);
-                        getIsland().setFlightBooster(0);
-                        getIsland().setExpBooster(0);
-                        getIsland().setFarmingBooster(0);
-                        getIsland().setSpawnerBooster(0);
                     }
                     return;
                 }

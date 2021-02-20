@@ -11,13 +11,13 @@ import java.util.List;
 public class LanguagesCommand extends Command {
 
     public LanguagesCommand() {
-        super(Arrays.asList("language", "languages", "translate"), "Change the plugin language", "iridiumskyblock.language", true);
+        super(Arrays.asList("language", "languages", "translate"), "Change the plugin language", "IridiumSkyblock.getLatest", true);
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         Player p = (Player) sender;
-        p.openInventory(IridiumSkyblock.getInstance().languagesGUI.pages.get(1).getInventory());
+        p.openInventory(IridiumSkyblock.getInstance().getLanguagesGUI().getPage(1).getInventory());
     }
 
     @Override

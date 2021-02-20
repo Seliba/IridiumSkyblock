@@ -22,7 +22,7 @@ public class PublicCommand extends Command {
         User user = User.getUser(p);
         if (user.getIsland() != null) {
             if (user.bypassing || user.getIsland().getPermissions(user.role).islandprivate) {
-                user.getIsland().setVisit(true);
+                user.getIsland().visit = true;
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPublic.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -35,7 +35,7 @@ public class PublicCommand extends Command {
     @Override
     public void admin(CommandSender sender, String[] args, Island island) {
         if (island != null) {
-            island.setVisit(true);
+            island.visit = true;
             sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPublic.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         } else {
             sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

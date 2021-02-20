@@ -43,6 +43,7 @@ public class Commands {
     public SetNameCommand setNameCommand = new SetNameCommand();
     public BankCommand bankCommand = new BankCommand();
     public ChatCommand chatCommand = new ChatCommand();
+    public ChatSpyCommand chatSpyCommand = new ChatSpyCommand();
     public ShopCommand shopCommand = new ShopCommand();
     public BiomeCommand biomeCommand = new BiomeCommand();
     public HelpCommand helpCommand = new HelpCommand();
@@ -50,4 +51,8 @@ public class Commands {
     public RecalculateCommand recalculateCommand = new RecalculateCommand();
     public AddValueCommand addValueCommand = new AddValueCommand();
     public RemoveValueCommand removeValueCommand = new RemoveValueCommand();
+    public ExpelCommand expelCommand = new ExpelCommand();
+    public PurgeCommand purgeCommand = new PurgeCommand();
+    public ResetCrystalsCommand resetCrystalsCommand = new ResetCrystalsCommand();
+    public ResetAllDataCommand resetAllDataCommand = new ResetAllDataCommand();
 }

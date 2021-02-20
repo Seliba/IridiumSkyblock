@@ -20,7 +20,7 @@ public class RemoveValueCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length != 3) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + "/is removevalue <player> <amount>");
+            sender.sendMessage(Utils.color(IridiumSkyblock.getConfiguration().prefix) + " /is removevalue <player> <amount>");
             return;
         }
 
@@ -30,10 +30,14 @@ public class RemoveValueCommand extends Command {
                 Island island = User.getUser(player).getIsland();
                 if (island != null) {
                     try {
-                        island.removeExtraValue(Double.parseDouble(args[2]));
+                        if (Double.parseDouble(args[2]) <= island.value) {
+                            island.removeExtraValue(Double.parseDouble(args[2]));
+                            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().removedValue.replace("%value%", args[2]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        } else {
+                            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notEnoughValue.replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        }
                     } catch (NumberFormatException e) {
-                        //TODO: Make this message configurable
-                        sender.sendMessage(args[2] + " is not a number");
+                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix).replace("%error%", args[2])));
                     }
                 } else {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -41,6 +45,8 @@ public class RemoveValueCommand extends Command {
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
             }
+        } else {
+            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerOffline.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         }
     }
 

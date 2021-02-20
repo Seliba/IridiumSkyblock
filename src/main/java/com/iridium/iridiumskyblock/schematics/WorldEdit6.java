@@ -46,7 +46,7 @@ public class WorldEdit6 implements WorldEdit {
             flush.invoke(editSession);
         } catch (Exception e) {
             IridiumSkyblock.getInstance().getLogger().warning("Failed to paste schematic using worldedit");
-            IridiumSkyblock.schematic.paste(file, location, island);
+            IridiumSkyblock.getSchematic().paste(file, location, island);
         }
     }
 }

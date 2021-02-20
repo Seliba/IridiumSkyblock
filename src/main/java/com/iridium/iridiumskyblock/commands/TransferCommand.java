@@ -29,7 +29,7 @@ public class TransferCommand extends Command {
         User user = User.getUser(p);
         if (user.getIsland() != null) {
             Island island = user.getIsland();
-            if (island.getOwner().equals(p.getUniqueId().toString())) {
+            if (island.owner.equals(p.getUniqueId().toString())) {
                 OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
                 if (User.getUser(player).getIsland() == island) {
                     p.openInventory(new ConfirmationGUI(user.getIsland(), () -> island.setOwner(player), IridiumSkyblock.getMessages().transferAction.replace("%player%", player.getName())).getInventory());

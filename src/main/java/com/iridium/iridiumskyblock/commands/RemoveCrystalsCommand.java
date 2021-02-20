@@ -33,15 +33,14 @@ public class RemoveCrystalsCommand extends Command {
                 if (island != null) {
                     if (StringUtils.isNumeric(args[2])) {
                         int amount = Integer.parseInt(args[2]);
-                        if (amount <= island.getCrystals()){
+                        if (amount <= island.getCrystals()) {
                             island.setCrystals(island.getCrystals() - amount);
                             sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().removedcrystals.replace("%crystals%", args[2]).replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                         } else {
                             sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNotEnoughCrystals.replace("%player%", player.getName()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                         }
                     } else {
-                        //TODO: Make this message configurable
-                        sender.sendMessage(args[2] + " is not a number");
+                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notNumber.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix).replace("%error%", args[2])));
                     }
                 } else {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

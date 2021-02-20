@@ -2,7 +2,7 @@ package com.iridium.iridiumskyblock.listeners;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
-import com.iridium.iridiumskyblock.IslandManager;
+import com.iridium.iridiumskyblock.managers.IslandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -20,8 +20,7 @@ public class EntitySpawnListener implements Listener {
     public void onEntitySpawn(EntitySpawnEvent event) {
         final Entity entity = event.getEntity();
         final Location location = entity.getLocation();
-        final IslandManager islandManager = IridiumSkyblock.getIslandManager();
-        final Island island = islandManager.getIslandViaLocation(location);
+        final Island island = IslandManager.getIslandViaLocation(location);
         if (island == null) return;
 
         if (!IridiumSkyblock.getConfiguration().blockedEntities.contains(event.getEntityType())) return;
@@ -33,9 +32,8 @@ public class EntitySpawnListener implements Listener {
     @EventHandler
     public void onVehicleSpawn(VehicleCreateEvent event) {
         final Vehicle vehicle = event.getVehicle();
-        final IslandManager islandManager = IridiumSkyblock.getIslandManager();
         final Location location = vehicle.getLocation();
-        final Island island = islandManager.getIslandViaLocation(location);
+        final Island island = IslandManager.getIslandViaLocation(location);
         if (island == null) return;
 
         if (!IridiumSkyblock.getConfiguration().blockedEntities.contains(vehicle.getType())) return;

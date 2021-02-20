@@ -1,9 +1,10 @@
 package com.iridium.iridiumskyblock.listeners;
 
+import com.cryptomorin.xseries.XBlock;
+import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
-import com.iridium.iridiumskyblock.IslandManager;
-import com.iridium.iridiumskyblock.XBlock;
+import com.iridium.iridiumskyblock.managers.IslandManager;
 import org.bukkit.CropState;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,17 +19,15 @@ public class BlockGrowListener implements Listener {
 
     @EventHandler
     public void onBlockGrow(BlockGrowEvent event) {
-        try {
             final Block block = event.getBlock();
             final Location location = block.getLocation();
-            final IslandManager islandManager = IridiumSkyblock.getIslandManager();
-            final Island island = islandManager.getIslandViaLocation(location);
+            final Island island = IslandManager.getIslandViaLocation(location);
             if (island == null) return;
 
-            if (island.getFarmingBooster() == 0) return;
+            if (island.getBoosterTime(IridiumSkyblock.getBoosters().islandFarmingBooster.name) == 0) return;
 
             final Material material = block.getType();
-            if (!XBlock.isCrops(material)) return;
+            if (!XBlock.isCrop(XMaterial.matchXMaterial(material))) return;
 
             event.setCancelled(true);
 
@@ -36,8 +35,5 @@ public class BlockGrowListener implements Listener {
             final BlockState blockState = block.getState();
             blockState.setData(crops);
             blockState.update();
-        } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
-        }
     }
 }

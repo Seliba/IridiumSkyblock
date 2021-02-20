@@ -5,26 +5,27 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-class SkyblockGenerator extends ChunkGenerator {
+public class SkyblockGenerator extends ChunkGenerator {
 
     public byte[][] blockSections;
 
     @Override
-    public ChunkData generateChunkData(World world, Random random, int cx, int cz, BiomeGrid biomeGrid) {
+    public @NotNull ChunkData generateChunkData(@NotNull World world, @NotNull Random random, int cx, int cz, @NotNull BiomeGrid biomeGrid) {
         final ChunkData chunkData = createChunkData(world);
 
         Biome biome;
         final Config config = IridiumSkyblock.getConfiguration();
         final String worldName = world.getName();
         if (worldName.equals(config.worldName))
-            biome = config.defaultBiome.parseBiome();
+            biome = config.defaultBiome.getBiome();
         else if (worldName.equals(config.netherWorldName))
-            biome = config.defaultNetherBiome.parseBiome();
+            biome = config.defaultNetherBiome.getBiome();
         else
             return chunkData;
         for (int x = 0; x <= 15; x++) {
@@ -44,12 +45,12 @@ class SkyblockGenerator extends ChunkGenerator {
     }
 
     @Override
-    public boolean canSpawn(World world, int x, int z) {
+    public boolean canSpawn(@NotNull World world, int x, int z) {
         return true;
     }
 
     @Override
-    public List<BlockPopulator> getDefaultPopulators(World world) {
+    public @NotNull List<BlockPopulator> getDefaultPopulators(@NotNull World world) {
         return Collections.emptyList();
     }
 }

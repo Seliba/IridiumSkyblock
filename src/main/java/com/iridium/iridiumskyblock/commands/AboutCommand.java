@@ -1,10 +1,11 @@
 package com.iridium.iridiumskyblock.commands;
 
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class AboutCommand extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8Plugin Name: &7IridiumSkyblock"));
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8Plugin Version: &7" + IridiumSkyblock.getInstance().getDescription().getVersion()));
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8Coded by IridiumLLC"));
+        sender.sendMessage(IridiumColorAPI.color("Plugin Name: IridiumSkyblock", new Color(0x05C195), new Color(0x0560C1)));
+        sender.sendMessage(IridiumColorAPI.color("Plugin Version: " + IridiumSkyblock.getInstance().getDescription().getVersion(), new Color(0x05C195), new Color(0x0560C1)));
+        sender.sendMessage(IridiumColorAPI.color("Coded by IridiumDevelopment", new Color(0x05C195), new Color(0x0560C1)));
     }
 
     @Override

@@ -4,10 +4,10 @@ import com.earth2me.essentials.Essentials;
 import com.earth2me.essentials.spawn.EssentialsSpawn;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
-import com.iridium.iridiumskyblock.IslandManager;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
 import com.iridium.iridiumskyblock.configs.Config;
+import com.iridium.iridiumskyblock.managers.IslandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,32 +22,39 @@ public class PlayerMoveListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        try {
-            final Player player = event.getPlayer();
-            final Location location = player.getLocation();
-            final IslandManager islandManager = IridiumSkyblock.getIslandManager();
-            if (!islandManager.isIslandWorld(location)) return;
+        final Player player = event.getPlayer();
+        final User user = User.getUser(player);
+        final Island userIsland = user.getIsland();
+        final Location location = player.getLocation();
+        if (!IslandManager.isIslandWorld(location)) return;
 
-            final Config config = IridiumSkyblock.getConfiguration();
+        final Config config = IridiumSkyblock.getConfiguration();
+
+        if (event.getFrom().getX() != event.getTo().getX() || event.getFrom().getZ() != event.getTo().getZ() || event.getFrom().getY() != event.getTo().getY() && event.getTo().getY() < 0) {
+            final Island island = IslandManager.getIslandViaLocation(location);
+
+            if (island != null && !island.visit && !island.equals(userIsland) && !island.isCoop(userIsland) && !user.bypassing && !player.hasPermission("iridiumskyblock.visitbypass")) {
+                island.spawnPlayer(event.getPlayer());
+                return;
+            }
 
             if (location.getY() < 0 && config.voidTeleport) {
-                final Island island = islandManager.getIslandViaLocation(location);
                 final World world = location.getWorld();
                 if (world == null) return;
 
                 if (island != null) {
-                    if (world.getName().equals(islandManager.getWorld().getName()))
+                    if (!IridiumSkyblock.getConfiguration().keepInventoryOnVoid) player.getInventory().clear();
+                    if (world.getName().equals(IslandManager.getWorld().getName()))
                         island.teleportHome(player);
                     else
                         island.teleportNetherHome(player);
                 } else {
-                    final User user = User.getUser(player);
-                    if (user.getIsland() != null) {
-                        if (world.getName().equals(islandManager.getWorld().getName()))
-                            user.getIsland().teleportHome(player);
-                        else if (world.getName().equals(islandManager.getNetherWorld().getName()))
-                            user.getIsland().teleportNetherHome(player);
-                    } else if (islandManager.isIslandWorld(world)) {
+                    if (userIsland != null) {
+                        if (world.getName().equals(IslandManager.getWorld().getName()))
+                            userIsland.teleportHome(player);
+                        else if (world.getName().equals(IslandManager.getNetherWorld().getName()))
+                            userIsland.teleportNetherHome(player);
+                    } else if (IslandManager.isIslandWorld(world)) {
                         if (Bukkit.getPluginManager().isPluginEnabled("EssentialsSpawn")) {
                             final PluginManager pluginManager = Bukkit.getPluginManager();
                             final EssentialsSpawn essentialsSpawn = (EssentialsSpawn) pluginManager.getPlugin("EssentialsSpawn");
@@ -59,24 +66,19 @@ public class PlayerMoveListener implements Listener {
                     }
                 }
             }
+        }
+        if (userIsland == null) return;
 
-            final User user = User.getUser(player);
-            final Island island = user.getIsland();
-            if (island == null) return;
-
-            if (user.flying
-                    && (!island.isInIsland(location) || island.getFlightBooster() == 0)
-                    && !player.getGameMode().equals(GameMode.CREATIVE)
-                    && !(player.hasPermission("IridiumSkyblock.Fly")
-                        || player.hasPermission("iridiumskyblock.fly"))) {
-                player.setAllowFlight(false);
-                player.setFlying(false);
-                user.flying = false;
-                player.sendMessage(Utils.color(IridiumSkyblock.getMessages().flightDisabled
-                        .replace("%prefix%", config.prefix)));
-            }
-        } catch (Exception e) {
-            IridiumSkyblock.getInstance().sendErrorMessage(e);
+        if (user.flying
+                && (!userIsland.isInIsland(location) || userIsland.getBoosterTime(IridiumSkyblock.getBoosters().islandFlightBooster.name) == 0)
+                && !player.getGameMode().equals(GameMode.CREATIVE)
+                && !(player.hasPermission("IridiumSkyblock.Fly")
+                || player.hasPermission("iridiumskyblock.fly"))) {
+            player.setAllowFlight(false);
+            player.setFlying(false);
+            user.flying = false;
+            player.sendMessage(Utils.color(IridiumSkyblock.getMessages().flightDisabled
+                    .replace("%prefix%", config.prefix)));
         }
     }
 }

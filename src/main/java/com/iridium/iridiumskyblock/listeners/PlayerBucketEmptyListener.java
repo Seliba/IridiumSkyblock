@@ -1,14 +1,17 @@
 package com.iridium.iridiumskyblock.listeners;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.XMaterial;
+import com.iridium.iridiumskyblock.Island;
+import com.iridium.iridiumskyblock.User;
+import com.iridium.iridiumskyblock.managers.IslandManager;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -23,6 +26,8 @@ public class PlayerBucketEmptyListener implements Listener {
 
     @EventHandler
     public void onBucketEmpty(PlayerBucketEmptyEvent event) {
+        if (!IslandManager.isIslandWorld(event.getPlayer().getLocation())) return;
+        
         final Material type = event.getBucket();
         final ItemStack item = event.getPlayer().getItemInHand();
         Block block;
@@ -37,6 +42,14 @@ public class PlayerBucketEmptyListener implements Listener {
                 return;
             }
         }
+
+        // Temporary fix until https://hub.spigotmc.org/jira/browse/SPIGOT-6351 is resolved
+        User user = User.getUser(event.getPlayer());
+        Island island = IslandManager.getIslandViaLocation(block.getLocation());
+        if ((island != null && user.getIsland() != null && user.islandID != island.id && !island.isCoop(user.getIsland())) || (island != null && user.getIsland() == null)) {
+            event.setCancelled(true);
+        } 
+
         final Player player = event.getPlayer();
         if (IridiumSkyblock.getConfiguration().allowWaterInNether) {
             final World world = block.getWorld();

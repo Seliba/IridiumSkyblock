@@ -1,6 +1,7 @@
 package com.iridium.iridiumskyblock.commands;
 
 import com.iridium.iridiumskyblock.*;
+import com.iridium.iridiumskyblock.api.IslandKickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -25,15 +26,21 @@ public class KickCommand extends Command {
         User user = User.getUser(p); // User kicking the player
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
         User u = User.getUser(player); // Player we want to kick
-        if (user.getIsland() != null) {
-            if (user.getIsland().equals(u.getIsland())) {
+        Island island = user.getIsland();
+        if (island != null) {
+            if (island.id == u.islandID) {
                 if (u.role.equals(Role.Owner)) {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().cantKickOwner.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                 } else {
                     if (user.bypassing || user.getIsland().getPermissions(u.getRole()).kickMembers) {
-                        user.getIsland().removeUser(u);
-                        if (player.getPlayer() != null)
-                            player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.getMessages().youHaveBeenKicked.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        IslandKickEvent islandKickEvent = new IslandKickEvent(user.getIsland(), user, u);
+                        Bukkit.getPluginManager().callEvent(islandKickEvent);
+                        if (!islandKickEvent.isCancelled()) {
+                            user.getIsland().removeUser(u);
+                            if (player.getPlayer() != null) {
+                                player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.getMessages().youHaveBeenKicked.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                            }
+                        }
                     } else {
                         sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                     }
@@ -59,9 +66,17 @@ public class KickCommand extends Command {
                 if (u.role.equals(Role.Owner)) {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().cantKickOwner.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                 } else {
-                    island.removeUser(u);
-                    if (player.getPlayer() != null)
-                        player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.getMessages().youHaveBeenKicked.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    IslandKickEvent islandKickEvent = new IslandKickEvent(island, null, u);
+                    Bukkit.getPluginManager().callEvent(islandKickEvent);
+                    if (!islandKickEvent.isCancelled()) {
+                        island.removeUser(u);
+                        if (player.getPlayer() != null) {
+                            player.getPlayer().sendMessage(Utils.color(IridiumSkyblock.getMessages().youHaveBeenKicked.replace(
+                                    "%prefix%",
+                                    IridiumSkyblock.getConfiguration().prefix
+                            )));
+                        }
+                    }
                 }
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().notInYourIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

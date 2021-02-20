@@ -21,7 +21,7 @@ public class CrystalsCommand extends Command {
         Player p = (Player) sender;
         User user = User.getUser(p);
         if (user.getIsland() != null) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().crystalAmount.replace("%crystals%", user.getIsland().getCrystals() + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().crystalAmount.replace("%crystals%", user.getIsland().getFormattedCrystals()).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         } else {
             p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         }
@@ -31,7 +31,7 @@ public class CrystalsCommand extends Command {
     public void admin(CommandSender sender, String[] args, Island island) {
         Player p = (Player) sender;
         if (island != null) {
-            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().crystalAmount.replace("%crystals%", island.getCrystals() + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+            sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().crystalAmount.replace("%crystals%", island.getFormattedCrystals() + "").replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         } else {
             p.sendMessage(Utils.color(IridiumSkyblock.getMessages().noIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
         }

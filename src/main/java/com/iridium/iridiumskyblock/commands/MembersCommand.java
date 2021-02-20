@@ -30,7 +30,7 @@ public class MembersCommand extends Command {
             island = user.getIsland();
         }
         if (island != null) {
-            p.openInventory(island.getMembersGUI().getInventory());
+            p.openInventory(island.membersGUI.getInventory());
         } else {
             if (args.length == 2) {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -44,7 +44,7 @@ public class MembersCommand extends Command {
     public void admin(CommandSender sender, String[] args, Island island) {
         Player p = (Player) sender;
         if (island != null) {
-            p.openInventory(island.getMembersGUI().getInventory());
+            p.openInventory(island.membersGUI.getInventory());
         } else {
             if (args.length == 2) {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

@@ -24,7 +24,7 @@ public class CoopCommand extends Command {
         User user = User.getUser(p);
         if (user.getIsland() != null) {
             if (args.length != 2) {
-                p.openInventory(user.getIsland().getCoopGUI().getInventory());
+                p.openInventory(user.getIsland().coopGUI.getInventory());
                 return;
             }
             OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
@@ -36,7 +36,7 @@ public class CoopCommand extends Command {
                         user.getIsland().addCoop(u.getIsland());
                     } else {
                         u.getIsland().inviteCoop(user.getIsland());
-                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().coopInviteSent.replace("%player%", User.getUser(u.getIsland().getOwner()).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().coopInviteSent.replace("%player%", User.getUser(u.getIsland().owner).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                     }
                 } else {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
@@ -54,7 +54,7 @@ public class CoopCommand extends Command {
         Player p = (Player) sender;
         if (island != null) {
             if (args.length != 4) {
-                p.openInventory(island.getCoopGUI().getInventory());
+                p.openInventory(island.coopGUI.getInventory());
                 return;
             }
             OfflinePlayer player = Bukkit.getOfflinePlayer(args[3]);
@@ -65,7 +65,7 @@ public class CoopCommand extends Command {
                     island.addCoop(u.getIsland());
                 } else {
                     u.getIsland().inviteCoop(island);
-                    sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().coopInviteSent.replace("%player%", User.getUser(u.getIsland().getOwner()).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().coopInviteSent.replace("%player%", User.getUser(u.getIsland().owner).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                 }
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().playerNoIsland.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));

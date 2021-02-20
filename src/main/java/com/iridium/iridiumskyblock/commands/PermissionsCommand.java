@@ -2,11 +2,10 @@ package com.iridium.iridiumskyblock.commands;
 
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import java.util.Collections;
 import java.util.List;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PermissionsCommand extends Command {
 
@@ -20,7 +19,7 @@ public class PermissionsCommand extends Command {
         User user = User.getUser(player);
         Island island = user.getIsland();
         if (island != null) {
-            player.openInventory(island.getPermissionsGUI().getInventory());
+            player.openInventory(island.permissionsGUI.getInventory());
         }
     }
 
@@ -28,7 +27,7 @@ public class PermissionsCommand extends Command {
     public void admin(CommandSender sender, String[] args, Island island) {
         Player player = (Player) sender;
         if (island != null) {
-            player.openInventory(island.getPermissionsGUI().getInventory());
+            player.openInventory(island.permissionsGUI.getInventory());
         }
     }
 

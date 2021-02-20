@@ -1,18 +1,14 @@
 package com.iridium.iridiumskyblock.api;
 
 import com.iridium.iridiumskyblock.Island;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-@RequiredArgsConstructor
 public abstract class IslandEvent extends Event {
     @NotNull
     private static final HandlerList handlers = new HandlerList();
 
-    @Getter
     @NotNull private final Island island;
 
     @Override
@@ -23,6 +19,14 @@ public abstract class IslandEvent extends Event {
 
     @NotNull
     public static HandlerList getHandlerList() {
-        return handlers;
+      return handlers;
+    }
+
+    public IslandEvent(@NotNull Island island) {
+        this.island = island;
+    }
+
+    public Island getIsland() {
+        return island;
     }
 }

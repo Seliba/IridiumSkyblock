@@ -1,0 +1,3599 @@
+{
+  "items": [
+    {
+      "type": 0,
+      "meta": 0,
+      "name": "AIR"
+    },
+    {
+      "type": 1,
+      "meta": 0,
+      "name": "STONE"
+    },
+    {
+      "type": 1,
+      "meta": 1,
+      "name": "GRANITE"
+    },
+    {
+      "type": 1,
+      "meta": 2,
+      "name": "POLISHED_GRANITE"
+    },
+    {
+      "type": 1,
+      "meta": 3,
+      "name": "DIORITE"
+    },
+    {
+      "type": 1,
+      "meta": 4,
+      "name": "POLISHED_DIORITE"
+    },
+    {
+      "type": 1,
+      "meta": 5,
+      "name": "ANDESITE"
+    },
+    {
+      "type": 1,
+      "meta": 6,
+      "name": "POLISHED_ANDESITE"
+    },
+    {
+      "type": 2,
+      "meta": 0,
+      "name": "GRASS_BLOCK"
+    },
+    {
+      "type": 3,
+      "meta": 0,
+      "name": "DIRT"
+    },
+    {
+      "type": 3,
+      "meta": 1,
+      "name": "COARSE_DIRT"
+    },
+    {
+      "type": 3,
+      "meta": 2,
+      "name": "PODZOL"
+    },
+    {
+      "type": 4,
+      "meta": 0,
+      "name": "COBBLESTONE"
+    },
+    {
+      "type": 5,
+      "meta": 0,
+      "name": "OAK_PLANKS"
+    },
+    {
+      "type": 5,
+      "meta": 1,
+      "name": "SPRUCE_PLANKS"
+    },
+    {
+      "type": 5,
+      "meta": 2,
+      "name": "BIRCH_PLANKS"
+    },
+    {
+      "type": 5,
+      "meta": 3,
+      "name": "JUNGLE_PLANKS"
+    },
+    {
+      "type": 5,
+      "meta": 4,
+      "name": "ACACIA_PLANKS"
+    },
+    {
+      "type": 5,
+      "meta": 5,
+      "name": "DARK_OAK_PLANKS"
+    },
+    {
+      "type": 6,
+      "meta": 0,
+      "name": "OAK_SAPLING"
+    },
+    {
+      "type": 6,
+      "meta": 1,
+      "name": "SPRUCE_SAPLING"
+    },
+    {
+      "type": 6,
+      "meta": 2,
+      "name": "BIRCH_SAPLING"
+    },
+    {
+      "type": 6,
+      "meta": 3,
+      "name": "JUNGLE_SAPLING"
+    },
+    {
+      "type": 6,
+      "meta": 4,
+      "name": "ACACIA_SAPLING"
+    },
+    {
+      "type": 6,
+      "meta": 5,
+      "name": "DARK_OAK_SAPLING"
+    },
+    {
+      "type": 7,
+      "meta": 0,
+      "name": "BEDROCK"
+    },
+    {
+      "type": 8,
+      "meta": 0,
+      "name": "WATER"
+    },
+    {
+      "type": 9,
+      "meta": 0,
+      "name": "WATER"
+    },
+    {
+      "type": 10,
+      "meta": 0,
+      "name": "LAVA"
+    },
+    {
+      "type": 11,
+      "meta": 0,
+      "name": "LAVA"
+    },
+    {
+      "type": 12,
+      "meta": 0,
+      "name": "SAND"
+    },
+    {
+      "type": 12,
+      "meta": 1,
+      "name": "RED_SAND"
+    },
+    {
+      "type": 13,
+      "meta": 0,
+      "name": "GRAVEL"
+    },
+    {
+      "type": 14,
+      "meta": 0,
+      "name": "GOLD_ORE"
+    },
+    {
+      "type": 15,
+      "meta": 0,
+      "name": "IRON_ORE"
+    },
+    {
+      "type": 16,
+      "meta": 0,
+      "name": "COAL_ORE"
+    },
+    {
+      "type": 17,
+      "meta": 0,
+      "name": "OAK_WOOD"
+    },
+    {
+      "type": 17,
+      "meta": 1,
+      "name": "SPRUCE_WOOD"
+    },
+    {
+      "type": 17,
+      "meta": 2,
+      "name": "BIRCH_WOOD"
+    },
+    {
+      "type": 17,
+      "meta": 3,
+      "name": "JUNGLE_WOOD"
+    },
+    {
+      "type": 18,
+      "meta": 0,
+      "name": "OAK_LEAVES"
+    },
+    {
+      "type": 18,
+      "meta": 1,
+      "name": "SPRUCE_LEAVES"
+    },
+    {
+      "type": 18,
+      "meta": 2,
+      "name": "BIRCH_LEAVES"
+    },
+    {
+      "type": 18,
+      "meta": 3,
+      "name": "JUNGLE_LEAVES"
+    },
+    {
+      "type": 19,
+      "meta": 0,
+      "name": "SPONGE"
+    },
+    {
+      "type": 19,
+      "meta": 1,
+      "name": "WET_SPONGE"
+    },
+    {
+      "type": 20,
+      "meta": 0,
+      "name": "GLASS"
+    },
+    {
+      "type": 21,
+      "meta": 0,
+      "name": "LAPIS_ORE"
+    },
+    {
+      "type": 22,
+      "meta": 0,
+      "name": "LAPIS_BLOCK"
+    },
+    {
+      "type": 23,
+      "meta": 0,
+      "name": "DISPENSER"
+    },
+    {
+      "type": 24,
+      "meta": 0,
+      "name": "SANDSTONE"
+    },
+    {
+      "type": 24,
+      "meta": 1,
+      "name": "CHISELED_SANDSTONE"
+    },
+    {
+      "type": 24,
+      "meta": 2,
+      "name": "SMOOTH_SANDSTONE"
+    },
+    {
+      "type": 25,
+      "meta": 0,
+      "name": "NOTE_BLOCK"
+    },
+    {
+      "type": 26,
+      "meta": 0,
+      "name": "BED"
+    },
+    {
+      "type": 27,
+      "meta": 0,
+      "name": "POWERED_RAIL"
+    },
+    {
+      "type": 28,
+      "meta": 0,
+      "name": "DETECTOR_RAIL"
+    },
+    {
+      "type": 29,
+      "meta": 0,
+      "name": "STICKY_PISTON"
+    },
+    {
+      "type": 30,
+      "meta": 0,
+      "name": "COBWEB"
+    },
+    {
+      "type": 31,
+      "meta": 0,
+      "name": "DEAD_BUSH"
+    },
+    {
+      "type": 31,
+      "meta": 1,
+      "name": "GRASS"
+    },
+    {
+      "type": 31,
+      "meta": 2,
+      "name": "FERN"
+    },
+    {
+      "type": 32,
+      "meta": 0,
+      "name": "DEAD_BUSH"
+    },
+    {
+      "type": 33,
+      "meta": 0,
+      "name": "PISTON"
+    },
+    {
+      "type": 34,
+      "meta": 0,
+      "name": "PISTON_HEAD"
+    },
+    {
+      "type": 35,
+      "meta": 0,
+      "name": "WHITE_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 1,
+      "name": "ORANGE_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 2,
+      "name": "MAGENTA_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 3,
+      "name": "LIGHT_BLUE_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 4,
+      "name": "YELLOW_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 5,
+      "name": "LIME_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 6,
+      "name": "PINK_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 7,
+      "name": "GRAY_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 8,
+      "name": "LIGHT_GRAY_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 9,
+      "name": "CYAN_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 10,
+      "name": "PURPLE_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 11,
+      "name": "BLUE_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 12,
+      "name": "BROWN_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 13,
+      "name": "GREEN_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 14,
+      "name": "RED_WOOL"
+    },
+    {
+      "type": 35,
+      "meta": 15,
+      "name": "BLACK_WOOL"
+    },
+    {
+      "type": 37,
+      "meta": 0,
+      "name": "DANDELION"
+    },
+    {
+      "type": 38,
+      "meta": 0,
+      "name": "POPPY"
+    },
+    {
+      "type": 38,
+      "meta": 1,
+      "name": "BLUE_ORCHID"
+    },
+    {
+      "type": 38,
+      "meta": 2,
+      "name": "ALLIUM"
+    },
+    {
+      "type": 38,
+      "meta": 3,
+      "name": "AZURE_BLUET"
+    },
+    {
+      "type": 38,
+      "meta": 4,
+      "name": "RED_TULIP"
+    },
+    {
+      "type": 38,
+      "meta": 5,
+      "name": "ORANGE_TULIP"
+    },
+    {
+      "type": 38,
+      "meta": 6,
+      "name": "WHITE_TULIP"
+    },
+    {
+      "type": 38,
+      "meta": 7,
+      "name": "PINK_TULIP"
+    },
+    {
+      "type": 38,
+      "meta": 8,
+      "name": "OXEYE_DAISY"
+    },
+    {
+      "type": 39,
+      "meta": 0,
+      "name": "BROWN_MUSHROOM"
+    },
+    {
+      "type": 40,
+      "meta": 0,
+      "name": "RED_MUSHROOM"
+    },
+    {
+      "type": 41,
+      "meta": 0,
+      "name": "GOLD_BLOCK"
+    },
+    {
+      "type": 42,
+      "meta": 0,
+      "name": "IRON_BLOCK"
+    },
+    {
+      "type": 43,
+      "meta": 0,
+      "name": "STONE_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 1,
+      "name": "SANDSTONE_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 2,
+      "name": "WOODEN_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 3,
+      "name": "COBBLESTONE_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 4,
+      "name": "BRICK_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 5,
+      "name": "STONE_BRICK_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 6,
+      "name": "NETHER_BRICK_SLAB"
+    },
+    {
+      "type": 43,
+      "meta": 7,
+      "name": "QUARTZ_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 0,
+      "name": "STONE_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 1,
+      "name": "SANDSTONE_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 2,
+      "name": "WOODEN_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 3,
+      "name": "COBBLESTONE_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 4,
+      "name": "BRICK_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 5,
+      "name": "STONE_BRICK_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 6,
+      "name": "NETHER_BRICK_SLAB"
+    },
+    {
+      "type": 44,
+      "meta": 7,
+      "name": "QUARTZ_SLAB"
+    },
+    {
+      "type": 45,
+      "meta": 0,
+      "name": "BRICKS"
+    },
+    {
+      "type": 46,
+      "meta": 0,
+      "name": "TNT"
+    },
+    {
+      "type": 47,
+      "meta": 0,
+      "name": "BOOKSHELF"
+    },
+    {
+      "type": 48,
+      "meta": 0,
+      "name": "MOSSY_STONE_BRICKS"
+    },
+    {
+      "type": 49,
+      "meta": 0,
+      "name": "OBSIDIAN"
+    },
+    {
+      "type": 50,
+      "meta": 0,
+      "name": "TORCH"
+    },
+    {
+      "type": 51,
+      "meta": 0,
+      "name": "FIRE"
+    },
+    {
+      "type": 52,
+      "meta": 0,
+      "name": "SPAWNER"
+    },
+    {
+      "type": 53,
+      "meta": 0,
+      "name": "OAK_STAIRS"
+    },
+    {
+      "type": 54,
+      "meta": 0,
+      "name": "CHEST"
+    },
+    {
+      "type": 55,
+      "meta": 0,
+      "name": "REDSTONE_WIRE"
+    },
+    {
+      "type": 56,
+      "meta": 0,
+      "name": "DIAMOND_ORE"
+    },
+    {
+      "type": 57,
+      "meta": 0,
+      "name": "DIAMOND_BLOCK"
+    },
+    {
+      "type": 58,
+      "meta": 0,
+      "name": "CRAFTING_TABLE"
+    },
+    {
+      "type": 59,
+      "meta": 0,
+      "name": "WHEAT"
+    },
+    {
+      "type": 60,
+      "meta": 0,
+      "name": "FARMLAND"
+    },
+    {
+      "type": 61,
+      "meta": 0,
+      "name": "FURNACE"
+    },
+    {
+      "type": 62,
+      "meta": 0,
+      "name": "BURNING_FURNACE"
+    },
+    {
+      "type": 63,
+      "meta": 0,
+      "name": "SIGN"
+    },
+    {
+      "type": 64,
+      "meta": 0,
+      "name": "OAK_DOOR"
+    },
+    {
+      "type": 65,
+      "meta": 0,
+      "name": "LADDER"
+    },
+    {
+      "type": 66,
+      "meta": 0,
+      "name": "RAIL"
+    },
+    {
+      "type": 67,
+      "meta": 0,
+      "name": "COBBLESTONE_STAIRS"
+    },
+    {
+      "type": 68,
+      "meta": 0,
+      "name": "SIGN"
+    },
+    {
+      "type": 69,
+      "meta": 0,
+      "name": "LEVER"
+    },
+    {
+      "type": 70,
+      "meta": 0,
+      "name": "STONE_PRESSURE_PLATE"
+    },
+    {
+      "type": 71,
+      "meta": 0,
+      "name": "IRON_DOOR"
+    },
+    {
+      "type": 72,
+      "meta": 0,
+      "name": "OAK_PRESSURE_PLATE"
+    },
+    {
+      "type": 73,
+      "meta": 0,
+      "name": "REDSTONE_ORE"
+    },
+    {
+      "type": 74,
+      "meta": 0,
+      "name": "GLOWING_REDSTONE_ORE"
+    },
+    {
+      "type": 75,
+      "meta": 0,
+      "name": "REDSTONE_TORCH_(OFF)"
+    },
+    {
+      "type": 76,
+      "meta": 0,
+      "name": "REDSTONE_TORCH_(ON)"
+    },
+    {
+      "type": 77,
+      "meta": 0,
+      "name": "STONE_BUTTON"
+    },
+    {
+      "type": 78,
+      "meta": 0,
+      "name": "SNOW"
+    },
+    {
+      "type": 79,
+      "meta": 0,
+      "name": "ICE"
+    },
+    {
+      "type": 80,
+      "meta": 0,
+      "name": "SNOW_BLOCK"
+    },
+    {
+      "type": 81,
+      "meta": 0,
+      "name": "CACTUS"
+    },
+    {
+      "type": 82,
+      "meta": 0,
+      "name": "CLAY"
+    },
+    {
+      "type": 83,
+      "meta": 0,
+      "name": "SUGAR_CANE"
+    },
+    {
+      "type": 84,
+      "meta": 0,
+      "name": "JUKEBOX"
+    },
+    {
+      "type": 85,
+      "meta": 0,
+      "name": "OAK_FENCE"
+    },
+    {
+      "type": 86,
+      "meta": 0,
+      "name": "PUMPKIN"
+    },
+    {
+      "type": 87,
+      "meta": 0,
+      "name": "NETHERRACK"
+    },
+    {
+      "type": 88,
+      "meta": 0,
+      "name": "SOUL_SAND"
+    },
+    {
+      "type": 89,
+      "meta": 0,
+      "name": "GLOWSTONE"
+    },
+    {
+      "type": 90,
+      "meta": 0,
+      "name": "NETHER_PORTAL"
+    },
+    {
+      "type": 91,
+      "meta": 0,
+      "name": "JACK_O_LANTERN"
+    },
+    {
+      "type": 92,
+      "meta": 0,
+      "name": "CAKE_BLOCK"
+    },
+    {
+      "type": 93,
+      "meta": 0,
+      "name": "REPEATER"
+    },
+    {
+      "type": 94,
+      "meta": 0,
+      "name": "REPEATER"
+    },
+    {
+      "type": 95,
+      "meta": 0,
+      "name": "WHITE_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 1,
+      "name": "ORANGE_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 2,
+      "name": "MAGENTA_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 3,
+      "name": "LIGHT_BLUE_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 4,
+      "name": "YELLOW_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 5,
+      "name": "LIME_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 6,
+      "name": "PINK_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 7,
+      "name": "GRAY_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 8,
+      "name": "LIGHT_GRAY_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 9,
+      "name": "CYAN_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 10,
+      "name": "PURPLE_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 11,
+      "name": "BLUE_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 12,
+      "name": "BROWN_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 13,
+      "name": "GREEN_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 14,
+      "name": "RED_STAINED_GLASS"
+    },
+    {
+      "type": 95,
+      "meta": 15,
+      "name": "BLACK_STAINED_GLASS"
+    },
+    {
+      "type": 96,
+      "meta": 0,
+      "name": "OAK_TRAPDOOR"
+    },
+    {
+      "type": 97,
+      "meta": 0,
+      "name": "INFESTED_STONE"
+    },
+    {
+      "type": 97,
+      "meta": 1,
+      "name": "INFESTED_COBBLESTONE"
+    },
+    {
+      "type": 97,
+      "meta": 2,
+      "name": "INFESTED_STONE_BRICKS"
+    },
+    {
+      "type": 97,
+      "meta": 3,
+      "name": "INFESTED_MOSSY_STONE_BRICKS"
+    },
+    {
+      "type": 97,
+      "meta": 4,
+      "name": "INFESTED_CRACKED_STONE_BRICKS"
+    },
+    {
+      "type": 97,
+      "meta": 5,
+      "name": "INFESTED_CHISELED_STONE_BRICKS"
+    },
+    {
+      "type": 98,
+      "meta": 0,
+      "name": "STONE_BRICKS"
+    },
+    {
+      "type": 98,
+      "meta": 1,
+      "name": "MOSSY_STONE_BRICKS"
+    },
+    {
+      "type": 98,
+      "meta": 2,
+      "name": "CRACKED_STONE_BRICKS"
+    },
+    {
+      "type": 98,
+      "meta": 3,
+      "name": "CHISELED_STONE_BRICKS"
+    },
+    {
+      "type": 99,
+      "meta": 0,
+      "name": "BROWN_MUSHROOM_BLOCK"
+    },
+    {
+      "type": 100,
+      "meta": 0,
+      "name": "RED_MUSHROOM_BLOCK"
+    },
+    {
+      "type": 101,
+      "meta": 0,
+      "name": "IRON_BARS"
+    },
+    {
+      "type": 102,
+      "meta": 0,
+      "name": "GLASS_PANE"
+    },
+    {
+      "type": 103,
+      "meta": 0,
+      "name": "MELON_BLOCK"
+    },
+    {
+      "type": 104,
+      "meta": 0,
+      "name": "PUMPKIN_STEM"
+    },
+    {
+      "type": 105,
+      "meta": 0,
+      "name": "MELON_STEM"
+    },
+    {
+      "type": 106,
+      "meta": 0,
+      "name": "VINE"
+    },
+    {
+      "type": 107,
+      "meta": 0,
+      "name": "OAK_FENCE_GATE"
+    },
+    {
+      "type": 108,
+      "meta": 0,
+      "name": "BRICK_STAIRS"
+    },
+    {
+      "type": 109,
+      "meta": 0,
+      "name": "STONE_BRICK_STAIRS"
+    },
+    {
+      "type": 110,
+      "meta": 0,
+      "name": "MYCELIUM"
+    },
+    {
+      "type": 111,
+      "meta": 0,
+      "name": "LILY_PAD"
+    },
+    {
+      "type": 112,
+      "meta": 0,
+      "name": "NETHER_BRICK"
+    },
+    {
+      "type": 113,
+      "meta": 0,
+      "name": "NETHER_BRICK_FENCE"
+    },
+    {
+      "type": 114,
+      "meta": 0,
+      "name": "NETHER_BRICK_STAIRS"
+    },
+    {
+      "type": 115,
+      "meta": 0,
+      "name": "NETHER_WART"
+    },
+    {
+      "type": 116,
+      "meta": 0,
+      "name": "ENCHANTMENT_TABLE"
+    },
+    {
+      "type": 117,
+      "meta": 0,
+      "name": "BREWING_STAND"
+    },
+    {
+      "type": 118,
+      "meta": 0,
+      "name": "CAULDRON"
+    },
+    {
+      "type": 119,
+      "meta": 0,
+      "name": "END_PORTAL"
+    },
+    {
+      "type": 120,
+      "meta": 0,
+      "name": "END_PORTAL_FRAME"
+    },
+    {
+      "type": 121,
+      "meta": 0,
+      "name": "END_STONE"
+    },
+    {
+      "type": 122,
+      "meta": 0,
+      "name": "DRAGON_EGG"
+    },
+    {
+      "type": 123,
+      "meta": 0,
+      "name": "REDSTONE_LAMP"
+    },
+    {
+      "type": 124,
+      "meta": 0,
+      "name": "REDSTONE_LAMP"
+    },
+    {
+      "type": 125,
+      "meta": 0,
+      "name": "OAK_SLAB"
+    },
+    {
+      "type": 125,
+      "meta": 1,
+      "name": "SPRUCE_SLAB"
+    },
+    {
+      "type": 125,
+      "meta": 2,
+      "name": "BIRCH_SLAB"
+    },
+    {
+      "type": 125,
+      "meta": 3,
+      "name": "JUNGLE_SLAB"
+    },
+    {
+      "type": 125,
+      "meta": 4,
+      "name": "ACACIA_SLAB"
+    },
+    {
+      "type": 125,
+      "meta": 5,
+      "name": "DARK_OAK_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 0,
+      "name": "OAK_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 1,
+      "name": "SPRUCE_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 2,
+      "name": "BIRCH_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 3,
+      "name": "JUNGLE_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 4,
+      "name": "ACACIA_SLAB"
+    },
+    {
+      "type": 126,
+      "meta": 5,
+      "name": "DARK_OAK_SLAB"
+    },
+    {
+      "type": 127,
+      "meta": 0,
+      "name": "COCOA"
+    },
+    {
+      "type": 128,
+      "meta": 0,
+      "name": "SANDSTONE_STAIRS"
+    },
+    {
+      "type": 129,
+      "meta": 0,
+      "name": "EMERALD_ORE"
+    },
+    {
+      "type": 130,
+      "meta": 0,
+      "name": "ENDER_CHEST"
+    },
+    {
+      "type": 131,
+      "meta": 0,
+      "name": "TRIPWIRE_HOOK"
+    },
+    {
+      "type": 132,
+      "meta": 0,
+      "name": "TRIPWIRE"
+    },
+    {
+      "type": 133,
+      "meta": 0,
+      "name": "EMERALD_BLOCK"
+    },
+    {
+      "type": 134,
+      "meta": 0,
+      "name": "SPRUCE_STAIRS"
+    },
+    {
+      "type": 135,
+      "meta": 0,
+      "name": "BIRCH_STAIRS"
+    },
+    {
+      "type": 136,
+      "meta": 0,
+      "name": "JUNGLE_STAIRS"
+    },
+    {
+      "type": 137,
+      "meta": 0,
+      "name": "COMMAND_BLOCK"
+    },
+    {
+      "type": 138,
+      "meta": 0,
+      "name": "BEACON"
+    },
+    {
+      "type": 139,
+      "meta": 0,
+      "name": "COBBLESTONE_WALL"
+    },
+    {
+      "type": 139,
+      "meta": 1,
+      "name": "MOSSY_COBBLESTONE_WALL"
+    },
+    {
+      "type": 140,
+      "meta": 0,
+      "name": "FLOWER_POT"
+    },
+    {
+      "type": 141,
+      "meta": 0,
+      "name": "CARROTS"
+    },
+    {
+      "type": 142,
+      "meta": 0,
+      "name": "POTATOES"
+    },
+    {
+      "type": 143,
+      "meta": 0,
+      "name": "OAK_BUTTON"
+    },
+    {
+      "type": 144,
+      "meta": 0,
+      "name": "PLAYER_HEAD"
+    },
+    {
+      "type": 145,
+      "meta": 0,
+      "name": "ANVIL"
+    },
+    {
+      "type": 146,
+      "meta": 0,
+      "name": "TRAPPED_CHEST"
+    },
+    {
+      "type": 147,
+      "meta": 0,
+      "name": "LIGHT_WEIGHTED_PRESSURE_PLATE"
+    },
+    {
+      "type": 148,
+      "meta": 0,
+      "name": "HEAVY_WEIGHTED_PRESSURE_PLATE"
+    },
+    {
+      "type": 149,
+      "meta": 0,
+      "name": "REDSTONE_COMPARATOR"
+    },
+    {
+      "type": 150,
+      "meta": 0,
+      "name": "REDSTONE_COMPARATOR"
+    },
+    {
+      "type": 151,
+      "meta": 0,
+      "name": "DAYLIGHT_DETECTOR"
+    },
+    {
+      "type": 152,
+      "meta": 0,
+      "name": "REDSTONE_BLOCK"
+    },
+    {
+      "type": 153,
+      "meta": 0,
+      "name": "NETHER_QUARTZ_ORE"
+    },
+    {
+      "type": 154,
+      "meta": 0,
+      "name": "HOPPER"
+    },
+    {
+      "type": 155,
+      "meta": 0,
+      "name": "QUARTZ_BLOCK"
+    },
+    {
+      "type": 155,
+      "meta": 1,
+      "name": "CHISELED_QUARTZ_BLOCK"
+    },
+    {
+      "type": 155,
+      "meta": 2,
+      "name": "QUARTZ_PILLAR"
+    },
+    {
+      "type": 156,
+      "meta": 0,
+      "name": "QUARTZ_STAIRS"
+    },
+    {
+      "type": 157,
+      "meta": 0,
+      "name": "ACTIVATOR_RAIL"
+    },
+    {
+      "type": 158,
+      "meta": 0,
+      "name": "DROPPER"
+    },
+    {
+      "type": 159,
+      "meta": 0,
+      "name": "WHITE_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 1,
+      "name": "ORANGE_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 2,
+      "name": "MAGENTA_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 3,
+      "name": "LIGHT_BLUE_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 4,
+      "name": "YELLOW_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 5,
+      "name": "LIME_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 6,
+      "name": "PINK_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 7,
+      "name": "GRAY_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 8,
+      "name": "LIGHT_GRAY_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 9,
+      "name": "CYAN_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 10,
+      "name": "PURPLE_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 11,
+      "name": "BLUE_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 12,
+      "name": "BROWN_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 13,
+      "name": "GREEN_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 14,
+      "name": "RED_TERRACOTTA"
+    },
+    {
+      "type": 159,
+      "meta": 15,
+      "name": "BLACK_TERRACOTTA"
+    },
+    {
+      "type": 160,
+      "meta": 0,
+      "name": "WHITE_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 1,
+      "name": "ORANGE_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 2,
+      "name": "MAGENTA_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 3,
+      "name": "LIGHT_BLUE_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 4,
+      "name": "YELLOW_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 5,
+      "name": "LIME_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 6,
+      "name": "PINK_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 7,
+      "name": "GRAY_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 8,
+      "name": "LIGHT_GRAY_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 9,
+      "name": "CYAN_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 10,
+      "name": "PURPLE_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 11,
+      "name": "BLUE_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 12,
+      "name": "BROWN_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 13,
+      "name": "GREEN_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 14,
+      "name": "RED_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 160,
+      "meta": 15,
+      "name": "BLACK_STAINED_GLASS_PANE"
+    },
+    {
+      "type": 161,
+      "meta": 0,
+      "name": "ACACIA_LEAVES"
+    },
+    {
+      "type": 161,
+      "meta": 1,
+      "name": "DARK_OAK_LEAVES"
+    },
+    {
+      "type": 162,
+      "meta": 0,
+      "name": "ACACIA_WOOD"
+    },
+    {
+      "type": 162,
+      "meta": 1,
+      "name": "DARK_OAK_WOOD"
+    },
+    {
+      "type": 163,
+      "meta": 0,
+      "name": "ACACIA_STAIRS"
+    },
+    {
+      "type": 164,
+      "meta": 0,
+      "name": "DARK_OAK_STAIRS"
+    },
+    {
+      "type": 165,
+      "meta": 0,
+      "name": "SLIME_BLOCK"
+    },
+    {
+      "type": 166,
+      "meta": 0,
+      "name": "BARRIER"
+    },
+    {
+      "type": 167,
+      "meta": 0,
+      "name": "IRON_TRAPDOOR"
+    },
+    {
+      "type": 168,
+      "meta": 0,
+      "name": "PRISMARINE"
+    },
+    {
+      "type": 168,
+      "meta": 1,
+      "name": "PRISMARINE_BRICKS"
+    },
+    {
+      "type": 168,
+      "meta": 2,
+      "name": "DARK_PRISMARINE"
+    },
+    {
+      "type": 169,
+      "meta": 0,
+      "name": "SEA_LANTERN"
+    },
+    {
+      "type": 170,
+      "meta": 0,
+      "name": "HAY_BLOCK"
+    },
+    {
+      "type": 171,
+      "meta": 0,
+      "name": "WHITE_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 1,
+      "name": "ORANGE_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 2,
+      "name": "MAGENTA_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 3,
+      "name": "LIGHT_BLUE_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 4,
+      "name": "YELLOW_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 5,
+      "name": "LIME_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 6,
+      "name": "PINK_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 7,
+      "name": "GRAY_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 8,
+      "name": "LIGHT_GRAY_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 9,
+      "name": "CYAN_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 10,
+      "name": "PURPLE_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 11,
+      "name": "BLUE_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 12,
+      "name": "BROWN_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 13,
+      "name": "GREEN_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 14,
+      "name": "RED_CARPET"
+    },
+    {
+      "type": 171,
+      "meta": 15,
+      "name": "BLACK_CARPET"
+    },
+    {
+      "type": 172,
+      "meta": 0,
+      "name": "TERRACOTTA"
+    },
+    {
+      "type": 173,
+      "meta": 0,
+      "name": "COAL_BLOCK"
+    },
+    {
+      "type": 174,
+      "meta": 0,
+      "name": "PACKED_ICE"
+    },
+    {
+      "type": 175,
+      "meta": 0,
+      "name": "SUNFLOWER"
+    },
+    {
+      "type": 175,
+      "meta": 1,
+      "name": "LILAC"
+    },
+    {
+      "type": 175,
+      "meta": 2,
+      "name": "TALL_GRASS"
+    },
+    {
+      "type": 175,
+      "meta": 3,
+      "name": "LARGE_FERN"
+    },
+    {
+      "type": 175,
+      "meta": 4,
+      "name": "ROSE_BUSH"
+    },
+    {
+      "type": 175,
+      "meta": 5,
+      "name": "PEONY"
+    },
+    {
+      "type": 176,
+      "meta": 0,
+      "name": "WHITE_BANNER"
+    },
+    {
+      "type": 177,
+      "meta": 0,
+      "name": "BANNER"
+    },
+    {
+      "type": 178,
+      "meta": 0,
+      "name": "DAYLIGHT_DETECTOR"
+    },
+    {
+      "type": 179,
+      "meta": 0,
+      "name": "RED_SANDSTONE"
+    },
+    {
+      "type": 179,
+      "meta": 1,
+      "name": "CHISELED_RED_SANDSTONE"
+    },
+    {
+      "type": 179,
+      "meta": 2,
+      "name": "SMOOTH_RED_SANDSTONE"
+    },
+    {
+      "type": 180,
+      "meta": 0,
+      "name": "RED_SANDSTONE_STAIRS"
+    },
+    {
+      "type": 181,
+      "meta": 0,
+      "name": "RED_SANDSTONE_SLAB"
+    },
+    {
+      "type": 182,
+      "meta": 0,
+      "name": "RED_SANDSTONE_SLAB"
+    },
+    {
+      "type": 183,
+      "meta": 0,
+      "name": "SPRUCE_FENCE_GATE"
+    },
+    {
+      "type": 184,
+      "meta": 0,
+      "name": "BIRCH_FENCE_GATE"
+    },
+    {
+      "type": 185,
+      "meta": 0,
+      "name": "JUNGLE_FENCE_GATE"
+    },
+    {
+      "type": 186,
+      "meta": 0,
+      "name": "DARK_OAK_FENCE_GATE"
+    },
+    {
+      "type": 187,
+      "meta": 0,
+      "name": "ACACIA_FENCE_GATE"
+    },
+    {
+      "type": 188,
+      "meta": 0,
+      "name": "SPRUCE_FENCE"
+    },
+    {
+      "type": 189,
+      "meta": 0,
+      "name": "BIRCH_FENCE"
+    },
+    {
+      "type": 190,
+      "meta": 0,
+      "name": "JUNGLE_FENCE"
+    },
+    {
+      "type": 191,
+      "meta": 0,
+      "name": "DARK_OAK_FENCE"
+    },
+    {
+      "type": 192,
+      "meta": 0,
+      "name": "ACACIA_FENCE"
+    },
+    {
+      "type": 193,
+      "meta": 0,
+      "name": "SPRUCE_DOOR"
+    },
+    {
+      "type": 194,
+      "meta": 0,
+      "name": "BIRCH_DOOR"
+    },
+    {
+      "type": 195,
+      "meta": 0,
+      "name": "JUNGLE_DOOR"
+    },
+    {
+      "type": 196,
+      "meta": 0,
+      "name": "ACACIA_DOOR"
+    },
+    {
+      "type": 197,
+      "meta": 0,
+      "name": "DARK_OAK_DOOR"
+    },
+    {
+      "type": 198,
+      "meta": 0,
+      "name": "END_ROD"
+    },
+    {
+      "type": 199,
+      "meta": 0,
+      "name": "CHORUS_PLANT"
+    },
+    {
+      "type": 200,
+      "meta": 0,
+      "name": "CHORUS_FLOWER"
+    },
+    {
+      "type": 201,
+      "meta": 0,
+      "name": "PURPUR_BLOCK"
+    },
+    {
+      "type": 202,
+      "meta": 0,
+      "name": "PURPUR_PILLAR"
+    },
+    {
+      "type": 203,
+      "meta": 0,
+      "name": "PURPUR_STAIRS"
+    },
+    {
+      "type": 204,
+      "meta": 0,
+      "name": "PURPUR_SLAB"
+    },
+    {
+      "type": 205,
+      "meta": 0,
+      "name": "PURPUR_SLAB"
+    },
+    {
+      "type": 206,
+      "meta": 0,
+      "name": "END_STONE_BRICKS"
+    },
+    {
+      "type": 207,
+      "meta": 0,
+      "name": "BEETROOT_BLOCK"
+    },
+    {
+      "type": 208,
+      "meta": 0,
+      "name": "GRASS_PATH"
+    },
+    {
+      "type": 209,
+      "meta": 0,
+      "name": "END_GATEWAY"
+    },
+    {
+      "type": 210,
+      "meta": 0,
+      "name": "REPEATING_COMMAND_BLOCK"
+    },
+    {
+      "type": 211,
+      "meta": 0,
+      "name": "CHAIN_COMMAND_BLOCK"
+    },
+    {
+      "type": 212,
+      "meta": 0,
+      "name": "FROSTED_ICE"
+    },
+    {
+      "type": 213,
+      "meta": 0,
+      "name": "MAGMA_BLOCK"
+    },
+    {
+      "type": 214,
+      "meta": 0,
+      "name": "NETHER_WART_BLOCK"
+    },
+    {
+      "type": 215,
+      "meta": 0,
+      "name": "RED_NETHER_BRICK"
+    },
+    {
+      "type": 216,
+      "meta": 0,
+      "name": "BONE_BLOCK"
+    },
+    {
+      "type": 217,
+      "meta": 0,
+      "name": "STRUCTURE_VOID"
+    },
+    {
+      "type": 218,
+      "meta": 0,
+      "name": "OBSERVER"
+    },
+    {
+      "type": 219,
+      "meta": 0,
+      "name": "WHITE_SHULKER_BOX"
+    },
+    {
+      "type": 220,
+      "meta": 0,
+      "name": "ORANGE_SHULKER_BOX"
+    },
+    {
+      "type": 221,
+      "meta": 0,
+      "name": "MAGENTA_SHULKER_BOX"
+    },
+    {
+      "type": 222,
+      "meta": 0,
+      "name": "LIGHT_BLUE_SHULKER_BOX"
+    },
+    {
+      "type": 223,
+      "meta": 0,
+      "name": "YELLOW_SHULKER_BOX"
+    },
+    {
+      "type": 224,
+      "meta": 0,
+      "name": "LIME_SHULKER_BOX"
+    },
+    {
+      "type": 225,
+      "meta": 0,
+      "name": "PINK_SHULKER_BOX"
+    },
+    {
+      "type": 226,
+      "meta": 0,
+      "name": "GRAY_SHULKER_BOX"
+    },
+    {
+      "type": 227,
+      "meta": 0,
+      "name": "LIGHT_GRAY_SHULKER_BOX"
+    },
+    {
+      "type": 228,
+      "meta": 0,
+      "name": "CYAN_SHULKER_BOX"
+    },
+    {
+      "type": 229,
+      "meta": 0,
+      "name": "PURPLE_SHULKER_BOX"
+    },
+    {
+      "type": 230,
+      "meta": 0,
+      "name": "BLUE_SHULKER_BOX"
+    },
+    {
+      "type": 231,
+      "meta": 0,
+      "name": "BROWN_SHULKER_BOX"
+    },
+    {
+      "type": 232,
+      "meta": 0,
+      "name": "GREEN_SHULKER_BOX"
+    },
+    {
+      "type": 233,
+      "meta": 0,
+      "name": "RED_SHULKER_BOX"
+    },
+    {
+      "type": 234,
+      "meta": 0,
+      "name": "BLACK_SHULKER_BOX"
+    },
+    {
+      "type": 235,
+      "meta": 0,
+      "name": "WHITE_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 236,
+      "meta": 0,
+      "name": "ORANGE_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 237,
+      "meta": 0,
+      "name": "MAGENTA_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 238,
+      "meta": 0,
+      "name": "LIGHT_BLUE_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 239,
+      "meta": 0,
+      "name": "YELLOW_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 240,
+      "meta": 0,
+      "name": "LIME_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 241,
+      "meta": 0,
+      "name": "PINK_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 242,
+      "meta": 0,
+      "name": "GRAY_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 243,
+      "meta": 0,
+      "name": "LIGHT_GRAY_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 244,
+      "meta": 0,
+      "name": "CYAN_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 245,
+      "meta": 0,
+      "name": "PURPLE_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 246,
+      "meta": 0,
+      "name": "BLUE_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 247,
+      "meta": 0,
+      "name": "BROWN_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 248,
+      "meta": 0,
+      "name": "GREEN_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 249,
+      "meta": 0,
+      "name": "RED_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 250,
+      "meta": 0,
+      "name": "BLACK_GLAZED_TERRACOTTA"
+    },
+    {
+      "type": 251,
+      "meta": 0,
+      "name": "WHITE_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 1,
+      "name": "ORANGE_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 2,
+      "name": "MAGENTA_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 3,
+      "name": "LIGHT_BLUE_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 4,
+      "name": "YELLOW_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 5,
+      "name": "LIME_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 6,
+      "name": "PINK_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 7,
+      "name": "GRAY_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 8,
+      "name": "LIGHT_GRAY_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 9,
+      "name": "CYAN_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 10,
+      "name": "PURPLE_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 11,
+      "name": "BLUE_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 12,
+      "name": "BROWN_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 13,
+      "name": "GREEN_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 14,
+      "name": "RED_CONCRETE"
+    },
+    {
+      "type": 251,
+      "meta": 15,
+      "name": "BLACK_CONCRETE"
+    },
+    {
+      "type": 252,
+      "meta": 0,
+      "name": "WHITE_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 1,
+      "name": "ORANGE_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 2,
+      "name": "MAGENTA_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 3,
+      "name": "LIGHT_BLUE_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 4,
+      "name": "YELLOW_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 5,
+      "name": "LIME_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 6,
+      "name": "PINK_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 7,
+      "name": "GRAY_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 8,
+      "name": "LIGHT_GRAY_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 9,
+      "name": "CYAN_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 10,
+      "name": "PURPLE_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 11,
+      "name": "BLUE_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 12,
+      "name": "BROWN_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 13,
+      "name": "GREEN_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 14,
+      "name": "RED_CONCRETE_POWDER"
+    },
+    {
+      "type": 252,
+      "meta": 15,
+      "name": "BLACK_CONCRETE_POWDER"
+    },
+    {
+      "type": 255,
+      "meta": 0,
+      "name": "STRUCTURE_BLOCK"
+    },
+    {
+      "type": 256,
+      "meta": 0,
+      "name": "IRON_SHOVEL"
+    },
+    {
+      "type": 257,
+      "meta": 0,
+      "name": "IRON_PICKAXE"
+    },
+    {
+      "type": 258,
+      "meta": 0,
+      "name": "IRON_AXE"
+    },
+    {
+      "type": 259,
+      "meta": 0,
+      "name": "FLINT_AND_STEEL"
+    },
+    {
+      "type": 260,
+      "meta": 0,
+      "name": "APPLE"
+    },
+    {
+      "type": 261,
+      "meta": 0,
+      "name": "BOW"
+    },
+    {
+      "type": 262,
+      "meta": 0,
+      "name": "ARROW"
+    },
+    {
+      "type": 263,
+      "meta": 0,
+      "name": "COAL"
+    },
+    {
+      "type": 263,
+      "meta": 1,
+      "name": "CHARCOAL"
+    },
+    {
+      "type": 264,
+      "meta": 0,
+      "name": "DIAMOND"
+    },
+    {
+      "type": 265,
+      "meta": 0,
+      "name": "IRON_INGOT"
+    },
+    {
+      "type": 266,
+      "meta": 0,
+      "name": "GOLD_INGOT"
+    },
+    {
+      "type": 267,
+      "meta": 0,
+      "name": "IRON_SWORD"
+    },
+    {
+      "type": 268,
+      "meta": 0,
+      "name": "WOODEN_SWORD"
+    },
+    {
+      "type": 269,
+      "meta": 0,
+      "name": "WOODEN_SHOVEL"
+    },
+    {
+      "type": 270,
+      "meta": 0,
+      "name": "WOODEN_PICKAXE"
+    },
+    {
+      "type": 271,
+      "meta": 0,
+      "name": "WOODEN_AXE"
+    },
+    {
+      "type": 272,
+      "meta": 0,
+      "name": "STONE_SWORD"
+    },
+    {
+      "type": 273,
+      "meta": 0,
+      "name": "STONE_SHOVEL"
+    },
+    {
+      "type": 274,
+      "meta": 0,
+      "name": "STONE_PICKAXE"
+    },
+    {
+      "type": 275,
+      "meta": 0,
+      "name": "STONE_AXE"
+    },
+    {
+      "type": 276,
+      "meta": 0,
+      "name": "DIAMOND_SWORD"
+    },
+    {
+      "type": 277,
+      "meta": 0,
+      "name": "DIAMOND_SHOVEL"
+    },
+    {
+      "type": 278,
+      "meta": 0,
+      "name": "DIAMOND_PICKAXE"
+    },
+    {
+      "type": 279,
+      "meta": 0,
+      "name": "DIAMOND_AXE"
+    },
+    {
+      "type": 280,
+      "meta": 0,
+      "name": "STICK"
+    },
+    {
+      "type": 281,
+      "meta": 0,
+      "name": "BOWL"
+    },
+    {
+      "type": 282,
+      "meta": 0,
+      "name": "MUSHROOM_STEW"
+    },
+    {
+      "type": 283,
+      "meta": 0,
+      "name": "GOLDEN_SWORD"
+    },
+    {
+      "type": 284,
+      "meta": 0,
+      "name": "GOLDEN_SHOVEL"
+    },
+    {
+      "type": 285,
+      "meta": 0,
+      "name": "GOLDEN_PICKAXE"
+    },
+    {
+      "type": 286,
+      "meta": 0,
+      "name": "GOLDEN_AXE"
+    },
+    {
+      "type": 287,
+      "meta": 0,
+      "name": "STRING"
+    },
+    {
+      "type": 288,
+      "meta": 0,
+      "name": "FEATHER"
+    },
+    {
+      "type": 289,
+      "meta": 0,
+      "name": "GUNPOWDER"
+    },
+    {
+      "type": 290,
+      "meta": 0,
+      "name": "WOODEN_HOE"
+    },
+    {
+      "type": 291,
+      "meta": 0,
+      "name": "STONE_HOE"
+    },
+    {
+      "type": 292,
+      "meta": 0,
+      "name": "IRON_HOE"
+    },
+    {
+      "type": 293,
+      "meta": 0,
+      "name": "DIAMOND_HOE"
+    },
+    {
+      "type": 294,
+      "meta": 0,
+      "name": "GOLDEN_HOE"
+    },
+    {
+      "type": 295,
+      "meta": 0,
+      "name": "WHEAT_SEEDS"
+    },
+    {
+      "type": 296,
+      "meta": 0,
+      "name": "WHEAT"
+    },
+    {
+      "type": 297,
+      "meta": 0,
+      "name": "BREAD"
+    },
+    {
+      "type": 298,
+      "meta": 0,
+      "name": "LEATHER_HELMET"
+    },
+    {
+      "type": 299,
+      "meta": 0,
+      "name": "LEATHER_CHESTPLATE"
+    },
+    {
+      "type": 300,
+      "meta": 0,
+      "name": "LEATHER_LEGGINGS"
+    },
+    {
+      "type": 301,
+      "meta": 0,
+      "name": "LEATHER_BOOTS"
+    },
+    {
+      "type": 302,
+      "meta": 0,
+      "name": "CHAINMAIL_HELMET"
+    },
+    {
+      "type": 303,
+      "meta": 0,
+      "name": "CHAINMAIL_CHESTPLATE"
+    },
+    {
+      "type": 304,
+      "meta": 0,
+      "name": "CHAINMAIL_LEGGINGS"
+    },
+    {
+      "type": 305,
+      "meta": 0,
+      "name": "CHAINMAIL_BOOTS"
+    },
+    {
+      "type": 306,
+      "meta": 0,
+      "name": "IRON_HELMET"
+    },
+    {
+      "type": 307,
+      "meta": 0,
+      "name": "IRON_CHESTPLATE"
+    },
+    {
+      "type": 308,
+      "meta": 0,
+      "name": "IRON_LEGGINGS"
+    },
+    {
+      "type": 309,
+      "meta": 0,
+      "name": "IRON_BOOTS"
+    },
+    {
+      "type": 310,
+      "meta": 0,
+      "name": "DIAMOND_HELMET"
+    },
+    {
+      "type": 311,
+      "meta": 0,
+      "name": "DIAMOND_CHESTPLATE"
+    },
+    {
+      "type": 312,
+      "meta": 0,
+      "name": "DIAMOND_LEGGINGS"
+    },
+    {
+      "type": 313,
+      "meta": 0,
+      "name": "DIAMOND_BOOTS"
+    },
+    {
+      "type": 314,
+      "meta": 0,
+      "name": "GOLDEN_HELMET"
+    },
+    {
+      "type": 315,
+      "meta": 0,
+      "name": "GOLDEN_CHESTPLATE"
+    },
+    {
+      "type": 316,
+      "meta": 0,
+      "name": "GOLDEN_LEGGINGS"
+    },
+    {
+      "type": 317,
+      "meta": 0,
+      "name": "GOLDEN_BOOTS"
+    },
+    {
+      "type": 318,
+      "meta": 0,
+      "name": "FLINT"
+    },
+    {
+      "type": 319,
+      "meta": 0,
+      "name": "PORKCHOP"
+    },
+    {
+      "type": 320,
+      "meta": 0,
+      "name": "COOKED_PORKCHOP"
+    },
+    {
+      "type": 321,
+      "meta": 0,
+      "name": "PAINTING"
+    },
+    {
+      "type": 322,
+      "meta": 0,
+      "name": "GOLDEN_APPLE"
+    },
+    {
+      "type": 322,
+      "meta": 1,
+      "name": "ENCHANTED_GOLDEN_APPLE"
+    },
+    {
+      "type": 323,
+      "meta": 0,
+      "name": "SIGN"
+    },
+    {
+      "type": 324,
+      "meta": 0,
+      "name": "OAK_DOOR"
+    },
+    {
+      "type": 325,
+      "meta": 0,
+      "name": "BUCKET"
+    },
+    {
+      "type": 326,
+      "meta": 0,
+      "name": "WATER_BUCKET"
+    },
+    {
+      "type": 327,
+      "meta": 0,
+      "name": "LAVA_BUCKET"
+    },
+    {
+      "type": 328,
+      "meta": 0,
+      "name": "MINECART"
+    },
+    {
+      "type": 329,
+      "meta": 0,
+      "name": "SADDLE"
+    },
+    {
+      "type": 330,
+      "meta": 0,
+      "name": "IRON_DOOR"
+    },
+    {
+      "type": 331,
+      "meta": 0,
+      "name": "REDSTONE"
+    },
+    {
+      "type": 332,
+      "meta": 0,
+      "name": "SNOWBALL"
+    },
+    {
+      "type": 333,
+      "meta": 0,
+      "name": "OAK_BOAT"
+    },
+    {
+      "type": 334,
+      "meta": 0,
+      "name": "LEATHER"
+    },
+    {
+      "type": 335,
+      "meta": 0,
+      "name": "MILK_BUCKET"
+    },
+    {
+      "type": 336,
+      "meta": 0,
+      "name": "BRICK"
+    },
+    {
+      "type": 337,
+      "meta": 0,
+      "name": "CLAY"
+    },
+    {
+      "type": 338,
+      "meta": 0,
+      "name": "SUGAR_CANE"
+    },
+    {
+      "type": 339,
+      "meta": 0,
+      "name": "PAPER"
+    },
+    {
+      "type": 340,
+      "meta": 0,
+      "name": "BOOK"
+    },
+    {
+      "type": 341,
+      "meta": 0,
+      "name": "SLIME_BALL"
+    },
+    {
+      "type": 342,
+      "meta": 0,
+      "name": "CHEST_MINECART"
+    },
+    {
+      "type": 343,
+      "meta": 0,
+      "name": "FURNACE_MINECART"
+    },
+    {
+      "type": 344,
+      "meta": 0,
+      "name": "EGG"
+    },
+    {
+      "type": 345,
+      "meta": 0,
+      "name": "COMPASS"
+    },
+    {
+      "type": 346,
+      "meta": 0,
+      "name": "FISHING_ROD"
+    },
+    {
+      "type": 347,
+      "meta": 0,
+      "name": "CLOCK"
+    },
+    {
+      "type": 348,
+      "meta": 0,
+      "name": "GLOWSTONE_DUST"
+    },
+    {
+      "type": 349,
+      "meta": 0,
+      "name": "RAW_FISH"
+    },
+    {
+      "type": 349,
+      "meta": 1,
+      "name": "SALMON"
+    },
+    {
+      "type": 349,
+      "meta": 2,
+      "name": "PUFFERFISH"
+    },
+    {
+      "type": 349,
+      "meta": 3,
+      "name": "PUFFERFISH"
+    },
+    {
+      "type": 350,
+      "meta": 0,
+      "name": "COOKED_FISH"
+    },
+    {
+      "type": 350,
+      "meta": 1,
+      "name": "COOKED_SALMON"
+    },
+    {
+      "type": 351,
+      "meta": 0,
+      "name": "INK_SACK"
+    },
+    {
+      "type": 351,
+      "meta": 1,
+      "name": "ROSE_RED"
+    },
+    {
+      "type": 351,
+      "meta": 2,
+      "name": "CACTUS_GREEN"
+    },
+    {
+      "type": 351,
+      "meta": 3,
+      "name": "COCOA_BEANS"
+    },
+    {
+      "type": 351,
+      "meta": 4,
+      "name": "LAPIS_LAZULI"
+    },
+    {
+      "type": 351,
+      "meta": 5,
+      "name": "PURPLE_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 6,
+      "name": "CYAN_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 7,
+      "name": "LIGHT_GRAY_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 8,
+      "name": "GRAY_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 9,
+      "name": "PINK_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 10,
+      "name": "LIME_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 11,
+      "name": "DANDELION_YELLOW"
+    },
+    {
+      "type": 351,
+      "meta": 12,
+      "name": "LIGHT_BLUE_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 13,
+      "name": "MAGENTA_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 14,
+      "name": "ORANGE_DYE"
+    },
+    {
+      "type": 351,
+      "meta": 15,
+      "name": "BONE_MEAL"
+    },
+    {
+      "type": 352,
+      "meta": 0,
+      "name": "BONE"
+    },
+    {
+      "type": 353,
+      "meta": 0,
+      "name": "SUGAR"
+    },
+    {
+      "type": 354,
+      "meta": 0,
+      "name": "CAKE"
+    },
+    {
+      "type": 355,
+      "meta": 0,
+      "name": "BED"
+    },
+    {
+      "type": 356,
+      "meta": 0,
+      "name": "REPEATER"
+    },
+    {
+      "type": 357,
+      "meta": 0,
+      "name": "COOKIE"
+    },
+    {
+      "type": 358,
+      "meta": 0,
+      "name": "MAP"
+    },
+    {
+      "type": 359,
+      "meta": 0,
+      "name": "SHEARS"
+    },
+    {
+      "type": 360,
+      "meta": 0,
+      "name": "MELON"
+    },
+    {
+      "type": 361,
+      "meta": 0,
+      "name": "PUMPKIN_SEEDS"
+    },
+    {
+      "type": 362,
+      "meta": 0,
+      "name": "MELON_SEEDS"
+    },
+    {
+      "type": 363,
+      "meta": 0,
+      "name": "RAW_BEEF"
+    },
+    {
+      "type": 364,
+      "meta": 0,
+      "name": "COOKED_BEEF"
+    },
+    {
+      "type": 365,
+      "meta": 0,
+      "name": "RAW_CHICKEN"
+    },
+    {
+      "type": 366,
+      "meta": 0,
+      "name": "COOKED_CHICKEN"
+    },
+    {
+      "type": 367,
+      "meta": 0,
+      "name": "ROTTEN_FLESH"
+    },
+    {
+      "type": 368,
+      "meta": 0,
+      "name": "ENDER_PEARL"
+    },
+    {
+      "type": 369,
+      "meta": 0,
+      "name": "BLAZE_ROD"
+    },
+    {
+      "type": 370,
+      "meta": 0,
+      "name": "GHAST_TEAR"
+    },
+    {
+      "type": 371,
+      "meta": 0,
+      "name": "GOLD_NUGGET"
+    },
+    {
+      "type": 372,
+      "meta": 0,
+      "name": "NETHER_WART"
+    },
+    {
+      "type": 373,
+      "meta": 0,
+      "name": "POTION"
+    },
+    {
+      "type": 374,
+      "meta": 0,
+      "name": "GLASS_BOTTLE"
+    },
+    {
+      "type": 375,
+      "meta": 0,
+      "name": "SPIDER_EYE"
+    },
+    {
+      "type": 376,
+      "meta": 0,
+      "name": "FERMENTED_SPIDER_EYE"
+    },
+    {
+      "type": 377,
+      "meta": 0,
+      "name": "BLAZE_POWDER"
+    },
+    {
+      "type": 378,
+      "meta": 0,
+      "name": "MAGMA_CREAM"
+    },
+    {
+      "type": 379,
+      "meta": 0,
+      "name": "BREWING_STAND"
+    },
+    {
+      "type": 380,
+      "meta": 0,
+      "name": "CAULDRON"
+    },
+    {
+      "type": 381,
+      "meta": 0,
+      "name": "EYE_OF_ENDER"
+    },
+    {
+      "type": 382,
+      "meta": 0,
+      "name": "GLISTERING_MELON_SLICE"
+    },
+    {
+      "type": 383,
+      "meta": 4,
+      "name": "ELDER_GUARDIAN_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 5,
+      "name": "WITHER_SKELETON_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 6,
+      "name": "STRAY_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 23,
+      "name": "HUSK_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 27,
+      "name": "ZOMBIE_VILLAGER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 28,
+      "name": "SKELETON_HORSE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 29,
+      "name": "ZOMBIE_HORSE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 31,
+      "name": "DONKEY_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 32,
+      "name": "MULE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 34,
+      "name": "EVOKER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 35,
+      "name": "VEX_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 36,
+      "name": "VINDICATOR_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 50,
+      "name": "CREEPER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 51,
+      "name": "SKELETON_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 52,
+      "name": "SPIDER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 54,
+      "name": "ZOMBIE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 55,
+      "name": "SLIME_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 56,
+      "name": "GHAST_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 57,
+      "name": "ZOMBIE_PIGMAN_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 58,
+      "name": "ENDERMAN_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 59,
+      "name": "CAVE_SPIDER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 60,
+      "name": "SILVERFISH_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 61,
+      "name": "BLAZE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 62,
+      "name": "MAGMA_CUBE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 65,
+      "name": "BAT_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 66,
+      "name": "WITCH_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 67,
+      "name": "ENDERMITE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 68,
+      "name": "GUARDIAN_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 69,
+      "name": "SHULKER_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 90,
+      "name": "PIG_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 91,
+      "name": "SHEEP_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 92,
+      "name": "COW_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 93,
+      "name": "CHICKEN_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 94,
+      "name": "SQUID_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 95,
+      "name": "WOLF_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 96,
+      "name": "MOOSHROOM_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 98,
+      "name": "OCELOT_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 100,
+      "name": "HORSE_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 101,
+      "name": "RABBIT_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 102,
+      "name": "POLAR_BEAR_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 103,
+      "name": "LLAMA_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 105,
+      "name": "PARROT_SPAWN_EGG"
+    },
+    {
+      "type": 383,
+      "meta": 120,
+      "name": "VILLAGER_SPAWN_EGG"
+    },
+    {
+      "type": 384,
+      "meta": 0,
+      "name": "EXPERIENCE_BOTTLE"
+    },
+    {
+      "type": 385,
+      "meta": 0,
+      "name": "FIRE_CHARGE"
+    },
+    {
+      "type": 386,
+      "meta": 0,
+      "name": "BOOK_AND_QUILL"
+    },
+    {
+      "type": 387,
+      "meta": 0,
+      "name": "WRITTEN_BOOK"
+    },
+    {
+      "type": 388,
+      "meta": 0,
+      "name": "EMERALD"
+    },
+    {
+      "type": 389,
+      "meta": 0,
+      "name": "ITEM_FRAME"
+    },
+    {
+      "type": 390,
+      "meta": 0,
+      "name": "FLOWER_POT"
+    },
+    {
+      "type": 391,
+      "meta": 0,
+      "name": "CARROT"
+    },
+    {
+      "type": 392,
+      "meta": 0,
+      "name": "POTATO"
+    },
+    {
+      "type": 393,
+      "meta": 0,
+      "name": "BAKED_POTATO"
+    },
+    {
+      "type": 394,
+      "meta": 0,
+      "name": "POISONOUS_POTATO"
+    },
+    {
+      "type": 395,
+      "meta": 0,
+      "name": "EMPTY_MAP"
+    },
+    {
+      "type": 396,
+      "meta": 0,
+      "name": "GOLDEN_CARROT"
+    },
+    {
+      "type": 397,
+      "meta": 0,
+      "name": "SKELETON_SKULL"
+    },
+    {
+      "type": 397,
+      "meta": 1,
+      "name": "WITHER_SKELETON_HEAD"
+    },
+    {
+      "type": 397,
+      "meta": 2,
+      "name": "ZOMBIE_HEAD"
+    },
+    {
+      "type": 397,
+      "meta": 3,
+      "name": "PLAYER_HEAD"
+    },
+    {
+      "type": 397,
+      "meta": 4,
+      "name": "CREEPER_HEAD"
+    },
+    {
+      "type": 397,
+      "meta": 5,
+      "name": "DRAGON_HEAD"
+    },
+    {
+      "type": 398,
+      "meta": 0,
+      "name": "CARROT_ON_A_STICK"
+    },
+    {
+      "type": 399,
+      "meta": 0,
+      "name": "NETHER_STAR"
+    },
+    {
+      "type": 400,
+      "meta": 0,
+      "name": "PUMPKIN_PIE"
+    },
+    {
+      "type": 401,
+      "meta": 0,
+      "name": "FIREWORK_ROCKET"
+    },
+    {
+      "type": 402,
+      "meta": 0,
+      "name": "FIREWORK_STAR"
+    },
+    {
+      "type": 403,
+      "meta": 0,
+      "name": "ENCHANTED_BOOK"
+    },
+    {
+      "type": 404,
+      "meta": 0,
+      "name": "REDSTONE_COMPARATOR"
+    },
+    {
+      "type": 405,
+      "meta": 0,
+      "name": "NETHER_BRICK"
+    },
+    {
+      "type": 406,
+      "meta": 0,
+      "name": "QUARTZ"
+    },
+    {
+      "type": 407,
+      "meta": 0,
+      "name": "TNT_MINECART"
+    },
+    {
+      "type": 408,
+      "meta": 0,
+      "name": "HOPPER_MINECART"
+    },
+    {
+      "type": 409,
+      "meta": 0,
+      "name": "PRISMARINE_SHARD"
+    },
+    {
+      "type": 410,
+      "meta": 0,
+      "name": "PRISMARINE_CRYSTALS"
+    },
+    {
+      "type": 411,
+      "meta": 0,
+      "name": "RABBIT"
+    },
+    {
+      "type": 412,
+      "meta": 0,
+      "name": "COOKED_RABBIT"
+    },
+    {
+      "type": 413,
+      "meta": 0,
+      "name": "RABBIT_STEW"
+    },
+    {
+      "type": 414,
+      "meta": 0,
+      "name": "RABBIT_FOOT"
+    },
+    {
+      "type": 415,
+      "meta": 0,
+      "name": "RABBIT_HIDE"
+    },
+    {
+      "type": 416,
+      "meta": 0,
+      "name": "ARMOR_STAND"
+    },
+    {
+      "type": 417,
+      "meta": 0,
+      "name": "IRON_HORSE_ARMOR"
+    },
+    {
+      "type": 418,
+      "meta": 0,
+      "name": "GOLDEN_HORSE_ARMOR"
+    },
+    {
+      "type": 419,
+      "meta": 0,
+      "name": "DIAMOND_HORSE_ARMOR"
+    },
+    {
+      "type": 420,
+      "meta": 0,
+      "name": "LEAD"
+    },
+    {
+      "type": 421,
+      "meta": 0,
+      "name": "NAME_TAG"
+    },
+    {
+      "type": 422,
+      "meta": 0,
+      "name": "COMMAND_BLOCK_MINECART"
+    },
+    {
+      "type": 423,
+      "meta": 0,
+      "name": "MUTTON"
+    },
+    {
+      "type": 424,
+      "meta": 0,
+      "name": "COOKED_MUTTON"
+    },
+    {
+      "type": 425,
+      "meta": 0,
+      "name": "BANNER"
+    },
+    {
+      "type": 426,
+      "meta": 0,
+      "name": "END_CRYSTAL"
+    },
+    {
+      "type": 427,
+      "meta": 0,
+      "name": "SPRUCE_DOOR"
+    },
+    {
+      "type": 428,
+      "meta": 0,
+      "name": "BIRCH_DOOR"
+    },
+    {
+      "type": 429,
+      "meta": 0,
+      "name": "JUNGLE_DOOR"
+    },
+    {
+      "type": 430,
+      "meta": 0,
+      "name": "ACACIA_DOOR"
+    },
+    {
+      "type": 431,
+      "meta": 0,
+      "name": "DARK_OAK_DOOR"
+    },
+    {
+      "type": 432,
+      "meta": 0,
+      "name": "CHORUS_FRUIT"
+    },
+    {
+      "type": 433,
+      "meta": 0,
+      "name": "POPPED_CHORUS_FRUIT"
+    },
+    {
+      "type": 434,
+      "meta": 0,
+      "name": "BEETROOT"
+    },
+    {
+      "type": 435,
+      "meta": 0,
+      "name": "BEETROOT_SEEDS"
+    },
+    {
+      "type": 436,
+      "meta": 0,
+      "name": "BEETROOT_SOUP"
+    },
+    {
+      "type": 437,
+      "meta": 0,
+      "name": "DRAGON'S_BREATH"
+    },
+    {
+      "type": 438,
+      "meta": 0,
+      "name": "SPLASH_POTION"
+    },
+    {
+      "type": 439,
+      "meta": 0,
+      "name": "SPECTRAL_ARROW"
+    },
+    {
+      "type": 440,
+      "meta": 0,
+      "name": "TIPPED_ARROW"
+    },
+    {
+      "type": 441,
+      "meta": 0,
+      "name": "LINGERING_POTION"
+    },
+    {
+      "type": 442,
+      "meta": 0,
+      "name": "SHIELD"
+    },
+    {
+      "type": 443,
+      "meta": 0,
+      "name": "ELYTRA"
+    },
+    {
+      "type": 444,
+      "meta": 0,
+      "name": "SPRUCE_BOAT"
+    },
+    {
+      "type": 445,
+      "meta": 0,
+      "name": "BIRCH_BOAT"
+    },
+    {
+      "type": 446,
+      "meta": 0,
+      "name": "JUNGLE_BOAT"
+    },
+    {
+      "type": 447,
+      "meta": 0,
+      "name": "ACACIA_BOAT"
+    },
+    {
+      "type": 448,
+      "meta": 0,
+      "name": "DARK_OAK_BOAT"
+    },
+    {
+      "type": 449,
+      "meta": 0,
+      "name": "TOTEM_OF_UNDYING"
+    },
+    {
+      "type": 450,
+      "meta": 0,
+      "name": "SHULKER_SHELL"
+    },
+    {
+      "type": 452,
+      "meta": 0,
+      "name": "IRON_NUGGET"
+    },
+    {
+      "type": 453,
+      "meta": 0,
+      "name": "KNOWLEDGE_BOOK"
+    },
+    {
+      "type": 2256,
+      "meta": 0,
+      "name": "MUSIC_DISC_13"
+    },
+    {
+      "type": 2257,
+      "meta": 0,
+      "name": "MUSIC_DISC_CAT"
+    },
+    {
+      "type": 2258,
+      "meta": 0,
+      "name": "MUSIC_DISC_BLOCKS"
+    },
+    {
+      "type": 2259,
+      "meta": 0,
+      "name": "MUSIC_DISC_CHIRP"
+    },
+    {
+      "type": 2260,
+      "meta": 0,
+      "name": "MUSIC_DISC_FAR"
+    },
+    {
+      "type": 2261,
+      "meta": 0,
+      "name": "MUSIC_DISC_MALL"
+    },
+    {
+      "type": 2262,
+      "meta": 0,
+      "name": "MUSIC_DISC_MELLOHI"
+    },
+    {
+      "type": 2263,
+      "meta": 0,
+      "name": "MUSIC_DISC_STAL"
+    },
+    {
+      "type": 2264,
+      "meta": 0,
+      "name": "MUSIC_DISC_STRAD"
+    },
+    {
+      "type": 2265,
+      "meta": 0,
+      "name": "MUSIC_DISC_WARD"
+    },
+    {
+      "type": 2266,
+      "meta": 0,
+      "name": "MUSIC_DISC_11"
+    },
+    {
+      "type": 2267,
+      "meta": 0,
+      "name": "MUSIC_DISC_WAIT"
+    }
+  ]
+}

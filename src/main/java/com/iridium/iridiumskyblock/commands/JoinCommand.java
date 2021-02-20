@@ -4,6 +4,7 @@ import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Island;
 import com.iridium.iridiumskyblock.User;
 import com.iridium.iridiumskyblock.Utils;
+import com.iridium.iridiumskyblock.api.IslandJoinEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -28,11 +29,16 @@ public class JoinCommand extends Command {
         User user = User.getUser(p);
         OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
         User u = User.getUser(player);
-        if (u.getIsland() != null) {
+        Island island = u.getIsland();
+        if (island != null) {
             if (user.getIsland() == null) {
-                Island island = u.getIsland();
-                if (user.invites.contains(island.getId())) {
-                    island.addUser(user);
+                if (user.invites.contains(island.id)) {
+                    IslandJoinEvent joinEvent = new IslandJoinEvent(island, user);
+                    Bukkit.getPluginManager().callEvent(joinEvent);
+                    if (!joinEvent.isCancelled()) {
+                        island.addUser(user);
+                        sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().joinedIsland.replace("%player%", User.getUser(island.owner).name).replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                    }
                 } else {
                     sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noActiveInvites.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
                 }
